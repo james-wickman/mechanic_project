@@ -14829,3 +14829,22 @@ Processing by HomeController#index as HTML
 Completed 200 OK in 335ms (Views: 300.7ms | ActiveRecord: 1.0ms)
 
 
+Started GET "/" for ::1 at 2017-03-07 15:16:53 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by HomeController#index as HTML
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (1.1ms)
+  Rendered users/sessions/_new.html.erb (22.7ms)
+  Rendered mechanics/sessions/_new.html.erb (1.9ms)
+  Rendered users/registrations/_new.html.erb (3.2ms)
+  Rendered mechanics/registrations/_new.html.erb (2.4ms)
+Completed 200 OK in 366ms (Views: 324.3ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/home/unique_user_email?user%5Bemail%5D=nauticalnova%40hotmail.com" for ::1 at 2017-03-07 15:16:57 -0700
+Processing by HomeController#unique_user_email as */*
+  Parameters: {"user"=>{"email"=>"nauticalnova@hotmail.com"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["email", "nauticalnova@hotmail.com"], ["LIMIT", 1]]
+Completed 200 OK in 5ms (Views: 0.3ms | ActiveRecord: 0.4ms)
+
+
