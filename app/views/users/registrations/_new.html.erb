@@ -35,7 +35,7 @@
 
   <div class="field">
     <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control', "data-parsley-trigger" => "change", "data-equalto" => "#user_password", "data-required" => "true" %>
+    <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control', "data-parsley-trigger" => "change", "data-parsley-equalto" => "#user_password", "data-required" => "true" %>
   </div>
 
   <div class="actions">
