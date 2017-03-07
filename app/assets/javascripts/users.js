@@ -39,6 +39,18 @@ $(document).on('turbolinks:load', function() {
 	});
 
 	window.Parsley.addAsyncValidator('user_email_unique', function (data) {
+		if (data.responseJSON.email_unique == true) {
+			$(".email_check_animation").removeClass("loading");
+			$(".email_check_animation").removeClass("already_taken");
+			$(".email_check_animation").addClass("success");
+			$(".please_wait").text("Email Available");
+		}
+		else if (data.responseJSON.email_unique == false) {
+			$(".email_check_animation").removeClass("loading");
+			$(".email_check_animation").removeClass("success");
+			$(".email_check_animation").addClass("already_taken");
+			$(".please_wait").text("Email Already In Use");
+		}
 	    return data.responseJSON.email_unique;
 	  }, '/home/unique_user_email');
 
@@ -46,6 +58,24 @@ $(document).on('turbolinks:load', function() {
 	    return data.responseJSON.email_unique;
 	  }, '/home/unique_mechanic_email');
 
+	$('#email').change(function () {
+		console.log(document.getElementById('email').value.length)
+		if (document.getElementById('email').value.length < 5) {
+			$("#loading").removeClass("hidden");
+			$(".email_check_animation").removeClass("success");
+			$(".email_check_animation").removeClass("already_taken");
+			$(".email_check_animation").addClass("loading");
+			$(".please_wait").text("Email doesn't meet criteria");
+		}
+	})
+
+	$(document).on({
+	    ajaxStart: function() {
+
+	     	$("#loading").removeClass("hidden"); 
+	 	},
+
+	});
 });
 
 
