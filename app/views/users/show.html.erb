@@ -7,7 +7,18 @@
 	<div class="user_vehicles_list">
 		<% current_user.vehicles.each do |vehicle| %>
 			<%= vehicle.make %> <br>
-			<%= vehicle.model %> <%= link_to "Delete", vehicles_destroy_path(id: vehicle.id), method: :delete %>
+			<%= vehicle.model %> 
+			<div class="dropdown">
+			  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			    Dropdown
+			  </button>
+			  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+			    <a class="dropdown-item" href="#">Action</a>
+			    <a class="dropdown-item" href="#">Another action</a>
+			    <a class="dropdown-item" href="#">Something else here</a>
+				<%= link_to "Delete Vehicle", vehicles_destroy_path(id: vehicle.id), method: :delete %>
+			  </div>
+			</div>
 			<hr>
 		<% end %>
 	</div>

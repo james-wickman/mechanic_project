@@ -47,7 +47,7 @@ body {
 .user_vehicles_list {
 	text-align: center;
 }
-.please_wait {
+.please_wait, .mechanic_please_wait {
   display: inline-block;
 }
 .success {
@@ -64,7 +64,7 @@ body {
   background: url('http://www.clker.com/cliparts/Q/A/W/c/p/q/small-red-x-mark-md.png')no-repeat;
   background-size: contain;
 }
-.loading {
+.loading, .mechanic_loading {
   display: inline-block;
   height: 31px;
   width: 31px;
