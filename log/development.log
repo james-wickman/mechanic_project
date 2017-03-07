@@ -14805,3 +14805,27 @@ Processing by UsersController#show as HTML
 Completed 200 OK in 63ms (Views: 60.7ms | ActiveRecord: 0.4ms)
 
 
+Started GET "/" for ::1 at 2017-03-07 12:20:36 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by HomeController#index as HTML
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (1.1ms)
+  Rendered users/sessions/_new.html.erb (30.1ms)
+  Rendered mechanics/sessions/_new.html.erb (2.2ms)
+  Rendered users/registrations/_new.html.erb (3.7ms)
+  Rendered mechanics/registrations/_new.html.erb (2.5ms)
+Completed 200 OK in 387ms (Views: 340.7ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/" for ::1 at 2017-03-07 12:24:36 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by HomeController#index as HTML
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (1.1ms)
+  Rendered users/sessions/_new.html.erb (26.5ms)
+  Rendered mechanics/sessions/_new.html.erb (1.6ms)
+  Rendered users/registrations/_new.html.erb (2.5ms)
+  Rendered mechanics/registrations/_new.html.erb (2.2ms)
+Completed 200 OK in 335ms (Views: 300.7ms | ActiveRecord: 1.0ms)
+
+
