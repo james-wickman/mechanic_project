@@ -21,7 +21,10 @@
     <%= f.text_field :last_name, class: 'form-control', "data-parsley-trigger" => "change", "data-parsley-minlength" => "2", required:"" %>
   </div>
   <div class="field">
-    <%= f.label :email %><br />
+    <%= f.label :email %><div class="hidden" id="loading"><div class="email_check_animation loading"></div>
+  <p class="please_wait"> Please Wait</p>
+</div>
+      <br />
     <%= f.email_field :email, id: 'email', "data-parsley-remote" => "/home/unique_user_email?email={value}", "data-parsley-remote-validator" => 'user_email_unique', class: 'form-control email', "data-parsley-trigger" => "change", required:"" %>
   </div>
 
@@ -42,6 +45,7 @@
     <%= f.submit "Sign up" %>
   </div>
 <% end %>
+
 
 
 
