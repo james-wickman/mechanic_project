@@ -7,9 +7,9 @@
 	<div class="user_vehicles_list">
 		<% current_user.vehicles.each do |vehicle| %>
 			<%= vehicle.make %> 
-			<%= vehicle.model %> 
+			<%= vehicle.model %> <br>
 			<% vehicle.jobs.each do |job| %>
-				<%= job.vehicle_id %>
+				<%= job.customer_description %><br>
 			<% end %>
 			<div class="dropdown user_cars_options">
 			  <button class="btn btn-secondary dropdown-toggle user_cars_options" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
