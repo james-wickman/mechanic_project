@@ -1,4 +1,23 @@
 <h1>Users#index</h1>
 <p>Find me in app/views/users/index.html.erb</p>
 
-<div id="map"></div>
+
+<div style='width: 800px;'>
+  <div id="multi_markers" style='width: 800px; height: 400px;'></div>
+</div>
+<script>
+$(document).on('turbolinks:load', function() {
+	var handler = Gmaps.build('Google');
+	handler.buildMap({ internal: {id: 'multi_markers'}}, function(){
+	  var markers = handler.addMarkers([
+	  	{ lat: <%=@user.latitude%>, lng: <%= @user.longitude%>},
+	    { lat: 47, lng: 3.5},
+	    { lat: 49, lng: 4},
+	    { lat: 51, lng: 3.5}
+	  ]);
+	  handler.bounds.extendWith(markers);
+	  handler.fitMapToBounds();
+	});
+})
+    
+</script>
