@@ -35,7 +35,7 @@ body {
 	text-align: center;
 	text-decoration: underline;
 }
-.edit_profile, .add_vehicle {
+.edit_profile, .add_vehicle, .edit_job {
 	position: absolute;
 	top:50px;
 	right: 30px;
@@ -69,6 +69,13 @@ body {
   height: 31px;
   width: 31px;
   background: url('http://i.stack.imgur.com/FhHRx.gif');
+}
+
+.user_cars_options {
+  display: inline-block;
+  width: 60px;
+}
+.user_cars_menue {
 }
 
 
