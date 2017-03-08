@@ -38,6 +38,16 @@
 <div class="hidden add_vehicle">
 	<%= render 'vehicles/new_vehicle' %>
 </div>
-<div class="hidden edit_job">
-	<%= render 'jobs/edit' %>
-</div>
+<% if @job %>
+	<div class=" edit_job">
+		<%= render 'jobs/edit' %>
+	</div>
+<% end %>
+
+
+
+
+
+
+
+

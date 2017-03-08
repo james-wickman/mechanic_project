@@ -1,1 +1,16 @@
-edit
+<%= form_for @job, :url => jobs_update_path, :html => {:"data-parsley-validate" => ""}, method: :put do |f| %>
+	<br>
+	<div class="field">
+    <%= f.hidden_field :id, value: @job.id %>
+  </div>
+  <div class="field">
+    <%= f.hidden_field :available, value: true %>
+  </div>
+  <div class="field">
+    <%= f.label :customer_description %> <br />
+    <%= f.text_field :customer_description, autofocus: true, class: 'form-control', "data-parsley-trigger" => "change", "data-parsley-minlength" => "20", required:"" %>
+  </div><br>
+  <div class="actions">
+    <%= f.submit "Update" %>
+  </div>
+<% end %>
