@@ -1,14 +1,8 @@
-
-
-<%= form_for @new_vehicle, :url => vehicles_create_path, :html => {:id => "new_vehicle_form", :"data-parsley-validate" => ""} do |f| %>
+<%= form_for @vehicle, :url => vehicles_update_path, :html => {:id => "edit_vehicle_form", :"data-parsley-validate" => ""}, method: :put do |f| %>
 	<br>
   <div class="field">
-    <%= f.hidden_field :user_id, value: current_user.id %>
+    <%= f.hidden_field :id, value: current_user.id %>
   </div>
-<!--   <div class="field">
-  <%= f.label :type %> <br />
-    <%= f.select :type, [ 'motocycle', 'truck', 'motorcycle', 'atv', 'boat' ], :prompt => 'Select One' %>
-  </div><br> -->
   <div class="field">
     <%= f.label :make %> <br />
     <%= f.text_field :make, autofocus: true, class: 'form-control', "data-parsley-trigger" => "change", "data-parsley-minlength" => "2", required:"" %>

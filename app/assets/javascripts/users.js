@@ -4,6 +4,14 @@
 
 $(document).on('turbolinks:load', function() {
 
+	$('.edit_vehicle_button').on('click', function() {
+		console.log('hidden')
+		$(this).next('.edit_vehicle').removeClass('hidden')
+	})
+	$('.edit_job_button').on('click', function() {
+		$(this).next('.edit_job').removeClass('hidden')
+	})
+
 	$('.edit_profile_link').on('click', function () {
 		$('.edit_profile').removeClass('hidden');
 		$('.add_vehicle').addClass('hidden');
@@ -96,8 +104,20 @@ $(document).on('turbolinks:load', function() {
 		}
 	});
 
+
 });
 
+function initMap() {
+	var uluru = {lat: -25.363, lng: 131.044};
+		var map = new google.maps.Map(document.getElementById('map'), {
+		  zoom: 4,
+		  center: uluru
+		});
+		var marker = new google.maps.Marker({
+		  position: uluru,
+		  map: map
+		});
+	}
 
 
 

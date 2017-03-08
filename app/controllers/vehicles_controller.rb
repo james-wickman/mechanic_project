@@ -10,6 +10,11 @@ class VehiclesController < ApplicationController
   end
 
   def update
+    @vehicle = Vehicle.find(vehicle_params[:id])
+    @vehicle.update_attributes(vehicle_params)
+    if @vehicle.save
+      redirect_to users_show_path
+    end
   end
 
   def destroy
@@ -22,6 +27,6 @@ class VehiclesController < ApplicationController
   private
 
   def vehicle_params
-      params.require(:vehicle).permit(:type, :make, :model, :user_id)
+      params.require(:vehicle).permit(:type, :make, :model, :user_id, :id)
     end
 end
