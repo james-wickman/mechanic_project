@@ -33,12 +33,12 @@
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
-    <%= f.password_field :password, autocomplete: "off", id: 'user_password', class: 'form-control', "data-parsley-trigger" => "change", "data-parsley-minlength" => "7", required:"" %>
+    <%= f.password_field :password, autocomplete: "off", id: 'user_signup_password', class: 'form-control', "data-parsley-trigger" => "change", "data-parsley-minlength" => "7", required:"" %>
   </div>
 
   <div class="field">
     <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control', "data-parsley-trigger" => "change", "data-parsley-equalto" => "#user_password", "data-required" => "true" %>
+    <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control', "data-parsley-trigger": "change", "data-parsley-equalto": "#user_signup_password", "data-required": "true" %>
   </div>
 
   <div class="actions">

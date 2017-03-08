@@ -6,8 +6,21 @@
 
 	<div class="user_vehicles_list">
 		<% current_user.vehicles.each do |vehicle| %>
-			<%= vehicle.make %> <br>
-			<%= vehicle.model %> <%= link_to "Delete", vehicles_destroy_path(id: vehicle.id), method: :delete %>
+			<%= vehicle.make %> 
+			<%= vehicle.model %> <br>
+			<% vehicle.jobs.each do |job| %>
+				<%= job.customer_description %><br>
+			<% end %>
+			<div class="dropdown user_cars_options">
+			  <button class="btn btn-secondary dropdown-toggle user_cars_options" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			    =
+			  </button>
+			  <div class="dropdown-menu user_cars_menue" aria-labelledby="dropdownMenuButton">
+			    <a class="dropdown-item" href="#">edit car</a>
+			    <%= link_to "Create Job", {:controller => "jobs", :action => "create", :vehicle_id => vehicle.id}, method: :post%>
+				<a><%= link_to "Delete Vehicle", vehicles_destroy_path(id: vehicle.id), method: :delete %></a>
+			  </div>
+			</div>
 			<hr>
 		<% end %>
 	</div>
@@ -25,3 +38,16 @@
 <div class="hidden add_vehicle">
 	<%= render 'vehicles/new_vehicle' %>
 </div>
+<% if @job %>
+	<div class=" edit_job">
+		<%= render 'jobs/edit' %>
+	</div>
+<% end %>
+
+
+
+
+
+
+
+
