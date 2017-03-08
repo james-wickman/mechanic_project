@@ -1,13 +1,4 @@
 <h2>Sign up</h2>
-<div class="bs-callout bs-callout-warning hidden">
-  <h4>Oh snap!</h4>
-  <p>This form seems to be invalid :(</p>
-</div>
- 
-<div class="bs-callout bs-callout-info hidden">
-  <h4>Yay!</h4>
-  <p>Everything seems to be ok :)</p>
-</div>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), :html => {:id => "new_user_form", :"data-parsley-validate" => ""}) do |f| %>
   <%= devise_error_messages! %>
