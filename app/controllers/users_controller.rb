@@ -5,5 +5,6 @@ class UsersController < ApplicationController
   def show
   	@new_vehicle = Vehicle.new
   	@new_job = current_user.jobs.where(customer_description: nil).last
+  	@user = current_user
   end
 end
