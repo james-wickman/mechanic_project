@@ -1,7 +1,7 @@
 <h2>Sign up Mech</h2>
 <% resource_name = :mechanic %>
-<% resource = @resource ||= Mechanic.new %>
-<% devise_mapping = @devise_mapping ||= Devise.mappings[:mechanic] %>
+<% resource = Mechanic.new %>
+<% devise_mapping = Devise.mappings[:mechanic] %>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), :html => {:id => "new_mechanic_form", :"data-parsley-validate" => ""}) do |f| %>
   <%= devise_error_messages! %>
@@ -23,15 +23,13 @@
 
   <div class="field">
     <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "off", name: "mechanic_password", id: 'mechanic_signup_password', class: 'form-control', "data-parsley-trigger" => "change", "data-parsley-minlength" => "7", required:"" %>
+    <br />
+    <%= f.password_field :password, autocomplete: "off", id: 'mechanic_signup_password', class: 'form-control', "data-parsley-trigger" => "change", "data-parsley-minlength" => "7", required:"" %>
   </div>
 
   <div class="field">
     <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control', "data-parsley-trigger" => "change", "data-parsley-equalto" => "#mechanic_signup_password", required: "" %>
+    <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control', "data-parsley-trigger" => "change", "data-parsley-equalto" => "#mechanic_signup_password", 'data-required': "true" %>
   </div>
 
   <div class="actions">

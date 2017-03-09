@@ -1,10 +1,30 @@
 class UsersController < ApplicationController
   def index
   	@user = current_user
-  	@hash = Gmaps4rails.build_markers(@user) do |user, marker|
-	  marker.lat user.latitude
-	  marker.lng user.longitude
-	end
+  	@mechanics = Mechanic.where.not(latitude: nil).where.not(longitude: nil)
+    @mechanics_hash = Gmaps4rails.build_markers(@mechanics) do |mechanic, marker|
+      marker.lat mechanic.latitude
+      marker.lng mechanic.longitude
+      marker.picture({
+        :url => "/assets/red_flag.gif",
+        :width   => 32,
+        :height  => 32
+       })
+      marker.infowindow %Q{
+        <h2>
+          #{mechanic.first_name} 
+          #{mechanic.last_name}
+        </h1> 
+        <h3>
+          #{mechanic.email}
+        </h3>
+      }
+    end
+    @user_hash = Gmaps4rails.build_markers(@user) do |user, marker|
+      marker.lat user.latitude
+      marker.lng user.longitude
+    end
+
   end
 
   def show
@@ -13,3 +33,5 @@ class UsersController < ApplicationController
   	@user = current_user
   end
 end
+
+
