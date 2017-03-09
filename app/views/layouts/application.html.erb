@@ -20,7 +20,6 @@
         <ul class="nav ">   
           <% if !user_signed_in? && !mechanic_signed_in?%>
           <div class="nav-item">
-              <button class="btn btn-secondary"><%= link_to "Home", root_path %></button>
             </div>
             <div class="nav-item ">
               <ul class="dropdown test" id="user_signin">
@@ -86,7 +85,6 @@
                   <%= current_mechanic.first_name + " " + current_mechanic.last_name %>
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <button class="btn"><%= link_to "Home", root_path %></button>
                   <button class="btn"><%= link_to "Profile Page", mechanics_show_path %></button>
                   <button class="btn edit_mechanic_profile_link">Edit Profile</button>
                   <button class="btn"><%= link_to "Log Out", destroy_mechanic_session_path, method: :delete %></button>
