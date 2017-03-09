@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'calendars/show'
+
+  resources :appointments
+
   post 'jobs/create'
 
   get 'jobs/show'

@@ -3,7 +3,7 @@
 // # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $(document).on('turbolinks:load', function() {
-
+	
 	$('.edit_vehicle_button').on('click', function() {
 		console.log('hidden')
 		$(this).next('.edit_vehicle').removeClass('hidden')

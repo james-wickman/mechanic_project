@@ -1,4 +1,13 @@
                       Prefix Verb   URI Pattern                           Controller#Action
+              calendars_show GET    /calendars/show(.:format)             calendars#show
+                appointments GET    /appointments(.:format)               appointments#index
+                             POST   /appointments(.:format)               appointments#create
+             new_appointment GET    /appointments/new(.:format)           appointments#new
+            edit_appointment GET    /appointments/:id/edit(.:format)      appointments#edit
+                 appointment GET    /appointments/:id(.:format)           appointments#show
+                             PATCH  /appointments/:id(.:format)           appointments#update
+                             PUT    /appointments/:id(.:format)           appointments#update
+                             DELETE /appointments/:id(.:format)           appointments#destroy
                  jobs_create POST   /jobs/create(.:format)                jobs#create
                    jobs_show GET    /jobs/show(.:format)                  jobs#show
                  jobs_update PUT    /jobs/update(.:format)                jobs#update

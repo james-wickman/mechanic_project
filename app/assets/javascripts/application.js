@@ -15,7 +15,10 @@
 //= require gmaps/google
 //= require parsley
 //= require tether
+//= require moment 
+//= require fullcalendar
 //= require bootstrap
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+

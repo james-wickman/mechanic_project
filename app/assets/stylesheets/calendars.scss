@@ -1,0 +1,23 @@
+// Place all the styles related to the calendars controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.calendar_container {
+	margin-left: 100px;
+	width: 45%;
+	position: absolute;
+}
+.schedule_container {
+	margin-right: 100px;
+	float: right;
+	margin-top: 90px;
+	width:35%;
+	text-align: center;
+	border: 1px solid black;
+	height: 570px;
+
+}
+.selected {
+	background-color: lightblue;
+}
