@@ -11,6 +11,9 @@ $(document).on('turbolinks:load', function() {
 	$('.edit_job_button').on('click', function() {
 		$(this).next('.edit_job').removeClass('hidden')
 	})
+	$('.edit_mechanic_profile_link').on('click', function() {
+		$('.edit_mechanic_profile').removeClass('hidden')
+	})
 
 	$('.edit_profile_link').on('click', function () {
 		$('.edit_profile').removeClass('hidden');
