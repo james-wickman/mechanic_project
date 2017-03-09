@@ -18,6 +18,22 @@
       <br />
     <%= f.email_field :email, id: 'email', "data-parsley-remote" => "/home/unique_user_email?email={value}", "data-parsley-remote-validator" => 'user_email_unique', class: 'form-control email', "data-parsley-trigger" => "change", required:"" %>
   </div>
+  <div class="field">
+    <%= f.label :address %><br />
+    <%= f.text_field :address, class: 'form-control', "data-parsley-trigger" => "change", "data-parsley-minlength" => "3", required:"" %>
+  </div>
+  <div class="field">
+    <%= f.label :city %><br />
+    <%= f.text_field :city, class: 'form-control', "data-parsley-trigger" => "change", "data-parsley-minlength" => "3", required:"" %>
+  </div>
+  <div class="field">
+    <%= f.label :state %><br />
+    <%= f.text_field :state, class: 'form-control', "data-parsley-trigger" => "change", "data-parsley-minlength" => "2", required:"" %>
+  </div>
+  <div class="field">
+    <%= f.label :zip %><br />
+    <%= f.text_field :zip, class: 'form-control', "data-parsley-trigger" => "change", "data-parsley-minlength" => "5", required:"" %>
+  </div>
 
   <div class="field">
     <%= f.label :password %>
