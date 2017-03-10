@@ -1,0 +1,31 @@
+
+
+<ul>
+	<% for i in 0..23 %>
+		<% counter = 0%>
+		<%if i < 10 %>
+			<%time = "0" + i.to_s + "00" %>
+			<% @appointments.each do |appointment| %>
+				<% if appointment.hour == time %>
+					<%counter = 1%>
+				<% end %>
+			<% end %>
+			<% if counter == 0 %>
+				<li data-time="<%=time%>"><span>add</span> <%=time%></li>
+			<% end %>
+			
+		<% end %>
+		<% if i >= 10 %>
+			<%time = i.to_s + "00" %>
+			<% @appointments.each do |appointment| %>
+				<% if appointment.hour == time %>
+					<%counter = 1%>
+				<% end %>
+			<% end %>
+			<% if counter == 0 %>
+				<li data-time="<%=time%>"><span>add</span> <%=time%></li>
+			<% end %>
+		<% end %>
+
+	<% end %>
+</ul>

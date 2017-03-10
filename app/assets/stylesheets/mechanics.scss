@@ -1,3 +1,19 @@
 // Place all the styles related to the mechanics controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.scheduled_times {
+	position: absolute;
+	right: 400px;
+	height: 500px;
+	width: 200px;
+	display: inline-block;
+}
+
+.times {
+	width: 200px;
+	display: inline-block;
+	position: absolute;
+	right: 200px;
+}

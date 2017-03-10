@@ -27,11 +27,10 @@ $(document).on('turbolinks:load', function() {
 
 			$.ajax(
 		    {
-		      url:"url/to/controller/action",
-		      type:'POST',
+		      url:"/appointments/new",
+		      type:'get',
 		      data: {
 		      	date: date,
-
 		      }
 		    });
 		    
@@ -40,10 +39,10 @@ $(document).on('turbolinks:load', function() {
 			$('.times').addClass('hidden')
 			console.log('today')
 		})
-		$('li').on('click', function() {
+		$(document).on('click','li', function() {
 			time = this.getAttribute('data-time')
 			console.log(time)
-			my_time = $("[data-time=" + time +"] span");
+			my_time = $("[data-time=" + time +"]");
 			$.ajax({
 			  type: "POST",
 			  url: '/appointments',

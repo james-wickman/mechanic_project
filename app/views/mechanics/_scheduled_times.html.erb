@@ -1,0 +1,7 @@
+
+<%descending = -1%>
+<%hour = @appointments %>
+<%hour.sort_by { |h| h[:hour].to_i * descending } %>
+<%hour.each do |appointment| %>
+	<%=appointment.hour%><br>
+<%end%>
