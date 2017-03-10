@@ -17,18 +17,22 @@ class AppointmentsController < ApplicationController
   
  
   def create
-	@appointment = Appointment.create(params[:appointments])
-	if @appointment.save
-		redirect_to new_appointment_path
-	else
-		err = ''
-		@appointment.errors.full_messages.each do |m|
-			err << m
-		end
-		redirect_to new_appointment_path, :flash => { :alert => "#{err}, please try again" }
-	end
+    respond_to do |format|
+      format.js 
+      byebug
+  	  @appointment = Appointment.create(date: params[:date], hour: params[:hour], mechanic_id: current_mechanic.id)
+    	if @appointment.save
+        format.js
+    	end
+    end
   end
 
   def update
   end
+
+  private
+
+  def appointment_params
+      params.require(:appointment).permit(:date, :hour, :mechanic_id)
+    end
 end
