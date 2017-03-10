@@ -15,8 +15,6 @@ $(document).on('turbolinks:load', function() {
 
 		    }
 		}).on('click', '.fc-future', function() {
-			my_time = $("[data-time='2200'] span");
-			my_time.html('remove')
 			$('.times').removeClass('hidden')
 			future = $('.fc-future')
 			for (var i = 0; i < future.length; i++) {
@@ -26,6 +24,16 @@ $(document).on('turbolinks:load', function() {
 			this.style.backgroundColor = "lightblue"
 		    date = this.getAttribute('data-date')
 		    $('.schedule_head').text(date)
+
+			$.ajax(
+		    {
+		      url:"url/to/controller/action",
+		      type:'POST',
+		      data: {
+		      	date: date,
+
+		      }
+		    });
 		    
 		});
 		$('.fc-today').on('click', function() {
