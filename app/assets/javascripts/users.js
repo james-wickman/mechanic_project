@@ -37,12 +37,30 @@ $(document).on('turbolinks:load', function() {
 		});
 		$('.fc-today').on('click', function() {
 			$('.times').addClass('hidden')
-			console.log('today')
 		})
-		$(document).on('click','li', function() {
-			time = this.getAttribute('data-time')
-			console.log(time)
+		$(document).on('click','.selected', function() {
+			id = this.getAttribute('data-id')
+			my_id = $("[data-id=" + id +"]");
+			$.ajax({
+			  type: "delete",
+			  url: '/appointments/'+id,
+			  data: {
+			  	id: id
+			  },
+			  success: function() {
+			  	my_id.addClass('unselected')
+			  	my_id.removeClass('selected')
+			  },
+			  error: function() {
+              }
+			});
+		})
+		$(document).on('click','.unselected', function() {
+			_this = $(this);
+			_this.attr('id', 'new');
+			time = $(this).attr('data-time');
 			my_time = $("[data-time=" + time +"]");
+			
 			$.ajax({
 			  type: "POST",
 			  url: '/appointments',
@@ -52,10 +70,12 @@ $(document).on('turbolinks:load', function() {
 
 			  },
 			  success: function() {
-			  	my_time.addClass('hidden')
+			  	_this.addClass('selected');
+			  	_this.removeClass('unselected');
 			  },
 			  error: function() {
-			  	my_time.addClass('hidden')
+			  	_this.addClass('selected');
+			  	_this.removeClass('unselected');
               }
 			});
 		})

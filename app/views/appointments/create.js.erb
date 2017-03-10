@@ -1,1 +1,4 @@
-console.log(this)
+console.log(<%=@appointment.id %>)
+var added_li = $("#new");
+added_li.attr("data-id", "<%=@appointment.id%>");
+added_li.attr('id', '');

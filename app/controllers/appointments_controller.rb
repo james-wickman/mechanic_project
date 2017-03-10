@@ -27,6 +27,14 @@ class AppointmentsController < ApplicationController
 
   def update
   end
+  def destroy
+    @appointment = Appointment.find(params[:id])
+    respond_to do |format|
+      if @appointment.destroy
+        format.js
+      end
+    end
+  end
 
   private
 

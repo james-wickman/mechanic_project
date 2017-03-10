@@ -11,7 +11,11 @@
 				<% end %>
 			<% end %>
 			<% if counter == 0 %>
-				<li data-time="<%=time%>"><span>add</span> <%=time%></li>
+				<li class="unselected" data-time="<%=time%>"><%=time%> - 0<%=i+1%>00</li>
+
+			<% else %>
+				<%current_appointment = @appointments.where(hour: time) %>
+				<li class="selected" data-time="<%=time%>" data-id="<%= current_appointment[0].id%>"><%=time%> - 0<%=i+1%>00</li>
 			<% end %>
 			
 		<% end %>
@@ -23,7 +27,10 @@
 				<% end %>
 			<% end %>
 			<% if counter == 0 %>
-				<li data-time="<%=time%>"><span>add</span> <%=time%></li>
+				<li class="unselected" data-time="<%=time%>"><%=time%> - 0<%=i+1%>00</li>
+			<% else %>
+				<%current_appointment = @appointments.where(hour: time) %>
+				<li class="selected" data-time="<%=time%>" data-id="<%= current_appointment[0].id%>"><%=time%> - 0<%=i+1%>00</li>
 			<% end %>
 		<% end %>
 
