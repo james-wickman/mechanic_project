@@ -1,3 +1,4 @@
+
                       Prefix Verb   URI Pattern                           Controller#Action
               calendars_show GET    /calendars/show(.:format)             calendars#show
                 appointments GET    /appointments(.:format)               appointments#index
@@ -53,3 +54,4 @@ cancel_mechanic_registration GET    /mechanics/cancel(.:format)           mechan
                              DELETE /users(.:format)                      users/registrations#destroy
                              POST   /users(.:format)                      users/registrations#create
                         root GET    /                                     home#index
+

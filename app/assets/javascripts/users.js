@@ -15,8 +15,6 @@ $(document).on('turbolinks:load', function() {
 
 		    }
 		}).on('click', '.fc-future', function() {
-			my_time = $("[data-time='2200'] span");
-			my_time.html('remove')
 			$('.times').removeClass('hidden')
 			future = $('.fc-future')
 			for (var i = 0; i < future.length; i++) {
@@ -26,16 +24,43 @@ $(document).on('turbolinks:load', function() {
 			this.style.backgroundColor = "lightblue"
 		    date = this.getAttribute('data-date')
 		    $('.schedule_head').text(date)
+
+			$.ajax(
+		    {
+		      url:"/appointments/new",
+		      type:'get',
+		      data: {
+		      	date: date,
+		      }
+		    });
 		    
 		});
 		$('.fc-today').on('click', function() {
 			$('.times').addClass('hidden')
-			console.log('today')
 		})
-		$('li').on('click', function() {
-			time = this.getAttribute('data-time')
-			console.log(time)
-			my_time = $("[data-time=" + time +"] span");
+		$(document).on('click','.selected', function() {
+			id = this.getAttribute('data-id')
+			my_id = $("[data-id=" + id +"]");
+			$.ajax({
+			  type: "delete",
+			  url: '/appointments/'+id,
+			  data: {
+			  	id: id
+			  },
+			  success: function() {
+			  	my_id.addClass('unselected')
+			  	my_id.removeClass('selected')
+			  },
+			  error: function() {
+              }
+			});
+		})
+		$(document).on('click','.unselected', function() {
+			_this = $(this);
+			_this.attr('id', 'new');
+			time = $(this).attr('data-time');
+			my_time = $("[data-time=" + time +"]");
+			
 			$.ajax({
 			  type: "POST",
 			  url: '/appointments',
@@ -45,10 +70,12 @@ $(document).on('turbolinks:load', function() {
 
 			  },
 			  success: function() {
-			  	my_time.addClass('hidden')
+			  	_this.addClass('selected');
+			  	_this.removeClass('unselected');
 			  },
 			  error: function() {
-			  	my_time.addClass('hidden')
+			  	_this.addClass('selected');
+			  	_this.removeClass('unselected');
               }
 			});
 		})
