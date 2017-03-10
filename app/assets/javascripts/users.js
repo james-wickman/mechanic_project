@@ -3,7 +3,56 @@
 // # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $(document).on('turbolinks:load', function() {
+	var date;
+		var time;
+		$('#calendar').fullCalendar({
+		    header: {
+		        left: 'prev',
+		        center: 'title today',
+		        right: 'next'
+		    },
+		    body: {
 
+		    }
+		}).on('click', '.fc-future', function() {
+			my_time = $("[data-time='2200'] span");
+			my_time.html('remove')
+			$('.times').removeClass('hidden')
+			future = $('.fc-future')
+			for (var i = 0; i < future.length; i++) {
+			    future[i].style.backgroundColor = "#ffffff";
+			    future[i].style.opacity = "0.9";
+			}
+			this.style.backgroundColor = "lightblue"
+		    date = this.getAttribute('data-date')
+		    $('.schedule_head').text(date)
+		    
+		});
+		$('.fc-today').on('click', function() {
+			$('.times').addClass('hidden')
+			console.log('today')
+		})
+		$('li').on('click', function() {
+			time = this.getAttribute('data-time')
+			console.log(time)
+			my_time = $("[data-time=" + time +"] span");
+			$.ajax({
+			  type: "POST",
+			  url: '/appointments',
+			  data: {
+			  	date: date,
+			  	hour: time,
+
+			  },
+			  success: function() {
+			  	my_time.addClass('hidden')
+			  },
+			  error: function() {
+			  	my_time.addClass('hidden')
+              }
+			});
+		})
+	
 	$('.edit_vehicle_button').on('click', function() {
 		console.log('hidden')
 		$(this).next('.edit_vehicle').removeClass('hidden')
