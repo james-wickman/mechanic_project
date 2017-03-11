@@ -13,11 +13,11 @@ class JobsController < ApplicationController
   end
 
   def update
-  	@job = Job.find(job_params[:id])
-  	@job.update_attributes(job_params)
-  	if @job.save
-  		redirect_to users_show_path
-  	end
+  	@job = Job.find(params[:id])
+    respond_to do |format|
+      @job.update_attributes(appointment_id: params[:appointment_id], mechanic_id: params[:mechanic_id])
+      format.js 
+    end 
   end
 
   def destroy
@@ -25,7 +25,7 @@ class JobsController < ApplicationController
   end
   private
   def job_params
-      params.require(:job).permit(:mechanic_id, :cost, :start_time, :end_time, :customer_description, :available, :mechanic_notes, :id)
+      params.require(:job).permit(:mechanic_id, :cost, :start_time, :end_time, :customer_description, :available, :mechanic_notes, :id, :appointment_id)
     end
 
 end

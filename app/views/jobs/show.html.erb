@@ -1,22 +1,21 @@
-<div class="mechanic_calendar_container">
-	<div id="mechanic_calendar"></div>
-</div>
 
-<div class='mechanic_schedule_container'>
-	<div class="mechanic_schedule">
-		<div class="mechanic_schedule_head">
-		</div>
-		<div class="mechanic_schedule_body">
-			<div class="mechanic_scheduled_times">
-				
+
+<%if !@job.appointment %>
+	<div class="mechanic_calendar_container">
+		<div id="mechanic_calendar"></div>
+	</div>
+
+	<div class='mechanic_schedule_container'>
+		<div class="mechanic_schedule">
+			<div class="mechanic_schedule_head">
 			</div>
-			<div class="hidden mechanic_times">
-				
+			<div class="mechanic_schedule_body">
+				<div class="hidden mechanic_times">
+				</div>
 			</div>
 		</div>
 	</div>
-</div>
-
+<% end %>
 
 <script>
 $(document).on('turbolinks:load', function() {
@@ -33,6 +32,7 @@ $(document).on('turbolinks:load', function() {
 	    }
 	}).on('click', '.fc-future', function() {
 		$('.mechanic_times').removeClass('hidden')
+
 		future = $('.fc-future')
 		for (var i = 0; i < future.length; i++) {
 		    future[i].style.backgroundColor = "#ffffff";
@@ -40,6 +40,7 @@ $(document).on('turbolinks:load', function() {
 		}
 		this.style.backgroundColor = "lightblue"
 	    date = this.getAttribute('data-date')
+	    $('.mechanic_schedule_head').html('<h2>' + date + '</h2>')
 	    $('.schedule_head').text(date)
 
 		$.ajax(
@@ -51,51 +52,26 @@ $(document).on('turbolinks:load', function() {
 	      	mechanic: <%=@mechanic.id%>,
 	      }
 	    });
-	    
 	});
 	$('.fc-today').on('click', function() {
 		$('.mechanic_times').addClass('hidden')
 	})
-	// $(document).on('click','.selected', function() {
-	// 	id = this.getAttribute('data-id')
-	// 	my_id = $("[data-id=" + id +"]");
-	// 	$.ajax({
-	// 	  type: "delete",
-	// 	  url: '/appointments/'+id,
-	// 	  data: {
-	// 	  	id: id
-	// 	  },
-	// 	  success: function() {
-	// 	  	my_id.addClass('unselected')
-	// 	  	my_id.removeClass('selected')
-	// 	  },
-	// 	  error: function() {
- //          }
-	// 	});
-	// })
-	// $(document).on('click','.unselected', function() {
-	// 	_this = $(this);
-	// 	_this.attr('id', 'new');
-	// 	time = $(this).attr('data-time');
-	// 	my_time = $("[data-time=" + time +"]");
-		
-	// 	$.ajax({
-	// 	  type: "POST",
-	// 	  url: '/appointments',
-	// 	  data: {
-	// 	  	date: date,
-	// 	  	hour: time,
-
-	// 	  },
-	// 	  success: function() {
-	// 	  	_this.addClass('selected');
-	// 	  	_this.removeClass('unselected');
-	// 	  },
-	// 	  error: function() {
-	// 	  	_this.addClass('selected');
-	// 	  	_this.removeClass('unselected');
- //          }
-	// 	});
-	// });
+	$(document).on('click','.available', function() {
+		id = this.getAttribute('data-id')
+		my_id = $("[data-id=" + id +"]");
+		$.ajax({
+		  type: "put",
+		  url: '/jobs/'+<%=@job.id%>,
+		  data: {
+		  	appointment_id: id,
+		  	mechanic_id: <%=@mechanic.id %>
+		  },
+		  success: function() {
+		  	location.href = "/users/show"
+		  },
+		  error: function() {
+          }
+		});
+	})
 })
 </script>

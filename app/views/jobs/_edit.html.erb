@@ -1,4 +1,4 @@
-<%= form_for @job, :url => jobs_update_path, :html => {:"data-parsley-validate" => ""}, method: :put do |f| %>
+<%= form_for @job, :url => jobs_path, :html => {:"data-parsley-validate" => ""}, method: :put do |f| %>
 	<br>
 	<div class="field">
     <%= f.hidden_field :id, value: @job.id %>
