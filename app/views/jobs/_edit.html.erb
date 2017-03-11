@@ -1,16 +1,19 @@
-<%= form_for @job, :html => {:"data-parsley-validate" => ""}, :remote=>true, method: :put do |f| %>
-	<br>
-	<div class="field">
-    <%= f.hidden_field :id, value: @job.id %>
-  </div>
-  <div class="field">
-    <%= f.hidden_field :available, value: true %>
-  </div>
-  <div class="field">
-    <%= f.label :customer_description %> <br />
-    <%= f.text_field :customer_description, autofocus: true, class: 'form-control', "data-parsley-trigger" => "change", "data-parsley-minlength" => "20", required:"" %>
-  </div><br>
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
+<% if @new_job %>
+  <%@job = @new_job %>
+  <%= form_for @job, :url => "/jobs/update", :html => {:"data-parsley-validate" => ""}, :remote=>true, method: :put do |f| %>
+  	<br>
+  	<div class="field">
+      <%= f.hidden_field :id, value: @job.id %>
+    </div>
+    <div class="field">
+      <%= f.hidden_field :available, value: true %>
+    </div>
+    <div class="field">
+      <%= f.label :customer_description %> <br />
+      <%= f.text_field :customer_description, autofocus: true, class: 'form-control', "data-parsley-trigger" => "change", "data-parsley-minlength" => "20", required:"" %>
+    </div><br>
+    <div class="actions">
+      <%= f.submit "Update" %>
+    </div>
+  <% end %>
 <% end %>

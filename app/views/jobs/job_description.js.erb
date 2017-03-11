@@ -1,2 +1,2 @@
 $('.edit_job').addClass('hidden')
-<%@new_job = current_user.jobs.where(customer_description: nil).last%>
+<%@job = current_user.jobs.where(customer_description: nil).last%>
