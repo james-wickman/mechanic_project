@@ -27,7 +27,7 @@
 			    =
 			  </button>
 			  <div class="dropdown-menu user_cars_menue" aria-labelledby="dropdownMenuButton">
-			    <a><%= link_to "Create Job", {:controller => "jobs", :action => "create", :vehicle_id => vehicle.id}, method: :post%></a><br>
+			    <a><%= link_to "Create Job", "/jobs?vehicle=#{vehicle.id}", method: :post%></a><br>
 				<a><%= link_to "Delete Vehicle", vehicles_destroy_path(id: vehicle.id), method: :delete %></a>
 			  </div>
 			</div>
@@ -49,6 +49,7 @@
 	<%= render 'vehicles/new_vehicle' %>
 </div>
 <% if @new_job %>
+	<%byebug%>
 	<div class=" edit_job">
 		<%= render 'jobs/edit' %>
 	</div>
