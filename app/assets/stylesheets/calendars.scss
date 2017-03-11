@@ -18,17 +18,19 @@
 	height: 570px;
 
 }
-.selected {
-	background-color: lightblue;
-}
 
 ul {
     padding: 0;
     list-style-type: none;
 }
 .unavailable {
+	cursor: default;
+	background-color: lightgrey;
+	opacity: 0.5;
 
 }
 .available {
-	background-color: lightblue;
+	cursor: pointer;
+	background-color: lightgreen;
+	display: block;
 }

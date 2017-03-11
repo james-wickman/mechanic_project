@@ -14,20 +14,20 @@
 				<%= render 'vehicles/edit' %>
 			</div><br>
 			<% vehicle.jobs.each do |job| %>
+			<%appointment = job.appointment %>
 				<%= job.customer_description %>
-				<% @job = job %>
-				<button class="edit_job_button">Edit Job</button>
-				<%= link_to "Schedule Job", "/users/index?job_id=#{job.id}" %>
-				<div class="hidden edit_job">
-					<%= render 'jobs/edit' %>
-				</div><br>
+				<%if job.appointment_id == nil %>
+					<%= link_to "Schedule Job", "/users/index?job_id=#{job.id}" %>
+				<% else %>
+					<h3>Scheduled for <%=appointment.date%> <%=appointment.hour%> with <%= appointment.mechanic.first_name %> <%= appointment.mechanic.last_name %></h3>
+				<% end %><br>
 			<% end %>
 			<div class="dropdown user_cars_options">
 			  <button class="btn btn-secondary dropdown-toggle user_cars_options" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 			    =
 			  </button>
 			  <div class="dropdown-menu user_cars_menue" aria-labelledby="dropdownMenuButton">
-			    <a><%= link_to "Create Job", {:controller => "jobs", :action => "create", :vehicle_id => vehicle.id}, method: :post%></a><br>
+			    <a><%= link_to "Create Job", "/jobs?vehicle=#{vehicle.id}", method: :post%></a><br>
 				<a><%= link_to "Delete Vehicle", vehicles_destroy_path(id: vehicle.id), method: :delete %></a>
 			  </div>
 			</div>
@@ -48,7 +48,7 @@
 <div class="hidden add_vehicle">
 	<%= render 'vehicles/new_vehicle' %>
 </div>
-<% if @new_job %>
+<% if @new_job != nil %>
 	<div class=" edit_job">
 		<%= render 'jobs/edit' %>
 	</div>
