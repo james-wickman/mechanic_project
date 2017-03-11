@@ -1,4 +1,3 @@
-
                       Prefix Verb   URI Pattern                           Controller#Action
               calendars_show GET    /calendars/show(.:format)             calendars#show
                 appointments GET    /appointments(.:format)               appointments#index
@@ -9,9 +8,14 @@
                              PATCH  /appointments/:id(.:format)           appointments#update
                              PUT    /appointments/:id(.:format)           appointments#update
                              DELETE /appointments/:id(.:format)           appointments#destroy
-                 jobs_create POST   /jobs/create(.:format)                jobs#create
-                   jobs_show GET    /jobs/show(.:format)                  jobs#show
-                 jobs_update PUT    /jobs/update(.:format)                jobs#update
+                        jobs GET    /jobs(.:format)                       jobs#index
+                             POST   /jobs(.:format)                       jobs#create
+                     new_job GET    /jobs/new(.:format)                   jobs#new
+                    edit_job GET    /jobs/:id/edit(.:format)              jobs#edit
+                         job GET    /jobs/:id(.:format)                   jobs#show
+                             PATCH  /jobs/:id(.:format)                   jobs#update
+                             PUT    /jobs/:id(.:format)                   jobs#update
+                             DELETE /jobs/:id(.:format)                   jobs#destroy
              vehicles_create POST   /vehicles/create(.:format)            vehicles#create
                vehicles_show GET    /vehicles/show(.:format)              vehicles#show
              vehicles_update PUT    /vehicles/update(.:format)            vehicles#update
@@ -54,4 +58,3 @@ cancel_mechanic_registration GET    /mechanics/cancel(.:format)           mechan
                              DELETE /users(.:format)                      users/registrations#destroy
                              POST   /users(.:format)                      users/registrations#create
                         root GET    /                                     home#index
-

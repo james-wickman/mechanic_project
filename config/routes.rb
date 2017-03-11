@@ -3,11 +3,7 @@ Rails.application.routes.draw do
 
   resources :appointments
 
-  post 'jobs/create'
-
-  get 'jobs/show'
-
-  put 'jobs/update'
+  resources :jobs
 
   post 'vehicles/create'
 

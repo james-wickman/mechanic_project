@@ -11,9 +11,11 @@
 }
 
 .selected {
-	background-color: lightblue;	
+	background-color: lightgreen;	
 	cursor: pointer;
 }
 .unselected {
 	cursor: pointer;
+	background-color: lightgrey;
+	opacity: 0.5;
 }

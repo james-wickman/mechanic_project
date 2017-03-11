@@ -23,7 +23,7 @@ $(document).on('turbolinks:load', function() {
 		}
 		this.style.backgroundColor = "lightblue"
 	    date = this.getAttribute('data-date')
-	    $('.schedule_head').text(date)
+	    $('.schedule_head').html('<h2>' + date + '</h2>')
 
 		$.ajax(
 	    {
