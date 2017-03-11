@@ -17,6 +17,7 @@
 				<%= job.customer_description %>
 				<% @job = job %>
 				<button class="edit_job_button">Edit Job</button>
+				<%= link_to "Schedule Job", "/users/index?job_id=#{job.id}" %>
 				<div class="hidden edit_job">
 					<%= render 'jobs/edit' %>
 				</div><br>

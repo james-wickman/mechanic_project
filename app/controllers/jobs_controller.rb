@@ -8,6 +8,8 @@ class JobsController < ApplicationController
   end
 
   def show
+    @job = Job.find(params[:job_id])
+    @mechanic = Mechanic.find(params[:mechanic_id])
   end
 
   def update

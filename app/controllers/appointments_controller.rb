@@ -13,8 +13,8 @@ class AppointmentsController < ApplicationController
       format.js
     end
   end
-  
- 
+  def show
+  end
   def create
     respond_to do |format|
       format.js 

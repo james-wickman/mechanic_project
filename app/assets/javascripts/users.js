@@ -4,81 +4,81 @@
 
 $(document).on('turbolinks:load', function() {
 	var date;
-		var time;
-		$('#calendar').fullCalendar({
-		    header: {
-		        left: 'prev',
-		        center: 'title today',
-		        right: 'next'
-		    },
-		    body: {
+	var time;
+	$('#calendar').fullCalendar({
+	    header: {
+	        left: 'prev',
+	        center: 'title today',
+	        right: 'next'
+	    },
+	    body: {
 
-		    }
-		}).on('click', '.fc-future', function() {
-			$('.times').removeClass('hidden')
-			future = $('.fc-future')
-			for (var i = 0; i < future.length; i++) {
-			    future[i].style.backgroundColor = "#ffffff";
-			    future[i].style.opacity = "0.9";
-			}
-			this.style.backgroundColor = "lightblue"
-		    date = this.getAttribute('data-date')
-		    $('.schedule_head').text(date)
+	    }
+	}).on('click', '.fc-future', function() {
+		$('.times').removeClass('hidden')
+		future = $('.fc-future')
+		for (var i = 0; i < future.length; i++) {
+		    future[i].style.backgroundColor = "#ffffff";
+		    future[i].style.opacity = "0.9";
+		}
+		this.style.backgroundColor = "lightblue"
+	    date = this.getAttribute('data-date')
+	    $('.schedule_head').text(date)
 
-			$.ajax(
-		    {
-		      url:"/appointments/new",
-		      type:'get',
-		      data: {
-		      	date: date,
-		      }
-		    });
-		    
+		$.ajax(
+	    {
+	      url:"/appointments/new",
+	      type:'get',
+	      data: {
+	      	date: date,
+	      }
+	    });
+	    
+	});
+	$('.fc-today').on('click', function() {
+		$('.times').addClass('hidden')
+	})
+	$(document).on('click','.selected', function() {
+		id = this.getAttribute('data-id')
+		my_id = $("[data-id=" + id +"]");
+		$.ajax({
+		  type: "delete",
+		  url: '/appointments/'+id,
+		  data: {
+		  	id: id
+		  },
+		  success: function() {
+		  	my_id.addClass('unselected')
+		  	my_id.removeClass('selected')
+		  },
+		  error: function() {
+          }
 		});
-		$('.fc-today').on('click', function() {
-			$('.times').addClass('hidden')
-		})
-		$(document).on('click','.selected', function() {
-			id = this.getAttribute('data-id')
-			my_id = $("[data-id=" + id +"]");
-			$.ajax({
-			  type: "delete",
-			  url: '/appointments/'+id,
-			  data: {
-			  	id: id
-			  },
-			  success: function() {
-			  	my_id.addClass('unselected')
-			  	my_id.removeClass('selected')
-			  },
-			  error: function() {
-              }
-			});
-		})
-		$(document).on('click','.unselected', function() {
-			_this = $(this);
-			_this.attr('id', 'new');
-			time = $(this).attr('data-time');
-			my_time = $("[data-time=" + time +"]");
-			
-			$.ajax({
-			  type: "POST",
-			  url: '/appointments',
-			  data: {
-			  	date: date,
-			  	hour: time,
+	})
+	$(document).on('click','.unselected', function() {
+		_this = $(this);
+		_this.attr('id', 'new');
+		time = $(this).attr('data-time');
+		my_time = $("[data-time=" + time +"]");
+		
+		$.ajax({
+		  type: "POST",
+		  url: '/appointments',
+		  data: {
+		  	date: date,
+		  	hour: time,
 
-			  },
-			  success: function() {
-			  	_this.addClass('selected');
-			  	_this.removeClass('unselected');
-			  },
-			  error: function() {
-			  	_this.addClass('selected');
-			  	_this.removeClass('unselected');
-              }
-			});
-		})
+		  },
+		  success: function() {
+		  	_this.addClass('selected');
+		  	_this.removeClass('unselected');
+		  },
+		  error: function() {
+		  	_this.addClass('selected');
+		  	_this.removeClass('unselected');
+          }
+		});
+	});
 	
 	$('.edit_vehicle_button').on('click', function() {
 		console.log('hidden')

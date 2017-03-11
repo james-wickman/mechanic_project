@@ -1,1 +1,38 @@
 
+<ul>
+	<% for i in 0..23 %>
+		<% counter = 0%>
+		<%if i < 10 %>
+			<%time = "0" + i.to_s + "00" %>
+			<% @appointments.each do |appointment| %>
+			
+				<% if appointment.hour == time %>
+					<%counter = 1%>
+				<% end %>
+			<% end %>
+			<% if counter == 0 %>
+				<li class="unavailable" data-time="<%=time%>"><%=time%> - 0<%=i+1%>00</li>
+
+			<% else %>
+				<%current_appointment = @appointments.where(hour: time) %>
+				<li class="available" data-time="<%=time%>" data-id="<%= current_appointment[0].id%>"><%=time%> - 0<%=i+1%>00</li>
+			<% end %>
+			
+		<% end %>
+		<% if i >= 10 %>
+			<%time = i.to_s + "00" %>
+			<% @appointments.each do |appointment| %>
+				<% if appointment.hour == time %>
+					<%counter = 1%>
+				<% end %>
+			<% end %>
+			<% if counter == 0 %>
+				<li class="unavailable" data-time="<%=time%>"><%=time%> - 0<%=i+1%>00</li>
+			<% else %>
+				<%current_appointment = @appointments.where(hour: time) %>
+				<li class="available" data-time="<%=time%>" data-id="<%= current_appointment[0].id%>"><%=time%> - 0<%=i+1%>00</li>
+			<% end %>
+		<% end %>
+
+	<% end %>
+</ul>
