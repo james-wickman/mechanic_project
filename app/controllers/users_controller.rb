@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   def index
+    @job = Job.find(params[:job_id])
   	@user = current_user
   	@mechanics = Mechanic.where.not(latitude: nil).where.not(longitude: nil)
     @mechanics_hash = Gmaps4rails.build_markers(@mechanics) do |mechanic, marker|
@@ -18,7 +19,8 @@ class UsersController < ApplicationController
         <h3>
           #{mechanic.email}
         </h3>
-      }
+        <a href="/jobs/show?job_id=#{@job.id}&mechanic_id=#{mechanic.id}">View Mechanics Availability</a>
+      } 
     end
     @user_hash = Gmaps4rails.build_markers(@user) do |user, marker|
       marker.lat user.latitude

@@ -3,12 +3,12 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
-.calendar_container {
+.calendar_container, .mechanic_calendar_container{
 	margin-left: 100px;
 	width: 45%;
 	position: absolute;
 }
-.schedule_container {
+.schedule_container, .mechanic_schedule_container{
 	margin-right: 100px;
 	float: right;
 	margin-top: 90px;
@@ -25,4 +25,10 @@
 ul {
     padding: 0;
     list-style-type: none;
+}
+.unavailable {
+
+}
+.available {
+	background-color: lightblue;
 }

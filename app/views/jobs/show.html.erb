@@ -1,2 +1,101 @@
-<h1>Jobs#show</h1>
-<p>Find me in app/views/jobs/show.html.erb</p>
+<div class="mechanic_calendar_container">
+	<div id="mechanic_calendar"></div>
+</div>
+
+<div class='mechanic_schedule_container'>
+	<div class="mechanic_schedule">
+		<div class="mechanic_schedule_head">
+		</div>
+		<div class="mechanic_schedule_body">
+			<div class="mechanic_scheduled_times">
+				
+			</div>
+			<div class="hidden mechanic_times">
+				
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<script>
+$(document).on('turbolinks:load', function() {
+	var date;
+	var time;
+	$('#mechanic_calendar').fullCalendar({
+	    header: {
+	        left: 'prev',
+	        center: 'title today',
+	        right: 'next'
+	    },
+	    body: {
+
+	    }
+	}).on('click', '.fc-future', function() {
+		$('.mechanic_times').removeClass('hidden')
+		future = $('.fc-future')
+		for (var i = 0; i < future.length; i++) {
+		    future[i].style.backgroundColor = "#ffffff";
+		    future[i].style.opacity = "0.9";
+		}
+		this.style.backgroundColor = "lightblue"
+	    date = this.getAttribute('data-date')
+	    $('.schedule_head').text(date)
+
+		$.ajax(
+	    {
+	      url:"/calendars/show",
+	      type:'get',
+	      data: {
+	      	date: date,
+	      	mechanic: <%=@mechanic.id%>,
+	      }
+	    });
+	    
+	});
+	$('.fc-today').on('click', function() {
+		$('.mechanic_times').addClass('hidden')
+	})
+	// $(document).on('click','.selected', function() {
+	// 	id = this.getAttribute('data-id')
+	// 	my_id = $("[data-id=" + id +"]");
+	// 	$.ajax({
+	// 	  type: "delete",
+	// 	  url: '/appointments/'+id,
+	// 	  data: {
+	// 	  	id: id
+	// 	  },
+	// 	  success: function() {
+	// 	  	my_id.addClass('unselected')
+	// 	  	my_id.removeClass('selected')
+	// 	  },
+	// 	  error: function() {
+ //          }
+	// 	});
+	// })
+	// $(document).on('click','.unselected', function() {
+	// 	_this = $(this);
+	// 	_this.attr('id', 'new');
+	// 	time = $(this).attr('data-time');
+	// 	my_time = $("[data-time=" + time +"]");
+		
+	// 	$.ajax({
+	// 	  type: "POST",
+	// 	  url: '/appointments',
+	// 	  data: {
+	// 	  	date: date,
+	// 	  	hour: time,
+
+	// 	  },
+	// 	  success: function() {
+	// 	  	_this.addClass('selected');
+	// 	  	_this.removeClass('unselected');
+	// 	  },
+	// 	  error: function() {
+	// 	  	_this.addClass('selected');
+	// 	  	_this.removeClass('unselected');
+ //          }
+	// 	});
+	// });
+})
+</script>
