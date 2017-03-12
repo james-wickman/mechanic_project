@@ -1,5 +1,4 @@
 
-
 <%if !@job.appointment %>
 	<div class="mechanic_calendar_container">
 		<div id="mechanic_calendar"></div>
@@ -50,7 +49,7 @@ $(document).on('turbolinks:load', function() {
 	      data: {
 	      	date: date,
 	      	mechanic: <%=@mechanic.id%>,
-	      }
+	      } 
 	    });
 	});
 	$('.fc-today').on('click', function() {

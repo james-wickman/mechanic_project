@@ -16,16 +16,17 @@ class JobsController < ApplicationController
   end
 
   def update
-  	
     respond_to do |format|
-      @job = Job.find(params[:job][:id])
-      if params[:job][:customer_description]
+      if params[:job]
+        @job = Job.find(params[:job][:id])
         if @job.update_attributes(job_params)
           format.js {render 'job_description.js.erb'}
         end
       else
-        @job.update_attributes(appointment_id: params[:appointment_id], mechanic_id: params[:mechanic_id])
-        format.js 
+        @job = Job.find(params[:id])
+        if @job.update_attributes(appointment_id: params[:appointment_id], mechanic_id: params[:mechanic_id])
+          format.js 
+        end
       end
     end 
   end

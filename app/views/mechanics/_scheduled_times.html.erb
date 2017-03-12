@@ -4,10 +4,17 @@
 		<% counter = 0%>
 		<%if i < 10 %>
 			<%time = "0" + i.to_s + "00" %>
+
 			<% @appointments.each do |appointment| %>
 			
 				<% if appointment.hour == time %>
 					<%counter = 1%>
+				<% end %>
+			<% end %>
+			<% @taken_jobs.each do |taken_job| %>
+				<% taken_time = Appointment.find(taken_job.appointment_id) %>
+				<% if taken_time.hour == time %>
+					<%counter = 0%>
 				<% end %>
 			<% end %>
 			<% if counter == 0 %>
