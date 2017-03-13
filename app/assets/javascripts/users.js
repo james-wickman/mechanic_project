@@ -15,7 +15,8 @@ $(document).on('turbolinks:load', function() {
 	    body: {
 
 	    }
-	}).on('click', '.fc-future', function() {
+	})
+	$(document).on('click', '.fc-future', function() {
 		$('.mechanic_appointments_times').removeClass('hidden')
 
 		future = $('.fc-future')
@@ -43,17 +44,10 @@ $(document).on('turbolinks:load', function() {
 	
 	var date;
 	var time;
-	$('#calendar').fullCalendar({
-	    header: {
-	        left: 'prev',
-	        center: 'title today',
-	        right: 'next'
-	    },
-	    body: {
-
-	    }
-	}).on('click', '.fc-future', function() {
-		$('.times').removeClass('hidden')
+	$('.fc-today').on('click', function() {
+		$('.times').addClass('hidden')
+	})
+	$(document).on('click', '.fc-future', function() {
 		future = $('.fc-future')
 		for (var i = 0; i < future.length; i++) {
 		    future[i].style.backgroundColor = "#ffffff";
@@ -73,9 +67,6 @@ $(document).on('turbolinks:load', function() {
 	    });
 	    
 	});
-	$('.fc-today').on('click', function() {
-		$('.times').addClass('hidden')
-	})
 	$(document).on('click','.selected', function() {
 		id = this.getAttribute('data-id')
 		my_id = $("[data-id=" + id +"]");
