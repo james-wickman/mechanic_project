@@ -1,48 +1,80 @@
 
 
 <ul>
-	<% for i in 0..23 %>
-		<% counter = 0%>
-		<%if i < 10 %>
-			<%time = "0" + i.to_s + "00" %>
-			<% @appointments.each do |appointment| %>
-				<% if appointment.hour == time %>
-					<%counter = 1%>
+	<div id="accordion" role="tablist" aria-multiselectable="true">
+		<% for i in 0..23 %>
+			<% counter = 0%>
+			<%if i < 10 %>
+				<%time = "0" + i.to_s + "00" %>
+				<% @appointments.each do |appointment| %>
+					<% if appointment.hour == time %>
+						<%counter = 1%>
+					<% end %>
 				<% end %>
-			<% end %>
-			<% if counter == 0 %>
-				<li class="unselected" data-time="<%=time%>"><%=time%> - 0<%=i+1%>00</li>
-
-			<% else %>
-				<%current_appointment = @appointments.where(hour: time) %>
-				<% has_job = Job.where(appointment_id: current_appointment[0].id) %>
-				<% if has_job != [] %>
-					<li class="selected_with_job" data-time="<%=time%>" data-id="<%= current_appointment[0].id%>"><%=time%> - 0<%=i+1%>00</li>
+				<% if counter == 0 %>
+					<li class="unselected" data-time="<%=time%>"><%=time%> - 0<%=i+1%>00</li>
 				<% else %>
-					<li class="selected" data-time="<%=time%>" data-id="<%= current_appointment[0].id%>"><%=time%> - 0<%=i+1%>00</li>
+					<%current_appointment = @appointments.where(hour: time) %>
+					<% has_job = Job.where(appointment_id: current_appointment[0].id) %>
+					<% if has_job != [] %>
+						<div class="card">
+						    <div role="tab" id="heading<%=time%>">
+						      <h5 class="mb-0">
+						        <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%=time%>" aria-expanded="true" aria-controls="collapse<%=time%>">
+									<li class="selected_with_job" data-time="<%=time%>" data-id="<%= current_appointment[0].id%>"><%=time%> - 0<%=i+1%>00</li>
+								</a>
+					      		</h5>
+					    	</div>
+						    <div id="collapse<%=time%>" class="collapse" role="tabpanel" aria-labelledby="heading<%=time%>">
+						      <div class="card-block">
+						        <%=has_job[0].user.first_name %>
+						        <%=has_job[0].user.last_name %> <br />
+						        <%= has_job[0].vehicle.make %> 
+						        <%= has_job[0].vehicle.model %> <hr>
+						        <%= has_job[0].customer_description %><hr>
+						        <button class="bottom_buttons">Reschedule</button>
+						        <button class="bottom_buttons">Contact</button>
+						      </div>
+						    </div>
+						  </div>
+					<% else %>
+						<li class="selected" data-time="<%=time%>" data-id="<%= current_appointment[0].id%>"><%=time%> - 0<%=i+1%>00</li>
+					<% end %>
 				<% end %>
+				
 			<% end %>
-			
-		<% end %>
-		<% if i >= 10 %>
-			<%time = i.to_s + "00" %>
-			<% @appointments.each do |appointment| %>
-				<% if appointment.hour == time %>
-					<%counter = 1%>
+			<% if i >= 10 %>
+				<%time = i.to_s + "00" %>
+				<% @appointments.each do |appointment| %>
+					<% if appointment.hour == time %>
+						<%counter = 1%>
+					<% end %>
 				<% end %>
-			<% end %>
-			<% if counter == 0 %>
-				<li class="unselected" data-time="<%=time%>"><%=time%> - 0<%=i+1%>00</li>
-			<% else %>
-				<%current_appointment = @appointments.where(hour: time) %>
-				<% has_job = Job.where(appointment_id: current_appointment[0].id) %>
-				<% if has_job != [] %>
-					<li class="selected_with_job" data-time="<%=time%>" data-id="<%= current_appointment[0].id%>"><%=time%> - <%=i+1%>00</li>
+				<% if counter == 0 %>
+					<li class="unselected" data-time="<%=time%>"><%=time%> - 0<%=i+1%>00</li>
 				<% else %>
-					<li class="selected" data-time="<%=time%>" data-id="<%= current_appointment[0].id%>"><%=time%> - <%=i+1%>00</li>
+					<%current_appointment = @appointments.where(hour: time) %>
+					<% has_job = Job.where(appointment_id: current_appointment[0].id) %>
+					<% if has_job != [] %>
+						<div class="card">
+						    <div class="card-header" role="tab" id="heading<%=time%>">
+						      <h5 class="mb-0">
+						        <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%=time%>" aria-expanded="true" aria-controls="collapse<%=time%>">
+									<li class="selected_with_job" data-time="<%=time%>" data-id="<%= current_appointment[0].id%>"><%=time%> - <%=i+1%>00</li>
+								</a>
+					      		</h5>
+					    	</div>
+						    <div id="collapse<%=time%>" class="collapse" role="tabpanel" aria-labelledby="heading<%=time%>">
+						      <div class="card-block">
+						        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+						      </div>
+						    </div>
+						  </div>
+					<% else %>
+						<li class="selected" data-time="<%=time%>" data-id="<%= current_appointment[0].id%>"><%=time%> - <%=i+1%>00</li>
+					<% end %>
 				<% end %>
 			<% end %>
 		<% end %>
-
-	<% end %>
+	</div>
 </ul>

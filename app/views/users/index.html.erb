@@ -1,22 +1,4 @@
-<div style='width: 1000px;'>
-  <div id="multi_markers" style='width: 1000px; height: 600px;'></div>
-</div>
 
-<script>
-	setTimeout(function() {
-		var handler = Gmaps.build('Google');
-		handler.buildMap({ internal: {id: 'multi_markers'}}, function(){
-				mechanics_markers = handler.addMarkers(<%=raw @mechanics_hash.to_json %>);
-				user_marker = handler.addMarkers(<%=raw @user_hash.to_json %>);
-				
-				handler.bounds.extendWith(user_marker);
-
-		  		handler.fitMapToBounds();
-		  		handler.getMap().setZoom(10);
-			}
-		);
-	}, 1500);
-</script>
 
 
 

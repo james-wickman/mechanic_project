@@ -6,7 +6,7 @@
 
 
 .times, .mechanic_times{
-	width: 200px;
+	width: 300px;
 	display: inline-block;
 }
 
@@ -22,5 +22,6 @@
 .selected_with_job {
 	cursor: pointer;
 	background-color: pink;
+	color: black;
 	opacity: 0.9;
 }
