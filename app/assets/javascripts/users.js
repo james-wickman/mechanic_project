@@ -3,6 +3,7 @@
 // # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $(document).on('turbolinks:load', function() {
+
 	var date;
 	var time;
 	$('#mechanic_appointments_calendar').fullCalendar({
@@ -91,6 +92,9 @@ $(document).on('turbolinks:load', function() {
 		  error: function() {
           }
 		});
+	})
+	$(document).on('click', ".selected_with_job", function() {
+
 	})
 	$(document).on('click','.unselected', function() {
 		_this = $(this);

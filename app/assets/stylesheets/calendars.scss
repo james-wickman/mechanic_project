@@ -8,14 +8,16 @@
 	width: 45%;
 	position: absolute;
 }
-.schedule_container, .mechanic_schedule_container, .mechanic_appointments_container{
+.schedule_container, .mechanic_appointments_container{
 	margin-right: 100px;
 	float: right;
 	margin-top: 0px;
 	width:35%;
 	text-align: center;
 	border: 1px solid black;
-	height: 570px;
+	margin-top: 90px;
+	height: 430px;
+  	
 
 }
 
@@ -26,11 +28,16 @@ ul {
 .unavailable {
 	cursor: default;
 	background-color: lightgrey;
-	opacity: 0.5;
+	opacity: 0.8;
 
 }
 .available {
 	cursor: pointer;
 	background-color: lightgreen;
 	display: block;
+}
+.schedule_body {
+	height: 385px;
+	overflow-x: hidden;
+	word-wrap: break-word;
 }
