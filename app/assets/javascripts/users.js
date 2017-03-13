@@ -5,6 +5,43 @@
 $(document).on('turbolinks:load', function() {
 	var date;
 	var time;
+	$('#mechanic_appointments_calendar').fullCalendar({
+	    header: {
+	        left: 'prev',
+	        center: 'title today',
+	        right: 'next'
+	    },
+	    body: {
+
+	    }
+	}).on('click', '.fc-future', function() {
+		$('.mechanic_appointments_times').removeClass('hidden')
+
+		future = $('.fc-future')
+		for (var i = 0; i < future.length; i++) {
+		    future[i].style.backgroundColor = "#ffffff";
+		    future[i].style.opacity = "0.9";
+		}
+		this.style.backgroundColor = "lightblue"
+	    date = this.getAttribute('data-date')
+	    $('.mechanic_appointments_head').html('<h2>' + date + '</h2>')
+	    $('.mechanic_appointments_head').text(date)
+
+		$.ajax(
+	    {
+	      url:"/mechanics/view_jobs",
+	      type:'get',
+	      data: {
+	      	date: date,
+	      } 
+	    });
+	});
+	$('.fc-today').on('click', function() {
+		$('.mechanic_appointments_times').addClass('hidden')
+	})
+	
+	var date;
+	var time;
 	$('#calendar').fullCalendar({
 	    header: {
 	        left: 'prev',
