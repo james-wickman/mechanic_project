@@ -1,4 +1,5 @@
                       Prefix Verb   URI Pattern                           Controller#Action
+         mechanics_view_jobs GET    /mechanics/view_jobs(.:format)        mechanics#view_jobs
               calendars_show GET    /calendars/show(.:format)             calendars#show
                 appointments GET    /appointments(.:format)               appointments#index
                              POST   /appointments(.:format)               appointments#create

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get '/mechanics/view_jobs'
   get 'calendars/show'
 
   resources :appointments

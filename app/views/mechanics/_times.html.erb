@@ -15,7 +15,12 @@
 
 			<% else %>
 				<%current_appointment = @appointments.where(hour: time) %>
-				<li class="selected" data-time="<%=time%>" data-id="<%= current_appointment[0].id%>"><%=time%> - 0<%=i+1%>00</li>
+				<% has_job = Job.where(appointment_id: current_appointment[0].id) %>
+				<% if has_job != [] %>
+					<li class="selected_with_job" data-time="<%=time%>" data-id="<%= current_appointment[0].id%>"><%=time%> - 0<%=i+1%>00</li>
+				<% else %>
+					<li class="selected" data-time="<%=time%>" data-id="<%= current_appointment[0].id%>"><%=time%> - 0<%=i+1%>00</li>
+				<% end %>
 			<% end %>
 			
 		<% end %>
@@ -30,7 +35,12 @@
 				<li class="unselected" data-time="<%=time%>"><%=time%> - 0<%=i+1%>00</li>
 			<% else %>
 				<%current_appointment = @appointments.where(hour: time) %>
-				<li class="selected" data-time="<%=time%>" data-id="<%= current_appointment[0].id%>"><%=time%> - 0<%=i+1%>00</li>
+				<% has_job = Job.where(appointment_id: current_appointment[0].id) %>
+				<% if has_job != [] %>
+					<li class="selected_with_job" data-time="<%=time%>" data-id="<%= current_appointment[0].id%>"><%=time%> - <%=i+1%>00</li>
+				<% else %>
+					<li class="selected" data-time="<%=time%>" data-id="<%= current_appointment[0].id%>"><%=time%> - <%=i+1%>00</li>
+				<% end %>
 			<% end %>
 		<% end %>
 

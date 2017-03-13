@@ -1,7 +1,7 @@
 class AppointmentsController < ApplicationController
   def index
     date_from_ajax = params[:matched_date]
-    reduce = Appointment.where(:date => date_from_ajax)
+    reduce = Appointment.where(date: date_from_ajax)
     hour_on_date = reduce.collect {|x| x.hour}
     @new_dates = hour_on_date
     render :layout => false

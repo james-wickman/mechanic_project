@@ -3,15 +3,15 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
-.calendar_container, .mechanic_calendar_container{
+.calendar_container, .mechanic_calendar_container, .mechanic_appointments_calendar_container{
 	margin-left: 100px;
 	width: 45%;
 	position: absolute;
 }
-.schedule_container, .mechanic_schedule_container{
+.schedule_container, .mechanic_schedule_container, .mechanic_appointments_container{
 	margin-right: 100px;
 	float: right;
-	margin-top: 90px;
+	margin-top: 0px;
 	width:35%;
 	text-align: center;
 	border: 1px solid black;
