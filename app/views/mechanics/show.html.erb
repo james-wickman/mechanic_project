@@ -1,9 +1,5 @@
 <% time = Time.new %>
-<% if time.hour < 10 %>
-	<% current_time = "0" + time.hour.to_s + time.min.to_s %>
-<% else %>
-	<% current_time = time.hour.to_s + time.min.to_s %>
-<% end %>
+<% current_time = time.hour.to_s + time.min.to_s %>
 <% puts current_time.to_i %>
 <div id="accordion" role="tablist" aria-multiselectable="true">
 	<% for i in 0..4 %>
@@ -27,26 +23,25 @@
 								<% if appointment.hour.to_i < current_time.to_i - 100 %>
 									<div>
 										<%= appointment.hour %>
-										<%= appointment.date %>
+										<%= appointment.date %><hr>
 											
 									</div>
 								<% else %>
 									<div>
 										<%= appointment.hour %>
-										<%= appointment.date %>
+										<%= appointment.date %><hr>
 									</div>
 								<% end %>
 							<% elsif appointment.date == current_day.to_s %>
 								<% counter = 1 %>
 								<%= appointment.hour %>
-								<%= appointment.date %>
+								<%= appointment.date %><hr>
 							<% end %>
-							<% if counter == 0 %>
-								<h3>Nothing for this day</h3>
-							<% end %>
-						<% elsif counter == 0 %>
-							<<h3>Nothing for this day</h3>
+							
 						<% end %>
+					<% end %>
+					<% if counter == 0 %>
+						<h3>Nothing for this day</h3>
 					<% end %>
 				</div>
 			</div>
