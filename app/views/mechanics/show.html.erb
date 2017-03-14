@@ -12,8 +12,11 @@
 					</a>
 				</h5>
 			</div>
-
-			<div id="collapse<%=i%>" class="collapse" role="tabpanel" aria-labelledby="heading<%=i%>">
+			<% if i == 0 %>
+				<div id="collapse<%=i%>" class="collapse show" role="tabpanel" aria-labelledby="heading<%=i%>">
+			<% else %>
+				<div id="collapse<%=i%>" class="collapse" role="tabpanel" aria-labelledby="heading<%=i%>">
+			<% end %>
 				<div class="card-block">
 					<% counter = 0 %>
 					<% @jobs.each do |job| %>
@@ -33,9 +36,18 @@
 									</div>
 								<% end %>
 							<% elsif appointment.date == current_day.to_s %>
-								<% counter = 1 %>
-								<%= appointment.hour %>
-								<%= appointment.date %><hr>
+								<% if appointment.job.vehicle != nil %>
+									<% counter = 1 %>
+									<p><%= appointment.hour %></p>
+									<p><%= appointment.job.user.first_name %>
+									<%= appointment.job.user.last_name %><br>
+									<%= appointment.job.vehicle.make %>
+									<%= appointment.job.vehicle.model %></p>
+									<p><%= appointment.job.customer_description %></p> <br>
+									<button>Contact Customer</button>
+									<button>Reschedule Appointment</button>
+									<hr>
+								<% end %>
 							<% end %>
 							
 						<% end %>
