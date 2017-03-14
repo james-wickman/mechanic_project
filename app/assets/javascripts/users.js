@@ -44,11 +44,34 @@ $(document).on('turbolinks:load', function() {
 	
 	var date;
 	var time;
-	$('.fc-today').on('click', function() {
-		$('.times').addClass('hidden')
-	})
 	$(document).on('click', '.fc-future', function() {
-		future = $('.fc-future')
+		future = $('.fc-future');
+		today = $('.fc-today');
+		today[0].style.backgroundColor = "lightyellow";
+		today[1].style.backgroundColor = "lightyellow";
+		today[0].style.opacity = "0.9";
+		for (var i = 0; i < future.length; i++) {
+		    future[i].style.backgroundColor = "#ffffff";
+		    future[i].style.opacity = "0.9";
+
+		}
+		this.style.backgroundColor = "lightblue"
+	    date = this.getAttribute('data-date')
+	    $('.schedule_head').html('<h2>' + date + '</h2>')
+
+		$.ajax(
+	    {
+	      url:"/appointments/new",
+	      type:'get',
+	      data: {
+	      	date: date,
+	      }
+	    });
+	    
+	});
+	$(document).on('click','.fc-today', function() {
+		future = $('.fc-future');
+		today = $('.fc-today');
 		for (var i = 0; i < future.length; i++) {
 		    future[i].style.backgroundColor = "#ffffff";
 		    future[i].style.opacity = "0.9";
@@ -65,8 +88,8 @@ $(document).on('turbolinks:load', function() {
 	      	date: date,
 	      }
 	    });
-	    
-	});
+		
+	})
 	$(document).on('click','.selected', function() {
 		id = this.getAttribute('data-id')
 		my_id = $("[data-id=" + id +"]");
@@ -91,6 +114,7 @@ $(document).on('turbolinks:load', function() {
 		_this = $(this);
 		_this.attr('id', 'new');
 		time = $(this).attr('data-time');
+		console.log(date)
 		my_time = $("[data-time=" + time +"]");
 		
 		$.ajax({

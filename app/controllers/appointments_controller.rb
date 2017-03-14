@@ -8,6 +8,7 @@ class AppointmentsController < ApplicationController
   end
  
   def new
+    @date = params[:date]
     respond_to do |format|
       @appointments = current_mechanic.appointments.where(date: params[:date])
       format.js
@@ -17,7 +18,6 @@ class AppointmentsController < ApplicationController
   end
   def create
     respond_to do |format|
-      format.js 
   	  @appointment = Appointment.create(date: params[:date], hour: params[:hour], mechanic_id: current_mechanic.id)
     	if @appointment.save
         format.js
