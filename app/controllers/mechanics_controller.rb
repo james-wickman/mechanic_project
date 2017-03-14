@@ -5,6 +5,7 @@ class MechanicsController < ApplicationController
   end
 
   def show
+  	@jobs = current_mechanic.jobs
   end
 
 end

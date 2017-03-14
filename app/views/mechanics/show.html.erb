@@ -1,6 +1,58 @@
+<% time = Time.new %>
+<% if time.hour < 10 %>
+	<% current_time = "0" + time.hour.to_s + time.min.to_s %>
+<% else %>
+	<% current_time = time.hour.to_s + time.min.to_s %>
+<% end %>
+<% puts current_time.to_i %>
+<div id="accordion" role="tablist" aria-multiselectable="true">
+	<% for i in 0..4 %>
+		<div class="card">
+			<div class="" role="tab" id="heading<%=i%>">
+				<h5 class="mb-0">
+					<a data-toggle="collapse" data-parent="#accordion" href="#collapse<%=i%>" aria-expanded="true" aria-controls="collapse<%=i%>">
+				 		<%= current_day = Date.today + i %>
+				 		<%= current_day.strftime("%A") %>
+					</a>
+				</h5>
+			</div>
 
-
-
+			<div id="collapse<%=i%>" class="collapse" role="tabpanel" aria-labelledby="heading<%=i%>">
+				<div class="card-block">
+					<% counter = 0 %>
+					<% @jobs.each do |job| %>
+						<% if job.appointment_id != nil %>
+							<% appointment = job.appointment %>
+							<% if appointment.date == Date.today %>
+								<% if appointment.hour.to_i < current_time.to_i - 100 %>
+									<div>
+										<%= appointment.hour %>
+										<%= appointment.date %>
+											
+									</div>
+								<% else %>
+									<div>
+										<%= appointment.hour %>
+										<%= appointment.date %>
+									</div>
+								<% end %>
+							<% elsif appointment.date == current_day.to_s %>
+								<% counter = 1 %>
+								<%= appointment.hour %>
+								<%= appointment.date %>
+							<% end %>
+							<% if counter == 0 %>
+								<h3>Nothing for this day</h3>
+							<% end %>
+						<% elsif counter == 0 %>
+							<<h3>Nothing for this day</h3>
+						<% end %>
+					<% end %>
+				</div>
+			</div>
+		</div>
+	<% end %>
+</div>
 <div class="hidden edit_mechanic_profile">
 	<%= render 'mechanics/registrations/edit' %>
 </div>
