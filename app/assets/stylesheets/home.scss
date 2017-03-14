@@ -42,3 +42,41 @@ textarea.parsley-error {
 .users_signup {
   height: 500px;
 }
+.first_img {
+  height: 600px;
+  background-image: url("http://pictures.dealer.com/a/audioffairfieldaoa/0056/5fe67de04046387201eb7d259f621998.jpg ");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+.second_img {
+  height: 500px;
+  background-image: url("http://gazettereview.com/wp-content/uploads/2017/02/mechanic.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+.third_img {
+  height: 700px;
+  background-image: url("http://i.huffpost.com/gen/1193458/images/o-WOMAN-CAR-MECHANIC-facebook.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.notice {
+  position: absolute;
+  top: 50px;
+  left: 50px;
+}
+.alert {
+  position: absolute;
+  top: 50px;
+  left: 50px;
+  color: red;
+}
+
+
+
+
+
