@@ -113,6 +113,16 @@ button{
   width: 100px;
   display: inline-block;
 }
+.dropdown-menu {
+  text-align: center;
+}
+.dropdown-menu-center {
+  left: 50%;
+  right: auto;
+  text-align: center;
+  transform: translate(-50%, 0);
+}
+
 
 
 
