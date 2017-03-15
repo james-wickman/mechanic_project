@@ -40,35 +40,62 @@ $(document).on('turbolinks:load', function() {
 	});
 	$('.fc-today').on('click', function() {
 		$('.mechanic_appointments_times').addClass('hidden')
-	})
+	});
 	
 	var date;
 	var time;
-	$(document).on('click', '.fc-future', function() {
-		future = $('.fc-future');
-		today = $('.fc-today');
-		today[0].style.backgroundColor = "lightyellow";
-		today[1].style.backgroundColor = "lightyellow";
-		today[0].style.opacity = "0.9";
-		for (var i = 0; i < future.length; i++) {
-		    future[i].style.backgroundColor = "#ffffff";
-		    future[i].style.opacity = "0.9";
-
-		}
-		this.style.backgroundColor = "lightblue"
-	    date = this.getAttribute('data-date')
-	    $('.schedule_head').html('<h2>' + date + '</h2>')
-
-		$.ajax(
-	    {
-	      url:"/appointments/new",
-	      type:'get',
-	      data: {
-	      	date: date,
-	      }
-	    });
-	    
+	$(document).on('click','.available', function() {
+		id = this.getAttribute('data-id');
+		my_id = $("[data-id=" + id +"]");
+		$.ajax({
+		  type: "put",
+		  url: '/jobs/'+ current_job,
+		  data: {
+		  	appointment_id: id,
+		  	mechanic_id: current_mechanic,
+		  },
+		  success: function() {
+		  	location.href = "/users/show"
+		  },
+		  error: function() {
+          }
+		});
 	});
+	
+	$(document).on('click','.fc-today', function() {
+		$('.mechanic_times').addClass('hidden')
+	})
+	
+	$(document).on('click','.pullup_mechanic_button', function() {
+		console.log('run')
+		$(".adding_schedule").html(`
+			<div class="mechanic_calendar_container">
+				<div id="mechanic_calendar"></div>
+			</div>
+
+			<div class='mechanic_schedule_container'>
+				<div class="mechanic_schedule">
+					<div class="mechanic_schedule_head">
+					</div>
+					<div class="mechanic_schedule_body">
+						<div class="mechanic_times">
+						</div>
+					</div>
+				</div>
+			</div>
+			`)
+		current_mechanic = this.getAttribute('data-mechanic');
+		$('#mechanic_calendar').fullCalendar({
+		    header: {
+		        left: 'prev',
+		        center: 'title today',
+		        right: 'next'
+		    },
+		    body: {
+
+		    }
+		})
+	})
 	$(document).on('click','.fc-today', function() {
 		future = $('.fc-future');
 		today = $('.fc-today');
@@ -114,15 +141,15 @@ $(document).on('turbolinks:load', function() {
 		_this = $(this);
 		_this.attr('id', 'new');
 		time = $(this).attr('data-time');
-		console.log(date)
-		my_time = $("[data-time=" + time +"]");
+		datetime = new Date(date + " " + time)
 		
 		$.ajax({
 		  type: "POST",
 		  url: '/appointments',
 		  data: {
-		  	date: date,
-		  	hour: time,
+		  	appointment: {
+		  		date: datetime
+		  	}
 
 		  },
 		  success: function() {

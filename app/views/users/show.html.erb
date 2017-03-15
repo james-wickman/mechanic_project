@@ -31,20 +31,18 @@
 						<a><%= link_to "Delete Vehicle", vehicles_destroy_path(id: vehicle.id), method: :delete %></a>
 					  </div>
 					</div>
-					<button class="edit_vehicle_button">Edit Vehicle</button>
-					<% @vehicle = vehicle %>
+					<button class="edit_vehicle_button">Edit Vehicle</button>	
 					<div class="hidden edit_vehicle">
-						<%= render 'vehicles/edit' %>
+						<%= render 'vehicles/edit', vehicle: vehicle %>
 					</div><br>
 					<% vehicle.jobs.each do |job| %>
-					<%appointment = job.appointment %>
 						<%= job.customer_description %>
 						<%if job.appointment_id == nil %>
 							<button class="schedule_job_button" data-id="<%= job.id %>">Schedule Job</button>
 							<div class="adding_elements">
 							</div>
 						<% else %>
-							<h3>Scheduled for <%=appointment.date%> <%=appointment.hour%> with <%= appointment.mechanic.first_name %> <%= appointment.mechanic.last_name %></h3>
+							<h3>Scheduled for <%=job.appointment.date%> <%=job.appointment.hour%> with <%= job.appointment.mechanic.first_name %> <%= job.appointment.mechanic.last_name %></h3>
 						<% end %><br>
 					<% end %>
 				</div>
@@ -62,7 +60,7 @@
 <div class="hidden add_vehicle">
 	<%= render 'vehicles/new_vehicle' %>
 </div>
-<% if @new_job != nil %>
+<% if !@new_job.nil? %>
 	<div class=" edit_job">
 		<%= render 'jobs/edit' %>
 	</div>
@@ -74,36 +72,30 @@
 	var _this
 	var current_job;
 	var current_mechanic
-	$(document).on('click','.pullup_mechanic_button', function() {
-		console.log('run')
-		$(".adding_schedule").html(`
-			<div class="mechanic_calendar_container">
-				<div id="mechanic_calendar"></div>
+	$('.schedule_job_button').on('click', function() {
+		$(".adding_elements").html('')
+		current_job = this.getAttribute('data-id');
+		_this = this
+		$(this).next(".adding_elements").html(`
+			<div class="maps_container" style='width: 704px;'>
+			  <div id="multi_markers" style='width: 700px; height: 400px;'></div>
 			</div>
-
-			<div class='mechanic_schedule_container'>
-				<div class="mechanic_schedule">
-					<div class="mechanic_schedule_head">
-					</div>
-					<div class="mechanic_schedule_body">
-						<div class="mechanic_times">
-						</div>
-					</div>
-				</div>
+			<div class="adding_schedule">
 			</div>
 			`)
-		current_mechanic = this.getAttribute('data-mechanic');
-		$('#mechanic_calendar').fullCalendar({
-		    header: {
-		        left: 'prev',
-		        center: 'title today',
-		        right: 'next'
-		    },
-		    body: {
+		var handler = Gmaps.build('Google');
+		handler.buildMap({ provider: { scrollwheel: false }, internal: {id: 'multi_markers'}}, function(){
+			mechanics_markers = handler.addMarkers(<%=raw @mechanics_hash.to_json %>);
+			user_marker = handler.addMarkers(<%=raw @user_hash.to_json %>);
+			
+			handler.bounds.extendWith(user_marker);
 
-		    }
-		})
-	})
+	  		handler.fitMapToBounds();
+	  		handler.getMap().setZoom(9);
+		});
+	});
+	// both calanders have fc-future class so i needed to scope it by putting it within script tage with in the html
+	$(".fc-future").off('click'); // takes off click events for fc-future for the other calendar
 	$(document).on('click','.fc-future', function() {
 		$('.mechanic_times').removeClass('hidden');
 
@@ -127,53 +119,6 @@
 	      } 
 	    });
 	});
-	$('.schedule_job_button').on('click', function() {
-		$(".adding_elements").html('')
-		current_job = this.getAttribute('data-id');
-		_this = this
-		$(this).next(".adding_elements").html(`
-			<div class="maps_container" style='width: 704px;'>
-			  <div id="multi_markers" style='width: 700px; height: 400px;'></div>
-			</div>
-			<div class="adding_schedule">
-			</div>
-			`)
-		console.log(current_job);
-		var handler = Gmaps.build('Google');
-		handler.buildMap({ provider: { scrollwheel: false }, internal: {id: 'multi_markers'}}, function(){
-			mechanics_markers = handler.addMarkers(<%=raw @mechanics_hash.to_json %>);
-			user_marker = handler.addMarkers(<%=raw @user_hash.to_json %>);
-			
-			handler.bounds.extendWith(user_marker);
-
-	  		handler.fitMapToBounds();
-	  		handler.getMap().setZoom(9);
-		});
-	})
-	var date;
-	var time;
-	$(document).on('click','.fc-today', function() {
-		$('.mechanic_times').addClass('hidden')
-	})
-	$(document).on('click','.available', function() {
-		id = this.getAttribute('data-id');
-		my_id = $("[data-id=" + id +"]");
-		$.ajax({
-		  type: "put",
-		  url: '/jobs/'+ current_job,
-		  data: {
-		  	appointment_id: id,
-		  	mechanic_id: current_mechanic,
-		  },
-		  success: function() {
-		  	location.href = "/users/show"
-		  },
-		  error: function() {
-          }
-		});
-	})
-
-	
 </script>
 
 

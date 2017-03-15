@@ -8,21 +8,14 @@
 <ul>
 	<div id="accordion" role="tablist" aria-multiselectable="true">
 		<% for i in 0..23 %>
-			<% checking_time = i.to_s + "00" %>
-			<%hour_next = checking_time.to_i + 100 %>
-			<%if i < 9 %>
-
-				<% hour_time_frame = "0" + hour_next.to_s %>
-			<% elsif i >= 9 %>
-				<% hour_time_frame = hour_next.to_s %>
-			<% end %>
+			<% checking_time = i.to_s + ":00:00" %>
 			<% counter = 0%>
 			<% passed_date = 0 %>
 			<% if checking_time.to_i < current_time.to_i && @date.to_s == Date.today.to_s   %>
 				<% passed_date = 1 %>
 			<% end %>
 			<%if i < 10 %>
-				<%time = "0" + i.to_s + "00" %>
+				<%time = "0" + checking_time %>
 				<% @appointments.each do |appointment| %>
 					
 					<% if appointment.hour == time %>
@@ -32,9 +25,9 @@
 				<% end %>
 				<% if passed_date == 1 %>
 
-					<li class="past_date" data-time="<%=time%>"><%=time%> -<%=hour_time_frame%></li>
+					<li class="past_date" data-time="<%=time%>"><%=time%></li>
 				<% elsif counter == 0 %>
-					<li class="unselected" data-time="<%=time%>"><%=time%> - <%=hour_time_frame%></li>
+					<li class="unselected" data-time="<%=time%>"><%=time%> </li>
 				<% elsif counter == 1 %>
 					<%current_appointment = @appointments.where(hour: time) %>
 					<% has_job = Job.where(appointment_id: current_appointment[0].id) %>
@@ -60,13 +53,13 @@
 						    </div>
 						  </div>
 					<% else %>
-						<li class="selected" data-time="<%=time%>" data-id="<%= current_appointment[0].id%>"><%=time%> - <%=hour_time_frame%></li>
+						<li class="selected" data-time="<%=time%>" data-id="<%= current_appointment[0].id%>"><%=time%> </li>
 					<% end %>
 				<% end %>
 				
 			<% end %>
 			<% if i >= 10 %>
-				<%time = i.to_s + "00" %>
+				<%time = checking_time %>
 				<% @appointments.each do |appointment| %>
 				<% puts appointment.hour %>
 					<% if appointment.hour == time %>
@@ -75,9 +68,9 @@
 				<% end %>
 				<% if passed_date == 1 %>
 
-					<li class="past_date" data-time="<%=time%>"><%=time%> - <%=hour_time_frame%></li>
+					<li class="past_date" data-time="<%=time%>"><%=time%> </li>
 				<% elsif counter == 0 %>
-					<li class="unselected" data-time="<%=time%>"><%=time%> - <%=hour_time_frame%></li>
+					<li class="unselected" data-time="<%=time%>"><%=time%> </li>
 				<% elsif counter == 1 %>
 					<%current_appointment = @appointments.where(hour: time) %>
 					<% has_job = Job.where(appointment_id: current_appointment[0].id) %>
@@ -103,7 +96,7 @@
 						    </div>
 						  </div>
 					<% else %>
-						<li class="selected" data-time="<%=time%>" data-id="<%= current_appointment[0].id%>"><%=time%> - <%=hour_time_frame%></li>
+						<li class="selected" data-time="<%=time%>" data-id="<%= current_appointment[0].id%>"><%=time%> </li>
 					<% end %>
 				<% end %>
 			<% end %>

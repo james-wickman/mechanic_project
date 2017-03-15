@@ -18,7 +18,8 @@ class AppointmentsController < ApplicationController
   end
   def create
     respond_to do |format|
-  	  @appointment = Appointment.create(date: params[:date], hour: params[:hour], mechanic_id: current_mechanic.id)
+      byebug
+  	  @appointment = Appointment.create(date: appointment_params[:date].to_datetime, mechanic_id: current_mechanic.id)
     	if @appointment.save
         format.js
     	end
@@ -40,6 +41,6 @@ class AppointmentsController < ApplicationController
   private
 
   def appointment_params
-      params.require(:appointment).permit(:date, :hour, :mechanic_id)
+      params.require(:appointment).permit(:date, :mechanic_id)
     end
 end

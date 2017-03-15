@@ -40,6 +40,32 @@
 			
 		<% end %>
 	<% end %>
+	$('.fc-future').off('click');
+	$(document).on('click', '.fc-future', function() {
+		future = $('.fc-future');
+		today = $('.fc-today');
+		today[0].style.backgroundColor = "lightyellow";
+		today[1].style.backgroundColor = "lightyellow";
+		today[0].style.opacity = "0.9";
+		for (var i = 0; i < future.length; i++) {
+		    future[i].style.backgroundColor = "#ffffff";
+		    future[i].style.opacity = "0.9";
+
+		}
+		this.style.backgroundColor = "lightblue"
+	    date = this.getAttribute('data-date')
+	    $('.schedule_head').html('<h2>' + date + '</h2>')
+
+		$.ajax(
+	    {
+	      url:"/appointments/new",
+	      type:'get',
+	      data: {
+	      	date: date,
+	      }
+	    });
+	    
+	});
 	
 	
 </script>

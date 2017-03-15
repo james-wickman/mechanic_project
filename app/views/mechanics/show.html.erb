@@ -1,18 +1,17 @@
-<% time = Time.new %>
-<% current_time = time.hour.to_s + time.min.to_s %>
-<% puts current_time.to_i %>
+
+<% puts @current_time.to_i %>
 <div id="accordion" role="tablist" aria-multiselectable="true">
-	<% for i in 0..4 %>
+	<% @days_array.each_with_index do |day, i| %>
 		<div class="card">
 			<div class="" role="tab" id="heading<%=i%>">
 				<h5 class="mb-0">
 					<a data-toggle="collapse" data-parent="#accordion" href="#collapse<%=i%>" aria-expanded="true" aria-controls="collapse<%=i%>">
-				 		<%= current_day = Date.today + i %>
-				 		<%= current_day.strftime("%A") %>
+				 		<%= day[:date] %>
+				 		<%= day[:day] %>
 					</a>
 				</h5>
 			</div>
-			<% if i == 0 %>
+			<% if day[:date] == Date.today %>
 				<div id="collapse<%=i%>" class="collapse show" role="tabpanel" aria-labelledby="heading<%=i%>">
 			<% else %>
 				<div id="collapse<%=i%>" class="collapse" role="tabpanel" aria-labelledby="heading<%=i%>">
@@ -23,7 +22,7 @@
 						<% if job.appointment_id != nil %>
 							<% appointment = job.appointment %>
 							<% if appointment.date == Date.today %>
-								<% if appointment.hour.to_i < current_time.to_i - 100 %>
+								<% if appointment.hour.to_i < @current_time.to_i - 100 %>
 									<div>
 										<%= appointment.hour %>
 										<%= appointment.date %><hr>
@@ -35,7 +34,7 @@
 										<%= appointment.date %><hr>
 									</div>
 								<% end %>
-							<% elsif appointment.date == current_day.to_s %>
+							<% elsif appointment.date == day[:date].to_s %>
 								<% if appointment.job.vehicle != nil %>
 									<% counter = 1 %>
 									<p><%= appointment.hour %></p>
@@ -63,3 +62,4 @@
 <div class="hidden edit_mechanic_profile">
 	<%= render 'mechanics/registrations/edit' %>
 </div>
+
