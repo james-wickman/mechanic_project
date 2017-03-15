@@ -53,6 +53,7 @@
 
 		}
 		this.style.backgroundColor = "lightblue"
+		console.log(date)
 	    date = this.getAttribute('data-date')
 	    $('.schedule_head').html('<h2>' + date + '</h2>')
 
@@ -61,7 +62,9 @@
 	      url:"/appointments/new",
 	      type:'get',
 	      data: {
-	      	date: date,
+	      	appointment: {
+	      		date: date
+	      	}
 	      }
 	    });
 	    

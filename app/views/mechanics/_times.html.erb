@@ -1,4 +1,5 @@
 <% time = Time.new %>
+<% puts time.min %>
 <% if time.min < 10 %>
 	<% current_min = "0" + time.min.to_s %>
 <% else %>
@@ -12,21 +13,21 @@
 			<% counter = 0%>
 			<% passed_date = 0 %>
 			<% if checking_time.to_i < current_time.to_i && @date.to_s == Date.today.to_s   %>
+				
 				<% passed_date = 1 %>
 			<% end %>
 			<%if i < 10 %>
-				<%time = "0" + checking_time %>
+				<%time = checking_time %>
 				<% @appointments.each do |appointment| %>
-					
-					<% if appointment.hour == time %>
+					<%= puts appointment.date.hour %>
+					<% puts i %>
+					<% if appointment.date.hour == i %>
 						<%counter = 1%>
 					<% end %>
 
 				<% end %>
-				<% if passed_date == 1 %>
-
-					<li class="past_date" data-time="<%=time%>"><%=time%></li>
-				<% elsif counter == 0 %>
+				<!-- passed dates -->
+				<%if counter == 0 %>
 					<li class="unselected" data-time="<%=time%>"><%=time%> </li>
 				<% elsif counter == 1 %>
 					<%current_appointment = @appointments.where(hour: time) %>
@@ -61,15 +62,12 @@
 			<% if i >= 10 %>
 				<%time = checking_time %>
 				<% @appointments.each do |appointment| %>
-				<% puts appointment.hour %>
-					<% if appointment.hour == time %>
+					<% if appointment.date.hour == time %>
 						<%counter = 1%>
 					<% end %>
 				<% end %>
-				<% if passed_date == 1 %>
-
-					<li class="past_date" data-time="<%=time%>"><%=time%> </li>
-				<% elsif counter == 0 %>
+				<!-- need passed date -->
+				<% if counter == 0 %>
 					<li class="unselected" data-time="<%=time%>"><%=time%> </li>
 				<% elsif counter == 1 %>
 					<%current_appointment = @appointments.where(hour: time) %>

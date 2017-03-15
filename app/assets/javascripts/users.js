@@ -142,6 +142,7 @@ $(document).on('turbolinks:load', function() {
 		_this.attr('id', 'new');
 		time = $(this).attr('data-time');
 		datetime = new Date(date + " " + time)
+		console.log(datetime)
 		
 		$.ajax({
 		  type: "POST",
