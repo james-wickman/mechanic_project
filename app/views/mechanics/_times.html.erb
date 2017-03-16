@@ -6,19 +6,15 @@
 			<li class="unselected" data-time="<%=@hours_in_day[i]%>"><%=@hours_in_day[i]%></li>
 		<% elsif available[:available] == 2 %>
 			<div id="accordion" role="tablist" aria-multiselectable="true">
-				<% current_user.vehicles.each do |vehicle| %>
-					<div class="card">
-					    <div class="card-header" role="tab" id="heading<%= vehicle.id %>">
-					      <h5 class="mb-0">
-					        <a class="full_width" data-toggle="collapse" data-parent="#accordion" href="#collapse<%= vehicle.id %>" aria-expanded="true" aria-controls="collapse<%= vehicle.id %>">
-								<%=@hours_in_day[i] %>
-							</a>
-					      </h5>
-					    </div>
-					    <div id="collapse<%= vehicle.id %>" class="collapse" role="tabpanel" aria-labelledby="heading<%= vehicle.id %>">
-					      <div class="card-bl">
-					      
-			<li class="selected_with_job" data-time="<%=@hours_in_day[i]%>"><%=@hours_in_day[i]%></li>
-		 <% end %> 
+		        <a class="full_width mechanic_customers" data-toggle="collapse" data-parent="#accordion" href="#collapse<%= i %>" aria-expanded="true" aria-controls="collapse<%= i %>">
+					<%=@hours_in_day[i] %>
+				</a>
+		    </div>
+		    <div id="collapse<%= i %>" class="collapse" role="tabpanel" aria-labelledby="heading<%= i %>">
+		      <div class="card-bl">
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit. In ipsum accusamus officia impedit possimus dolorum praesentium quas molestias est porro distinctio, cumque nobis sunt tempora quam voluptatibus deserunt debitis aperiam?
+		      </div>
+		    </div>
+		<% end %> 
 	<% end %>
 </ul>

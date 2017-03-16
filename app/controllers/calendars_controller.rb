@@ -15,13 +15,9 @@ class CalendarsController < ApplicationController
 			p @hours_in_day
 		end
 		@available_times = @appointments
-		@available_times.each do |ava|
-			p ava
-		end
 		#sets days_available to the times that that mechanic has Appointment
 		@available_times.each do |appointment| 
 			time = appointment.date.localtime.strftime("%H:%M:%S")
-        	p "times: #{time}"
         	if appointment.job
         		@available_array[@hours_in_day.index(time)][:available] = 2 
 		  		@available_array[@hours_in_day.index(time)][:id] = appointment[:id] 
