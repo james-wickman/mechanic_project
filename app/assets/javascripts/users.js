@@ -16,6 +16,9 @@ $(document).on('turbolinks:load', function() {
 
 	    }
 	})
+	$('.full_width').on('click',function() {
+		$(".adding_elements").html('');
+	})
 	$(document).on('click', '.fc-future', function() {
 		$('.mechanic_appointments_times').removeClass('hidden')
 
@@ -94,8 +97,9 @@ $(document).on('turbolinks:load', function() {
 		    body: {
 
 		    }
-		})
-	})
+		});
+		$("html, body").animate({ scrollTop: $(document).height() }, 1000);
+	});
 	$(document).on('click','.fc-today', function() {
 		future = $('.fc-future');
 		today = $('.fc-today');
@@ -165,21 +169,25 @@ $(document).on('turbolinks:load', function() {
 	});
 	
 	$('.edit_vehicle_button').on('click', function() {
-		console.log('hidden')
-		$(this).next('.edit_vehicle').removeClass('hidden')
+		$(".adding_elements").html('');
+		$(this).next('.edit_vehicle').removeClass('hidden');
 	})
 	$('.edit_job_button').on('click', function() {
-		$(this).next('.edit_job').removeClass('hidden')
+		$(".adding_elements").html('');
+		$(this).next('.edit_job').removeClass('hidden');
 	})
 	$('.edit_mechanic_profile_link').on('click', function() {
-		$('.edit_mechanic_profile').removeClass('hidden')
+		$('.edit_mechanic_profile').removeClass('hidden');
+		$(".adding_elements").html('');
 	})
 
 	$('.edit_profile_link').on('click', function () {
+		$(".adding_elements").html('');
 		$('.edit_profile').removeClass('hidden');
 		$('.add_vehicle').addClass('hidden');
 	})
 	$('.add_vehicle_link').on('click', function () {
+		$(".adding_elements").html('');
 		$('.edit_profile').addClass('hidden');
 		$('.add_vehicle').removeClass('hidden');
 	})

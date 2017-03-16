@@ -2,11 +2,9 @@
 	<h3><%= current_user.first_name %>
 	<%= current_user.last_name %></h3><br>
 	<h4><%= current_user.email %></h4>
-	
 </div>
 <div class="vehicles_list">
 	<div class="vehicles_head"><h1>Vehicles</h1></div>
-
 	<div class="user_vehicles_list">
 	<div id="accordion" role="tablist" aria-multiselectable="true">
 		<% current_user.vehicles.each do |vehicle| %>
@@ -19,7 +17,6 @@
 					</a>
 			      </h5>
 			    </div>
-
 			    <div id="collapse<%= vehicle.id %>" class="collapse" role="tabpanel" aria-labelledby="heading<%= vehicle.id %>">
 			      <div class="card-bl">
 			      <div class="dropdown user_cars_options">
@@ -42,12 +39,11 @@
 							<div class="adding_elements">
 							</div>
 						<% else %>
-							<h3>Scheduled for <%=job.appointment.date%> <%=job.appointment.hour%> with <%= job.appointment.mechanic.first_name %> <%= job.appointment.mechanic.last_name %></h3>
+							<h3>Scheduled for <%=job.appointment.date%> with <%= job.appointment.mechanic.first_name %> <%= job.appointment.mechanic.last_name %></h3>
 						<% end %><br>
 					<% end %>
 				</div>
 		    </div>
-		  
 			<% end %>
 		</div>
 	</div>
@@ -87,12 +83,11 @@
 		handler.buildMap({ provider: { scrollwheel: false }, internal: {id: 'multi_markers'}}, function(){
 			mechanics_markers = handler.addMarkers(<%=raw @mechanics_hash.to_json %>);
 			user_marker = handler.addMarkers(<%=raw @user_hash.to_json %>);
-			
 			handler.bounds.extendWith(user_marker);
-
 	  		handler.fitMapToBounds();
 	  		handler.getMap().setZoom(9);
 		});
+		$("html, body").animate({ scrollTop: $(document).height() }, 1000);
 	});
 	// both calanders have fc-future class so i needed to scope it by putting it within script tage with in the html
 	$(".fc-future").off('click'); // takes off click events for fc-future for the other calendar

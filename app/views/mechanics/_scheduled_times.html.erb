@@ -1,10 +1,11 @@
-
-<ul>
+ <ul>
 	<% @available_array.each_with_index do |available, i| %>
-		<% if available[:available] != 0%>
+		<% if available[:available] == 1%>
 		 	<li class="available" data-time="<%=@hours_in_day[i]%>" data-id="<%= available[:id]%>"><%=@hours_in_day[i]%></li>
-		 <% else %>
+		 <% elsif available[:available] == 0 %>
 			<li class="unavailable" data-time="<%=@hours_in_day[i]%>"><%=@hours_in_day[i]%></li>
+		<% elsif available[:available] == 2 %>
+			<li class="unavailable_spot" data-time="<%=@hours_in_day[i]%>"><%=@hours_in_day[i]%></li>
 		 <% end %> 
 	<% end %>
 </ul>

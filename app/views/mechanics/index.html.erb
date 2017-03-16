@@ -35,7 +35,7 @@
 
 		<%if job.appointment_id != nil %>
 			<%appointment = Appointment.find(job.appointment_id)%>
-			day = $("[data-date=<%=appointment.date%>]")[1];
+			day = $("[data-date=<%=appointment.date.to_date%>]")[1];
 			$(day).children("p").html("<img class='star_img' src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzAOsCVW2qxU7twGUNg9zXyaDYeepFAKrrHCyY5OsS3_WMED8Zpg'>")
 			
 		<% end %>

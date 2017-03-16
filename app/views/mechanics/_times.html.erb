@@ -1,103 +1,24 @@
-<% time = Time.new %>
-<% puts time.min %>
-<% if time.min < 10 %>
-	<% current_min = "0" + time.min.to_s %>
-<% else %>
-	<% current_min = time.min.to_s %>
-<% end %>
-<% current_time = time.hour.to_s + current_min %>
 <ul>
-	<div id="accordion" role="tablist" aria-multiselectable="true">
-		<% for i in 0..23 %>
-			<% checking_time = i.to_s + ":00:00" %>
-			<% counter = 0%>
-			<% passed_date = 0 %>
-			<% if checking_time.to_i < current_time.to_i && @date.to_s == Date.today.to_s   %>
-				
-				<% passed_date = 1 %>
-			<% end %>
-			<%if i < 10 %>
-				<%time = checking_time %>
-				<% @appointments.each do |appointment| %>
-					<%= puts appointment.date.hour %>
-					<% puts i %>
-					<% if appointment.date.hour == i %>
-						<%counter = 1%>
-					<% end %>
-
-				<% end %>
-				<!-- passed dates -->
-				<%if counter == 0 %>
-					<li class="unselected" data-time="<%=time%>"><%=time%> </li>
-				<% elsif counter == 1 %>
-					<%current_appointment = @appointments.where(hour: time) %>
-					<% has_job = Job.where(appointment_id: current_appointment[0].id) %>
-					<% if has_job != [] %>
-						<div class="card">
-						    <div role="tab" id="heading<%=time%>">
-						      <h5 class="mb-0">
-						        <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%=time%>" aria-expanded="true" aria-controls="collapse<%=time%>">
-									<li class="selected_with_job" data-time="<%=time%>" data-id="<%= current_appointment[0].id%>"><%=time%> - 0<%=i+1%>00</li>
-								</a>
-					      		</h5>
-					    	</div>
-						    <div id="collapse<%=time%>" class="collapse" role="tabpanel" aria-labelledby="heading<%=time%>">
-						      <div class="card-block">
-						        <%=has_job[0].user.first_name %>
-						        <%=has_job[0].user.last_name %> <br />
-						        <%= has_job[0].vehicle.make %> 
-						        <%= has_job[0].vehicle.model %> <hr>
-						        <%= has_job[0].customer_description %><hr>
-						        <button class="bottom_buttons">Reschedule</button>
-						        <button class="bottom_buttons">Contact</button>
-						      </div>
-						    </div>
-						  </div>
-					<% else %>
-						<li class="selected" data-time="<%=time%>" data-id="<%= current_appointment[0].id%>"><%=time%> </li>
-					<% end %>
-				<% end %>
-				
-			<% end %>
-			<% if i >= 10 %>
-				<%time = checking_time %>
-				<% @appointments.each do |appointment| %>
-					<% if appointment.date.hour == time %>
-						<%counter = 1%>
-					<% end %>
-				<% end %>
-				<!-- need passed date -->
-				<% if counter == 0 %>
-					<li class="unselected" data-time="<%=time%>"><%=time%> </li>
-				<% elsif counter == 1 %>
-					<%current_appointment = @appointments.where(hour: time) %>
-					<% has_job = Job.where(appointment_id: current_appointment[0].id) %>
-					<% if has_job != [] %>
-						<div class="card">
-						    <div role="tab" id="heading<%=time%>">
-						      <h5 class="mb-0">
-						        <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%=time%>" aria-expanded="true" aria-controls="collapse<%=time%>">
-									<li class="selected_with_job" data-time="<%=time%>" data-id="<%= current_appointment[0].id%>"><%=time%> - 0<%=i+1%>00</li>
-								</a>
-					      		</h5>
-					    	</div>
-						    <div id="collapse<%=time%>" class="collapse" role="tabpanel" aria-labelledby="heading<%=time%>">
-						      <div class="card-block">
-						        <%=has_job[0].user.first_name %>
-						        <%=has_job[0].user.last_name %> <br />
-						        <%= has_job[0].vehicle.make %> 
-						        <%= has_job[0].vehicle.model %> <hr>
-						        <%= has_job[0].customer_description %><hr>
-						        <button class="bottom_buttons">Reschedule</button>
-						        <button class="bottom_buttons">Contact</button>
-						      </div>
-						    </div>
-						  </div>
-					<% else %>
-						<li class="selected" data-time="<%=time%>" data-id="<%= current_appointment[0].id%>"><%=time%> </li>
-					<% end %>
-				<% end %>
-			<% end %>
-		<% end %>
-	</div>
+	<% @available_array.each_with_index do |available, i| %>
+		<% if available[:available] == 1%>
+		 	<li class="selected" data-time="<%=@hours_in_day[i]%>" data-id="<%= available[:id]%>"><%=@hours_in_day[i]%></li>
+		 <% elsif available[:available] == 0 %>
+			<li class="unselected" data-time="<%=@hours_in_day[i]%>"><%=@hours_in_day[i]%></li>
+		<% elsif available[:available] == 2 %>
+			<div id="accordion" role="tablist" aria-multiselectable="true">
+				<% current_user.vehicles.each do |vehicle| %>
+					<div class="card">
+					    <div class="card-header" role="tab" id="heading<%= vehicle.id %>">
+					      <h5 class="mb-0">
+					        <a class="full_width" data-toggle="collapse" data-parent="#accordion" href="#collapse<%= vehicle.id %>" aria-expanded="true" aria-controls="collapse<%= vehicle.id %>">
+								<%=@hours_in_day[i] %>
+							</a>
+					      </h5>
+					    </div>
+					    <div id="collapse<%= vehicle.id %>" class="collapse" role="tabpanel" aria-labelledby="heading<%= vehicle.id %>">
+					      <div class="card-bl">
+					      
+			<li class="selected_with_job" data-time="<%=@hours_in_day[i]%>"><%=@hours_in_day[i]%></li>
+		 <% end %> 
+	<% end %>
 </ul>
