@@ -44,8 +44,8 @@ body {
   height: 500px;
 }
 .first_img {
-  height: 10000px;
-  background-image: url("https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTycygiM_PFwW99y6JVyAxIw3bOc69TVA9g3sanl82Z75UmaoBo");
+  height: 3000px;
+  background: image-url("paper_background.jpeg");
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
@@ -129,8 +129,8 @@ body {
 }
 
 .path {
-  stroke-dashoffset: 1000;
-  stroke-dasharray: 1000;
+  stroke-dashoffset: 3000;
+  stroke-dasharray: 3000;
 }
 .text {
   stroke-dashoffset: 3000;

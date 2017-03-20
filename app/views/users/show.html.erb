@@ -105,20 +105,14 @@
 		$(".adding_elements").html('')
 		current_job = this.getAttribute('data-id');
 		_this = this
-		$(this).next(".adding_elements").html(`
-			<div class="maps_container" style='width: 704px;'>
-			  <div id="multi_markers" style='width: 700px; height: 400px;'></div>
-			</div>
-			<div class="adding_schedule">
-			</div>
-			`)
+		$(this).next(".adding_elements").html("<div class='maps_container' style='width: 704px;'><div id='multi_markers' style='width: 700px; height: 400px;'></div></div><div class='adding_schedule'></div>")
 		var handler = Gmaps.build('Google');
 		handler.buildMap({ provider: { scrollwheel: false }, internal: {id: 'multi_markers'}}, function(){
 			mechanics_markers = handler.addMarkers(<%=raw @mechanics_hash.to_json %>);
 			user_marker = handler.addMarkers(<%=raw @user_hash.to_json %>);
 			handler.bounds.extendWith(user_marker);
 	  		handler.fitMapToBounds();
-	  		handler.getMap().setZoom(9);
+	  		handler.getMap().setZoom(10);
 		});
 		$("html, body").animate({ scrollTop: '+=170px'  }, 1000);
 	});
@@ -129,21 +123,7 @@
 			$('.animations').html('');
 		}
 		$('.mechanic_times').removeClass('hidden');
-		$(this).append(`
-			<svg class="animations" version="1.1" >
-				<g stroke="#000" stroke-width="2" fill="none">
-					<path class="calendar_text" id="MyPath"
-				          d="M 20 62 h 26"/>
-				    <text font-family="Verdana" font-size="38">
-				    	<textPath class="calendar_text" xlink:href="#MyPath">
-					      X
-					    </textPath>
-				    </text>
-
-			    </g>
-			</svg>
-		
-		`)
+		$(this).append('<svg class="animations" version="1.1" ><g stroke="#000" stroke-width="2" fill="none"><path class="calendar_text" id="MyPath"d="M 20 62 h 26"/><text font-family="Verdana" font-size="38"><textPath class="calendar_text" xlink:href="#MyPath">X</textPath></text></g></svg>')
 		future = $('.fc-future')
 		for (var i = 0; i < future.length; i++) {
 		    future[i].style.backgroundColor = "#ffffff";
@@ -167,9 +147,7 @@
 	$(document).on('click','.contact_mechanic_button',function() {
 		console.log(current_job)
 		console.log(current_mechanic)
-		$(".contact_mechanic_space").html(`
-			<%= render 'users/contact_mechanic' %>
-			`)
+		$(".contact_mechanic_space").html("<%= render 'users/contact_mechanic' %>")
 		$("#job_field").val(current_job);
 		$("#mechanic_field").val(current_mechanic);
 		$("#mechanic_field").addClass(current_mechanic)
