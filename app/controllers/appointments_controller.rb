@@ -55,8 +55,8 @@ class AppointmentsController < ApplicationController
   end
   
   def destroy
-    @appointment = Appointment.find(params[:id])
     respond_to do |format|
+      @appointment = Appointment.find(params[:id])
       if @appointment.destroy
         format.js
       end

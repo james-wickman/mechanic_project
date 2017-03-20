@@ -12,7 +12,6 @@ class CalendarsController < ApplicationController
 		24.times do |n|
 			@available_array << {available: 0, id: nil}
 			@hours_in_day << (n < 10 ? "0#{n}:00:00" : "#{n}:00:00") #turnery
-			p @hours_in_day
 		end
 		@available_times = @appointments
 		#sets days_available to the times that that mechanic has Appointment

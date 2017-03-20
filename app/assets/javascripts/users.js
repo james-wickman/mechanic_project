@@ -2,7 +2,100 @@
 // # All this logic will automatically be available in application.js.
 // # You can use CoffeeScript in this file: http://coffeescript.org/
 
+$(window).keyup(function (e) {
+	console.log('keyup')
+    var code = (e.keyCode ? e.keyCode : e.which);
+    if (code == 27 && $('.contact_customer:focus')) {
+        $('.contact_customer').addClass('hidden');
+        $('.subject_user_contact_form').val("");
+        $('.message_user_contact_form').val("");
+        $('.cancel_appointment').addClass('hidden');
+    };
+    if (code == 27 && $('.contact_mechanic_space:focus')) {
+        $('.contact_mechanic_space').html('');
+    };
+});
+$(document).on('click','.cancel_appointment_button', function() {
+	$('.cancel_appointment').removeClass('hidden')
+	$('.contact_customer').addClass('hidden');
+})
 $(document).on('turbolinks:load', function() {
+	$('.close_cancel_appointment').on('click',function() {
+		$('.cancel_appointment').addClass('hidden')
+	})
+	var $dashOffset = $(".path").css("stroke-dashoffset");
+	var $textdashOffset = $(".text").css("stroke-dashoffset");
+
+    //on a scroll event - execute function
+    $(window).scroll(function() {
+    //calculate how far down the page the user is 
+	    var $percentageComplete = (($(window).scrollTop() / ($("html").height() - $(window).height())) * 100);
+	    //convert dashoffset pixel value to interger
+	    var $newUnit = parseInt($dashOffset, 10);
+	    //get the value to be subtracted from the 'stroke-dashoffset'
+	    var $offsetUnit = $percentageComplete * ($newUnit / 100);
+	    //set the new value of the dashoffset to create the drawing effect
+	    $(".path").css("stroke-dashoffset", $newUnit - $offsetUnit);
+	    //text section
+	    var $newtextUnit = parseInt($textdashOffset, 10);
+	    //get the value to be subtracted from the 'stroke-dashoffset'
+	    var $textoffsetUnit = $percentageComplete * ($newtextUnit / 100);
+	    $(".text").css("stroke-dashoffset", $newtextUnit - $textoffsetUnit);
+
+  });
+	$(document).on('click', '.mechanic_appointment_button',function() {
+		if($(this).next('.mechanic_appointment_details').hasClass('hidden')) {
+			$(this).next('.mechanic_appointment_details').removeClass('hidden');
+			$(this).next('.mechanic_appointment_details').animate({
+				height:"30px"},"1000")
+		}else{
+			$(this).next('.mechanic_appointment_details').animate({
+				height:"0px"},"1000", function() {
+					$(this).addClass('hidden');
+				}
+			)
+		}
+		
+	})
+	setTimeout(function(){
+		$('.notice').remove();
+		$('.alert').remove();
+	}, 5000);
+	$(document).on('click', '.user_cancel_appointment',function() {
+		appointment = this.getAttribute('data-appointment')
+		console.log(appointment)
+		$.ajax(
+	    {
+	      url:"/jobs/" + appointment,
+	      type:'delete',
+	      data: {
+	      } 
+	    });
+	});
+	$(document).on('click','.close_contact_user', function() {
+		$('.contact_mechanic_space').html('');
+	});
+	$('.contact_customer_button').on('click',function() {
+		$(this).nextAll(".contact_customer").toggleClass('hidden');
+		$('.subject_user_contact_form').val("");
+        $('.message_user_contact_form').val("");
+        $('.cancel_appointment').addClass('hidden')
+	});
+	$('.close_contact_user').on('click',function() {
+		$('.contact_customer').addClass('hidden');
+		$('.subject_user_contact_form').val("");
+        $('.message_user_contact_form').val("");
+        $('.cancel_appointment').addClass('hidden')
+	});
+	$('.head_of_days').on('click',function() {
+		$('.contact_customer').addClass('hidden');
+		$('.subject_user_contact_form').val("");
+        $('.message_user_contact_form').val("");
+        $('.cancel_appointment').addClass('hidden')
+	});
+	$('.submit_user_contact_form').on('click',function() {
+		$('.contact_customer').addClass('hidden');
+	});
 
 	var date;
 	var time;
@@ -15,10 +108,10 @@ $(document).on('turbolinks:load', function() {
 	    body: {
 
 	    }
-	})
+	});
 	$('.full_width').on('click',function() {
 		$(".adding_elements").html('');
-	})
+	});
 	$(document).on('click', '.fc-future', function() {
 		$('.mechanic_appointments_times').removeClass('hidden')
 
@@ -67,11 +160,13 @@ $(document).on('turbolinks:load', function() {
 	
 	$(document).on('click','.fc-today', function() {
 		$('.mechanic_times').addClass('hidden')
-	})
+	});
 	
 	$(document).on('click','.pullup_mechanic_button', function() {
-		console.log('run')
+		console.log('running')
 		$(".adding_schedule").html(`
+			<div><button class="contact_mechanic_button full_width" data-mechanic="#{mechanic.id}">Contact Mechanic</button>
+			</div>
 			<div class="mechanic_calendar_container">
 				<div id="mechanic_calendar"></div>
 			</div>
@@ -86,9 +181,13 @@ $(document).on('turbolinks:load', function() {
 					</div>
 				</div>
 			</div>
+			<div class="contact_mechanic_space">
+			</div>
 			`)
 		current_mechanic = this.getAttribute('data-mechanic');
 		$('#mechanic_calendar').fullCalendar({
+			height:410,
+    		contentHeight:410,
 		    header: {
 		        left: 'prev',
 		        center: 'title today',
@@ -98,7 +197,7 @@ $(document).on('turbolinks:load', function() {
 
 		    }
 		});
-		$("html, body").animate({ scrollTop: $(document).height() }, 1000);
+		$("html, body").animate({ scrollTop: '+=280px' }, 1000);
 	});
 	$(document).on('click','.fc-today', function() {
 		future = $('.fc-future');
@@ -120,7 +219,7 @@ $(document).on('turbolinks:load', function() {
 	      }
 	    });
 		
-	})
+	});
 	$(document).on('click','.selected', function() {
 		id = this.getAttribute('data-id')
 		my_id = $("[data-id=" + id +"]");
@@ -137,10 +236,10 @@ $(document).on('turbolinks:load', function() {
 		  error: function() {
           }
 		});
-	})
+	});
 	$(document).on('click', ".selected_with_job", function() {
 
-	})
+	});
 	$(document).on('click','.unselected', function() {
 		_this = $(this);
 		_this.attr('id', 'new');
@@ -170,27 +269,27 @@ $(document).on('turbolinks:load', function() {
 	
 	$('.edit_vehicle_button').on('click', function() {
 		$(".adding_elements").html('');
-		$(this).next('.edit_vehicle').removeClass('hidden');
-	})
-	$('.edit_job_button').on('click', function() {
+		$('.'+this.id).removeClass('hidden');
+	});
+	$(document).on('click','.edit_job_button', function() {
 		$(".adding_elements").html('');
 		$(this).next('.edit_job').removeClass('hidden');
-	})
+	});
 	$('.edit_mechanic_profile_link').on('click', function() {
 		$('.edit_mechanic_profile').removeClass('hidden');
 		$(".adding_elements").html('');
-	})
+	});
 
 	$('.edit_profile_link').on('click', function () {
 		$(".adding_elements").html('');
 		$('.edit_profile').removeClass('hidden');
 		$('.add_vehicle').addClass('hidden');
-	})
+	});
 	$('.add_vehicle_link').on('click', function () {
 		$(".adding_elements").html('');
 		$('.edit_profile').addClass('hidden');
 		$('.add_vehicle').removeClass('hidden');
-	})
+	});
 
 	$('#dropdownMenuButton').on('click', function (event) {
 	    $('.test').toggleClass('show');

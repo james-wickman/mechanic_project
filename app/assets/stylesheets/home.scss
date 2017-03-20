@@ -1,8 +1,6 @@
 // Place all the styles related to the home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-
-
 input.parsley-success,
 select.parsley-success,
 textarea.parsley-success {
@@ -43,13 +41,13 @@ textarea.parsley-error {
   height: 500px;
 }
 .first_img {
-  height: 600px;
-  background-image: url("http://pictures.dealer.com/a/audioffairfieldaoa/0056/5fe67de04046387201eb7d259f621998.jpg ");
+  height: 10000px;
+  background-image: url("https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTycygiM_PFwW99y6JVyAxIw3bOc69TVA9g3sanl82Z75UmaoBo");
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
 }
-.second_img {
+.first_home_text {
   height: 500px;
   background-image: url("http://gazettereview.com/wp-content/uploads/2017/02/mechanic.jpg");
   background-repeat: no-repeat;
@@ -66,6 +64,7 @@ textarea.parsley-error {
 
 .notice {
   position: absolute;
+  background-color: #e68a39;
   top: 50px;
   left: 50px;
 }
@@ -75,7 +74,69 @@ textarea.parsley-error {
   left: 50px;
   color: red;
 }
+.svg_home_animation {
+  max-width: 95%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  
+}
 
+
+.scroll_down {
+  text-align: center;
+  padding-bottom: 30px;
+  font-size: 2.4em;
+  font-weight: 200;
+  letter-spacing: .07em;
+}
+.sign_in_text {
+  text-align: right;
+  padding-bottom: 50px;
+  margin-right: 10px;
+  font-size: 2.4em;
+  font-weight: 200;
+  letter-spacing: .07em;
+}
+
+.car_drawing_svg {
+  position: fixed;
+  margin: auto;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 50%;
+  max-width: 480px;
+  max-height: 340px;
+}
+.text_drawing_svg {
+  position: fixed;
+  margin: auto;
+  top: 600;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 50%;
+  max-width: 880px;
+  max-height: 340px;
+}
+
+.path {
+  stroke-dashoffset: 3000;
+  stroke-dasharray: 3000;
+}
+.text {
+  stroke-dashoffset: 3000;
+  stroke-dasharray: 3000;
+}
+
+.frame {
+  height: 0px;
+}
 
 
 

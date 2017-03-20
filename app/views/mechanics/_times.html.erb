@@ -5,14 +5,18 @@
 		 <% elsif available[:available] == 0 %>
 			<li class="unselected" data-time="<%=@hours_in_day[i]%>"><%=@hours_in_day[i]%></li>
 		<% elsif available[:available] == 2 %>
-			<div id="accordion" role="tablist" aria-multiselectable="true">
+			<div class="selected_with_job"id="accordion" role="tablist" aria-multiselectable="true">
 		        <a class="full_width mechanic_customers" data-toggle="collapse" data-parent="#accordion" href="#collapse<%= i %>" aria-expanded="true" aria-controls="collapse<%= i %>">
 					<%=@hours_in_day[i] %>
 				</a>
 		    </div>
 		    <div id="collapse<%= i %>" class="collapse" role="tabpanel" aria-labelledby="heading<%= i %>">
 		      <div class="card-bl">
-				Lorem ipsum dolor sit amet, consectetur adipisicing elit. In ipsum accusamus officia impedit possimus dolorum praesentium quas molestias est porro distinctio, cumque nobis sunt tempora quam voluptatibus deserunt debitis aperiam?
+		      	Name: <%= Appointment.find(available[:id]).job.user.first_name %> <%= Appointment.find(available[:id]).job.user.last_name %><hr>
+		      	Email: <%= Appointment.find(available[:id]).job.user.email %><hr>
+		      	Vehicle: <%= Appointment.find(available[:id]).job.vehicle.make %> <%= Appointment.find(available[:id]).job.vehicle.model %><hr>
+		      	Problem: <%= Appointment.find(available[:id]).job.customer_description %>
+		      	
 		      </div>
 		    </div>
 		<% end %> 

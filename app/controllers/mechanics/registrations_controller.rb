@@ -50,7 +50,7 @@ before_action :configure_account_update_params, only: [:update]
 
   # The path used after sign up.
   def after_sign_up_path_for(resource)
-    super(resource)
+    mechanics_show_path
   end
 
   # The path used after sign up for inactive accounts.

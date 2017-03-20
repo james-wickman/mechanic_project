@@ -1,0 +1,6 @@
+<%= form_tag'/mechanics/cancel_appointment', remote: true do |f| %>
+	<%= hidden_field_tag :appointment,appointment, id: "appointment_field" %>
+	<%= label_tag :message, "Reason for Cancelation" %><span class="close_cancel_appointment">X</span><br />
+	<%= text_area_tag :message,nil, size: "100x8", class: "message_cancel_appointment_form" %><hr>
+	<%= submit_tag "Send", class: "submit_cancel_appointment_form" %>
+<% end %>

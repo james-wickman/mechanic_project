@@ -21,6 +21,8 @@
 	var time;
 
 	$('#calendar').fullCalendar({
+		height:'1000px',
+    	contentHeight:'1000px',
 	    header: {
 	        left: 'prev',
 	        center: 'title today',
@@ -30,10 +32,10 @@
 
 	    }
 	})
-	$('.fc-day-top').append('<p style="height: 100px;"></p>')
+	$('.fc-day-top').append('<p style="height: 10px; width: 10px; position: absolute;"></p>')
 	<% current_mechanic.jobs.each do |job| %>
 
-		<%if job.appointment_id != nil %>
+		<%if job.appointment %>
 			<%appointment = Appointment.find(job.appointment_id)%>
 			day = $("[data-date=<%=appointment.date.to_date%>]")[1];
 			$(day).children("p").html("<img class='star_img' src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzAOsCVW2qxU7twGUNg9zXyaDYeepFAKrrHCyY5OsS3_WMED8Zpg'>")
@@ -41,7 +43,11 @@
 		<% end %>
 	<% end %>
 	$('.fc-future').off('click');
-	$(document).on('click', '.fc-future', function() {
+	$(document).on('click', '[data-date]', function() {
+		if ($('.animations') != $(this).next(".animations")){
+			$('.animations').html('');
+		}
+		
 		future = $('.fc-future');
 		today = $('.fc-today');
 		today[0].style.backgroundColor = "lightyellow";
@@ -52,8 +58,21 @@
 		    future[i].style.opacity = "0.9";
 
 		}
-		this.style.backgroundColor = "lightblue"
-		console.log(date)
+		$(this).append(`
+			<svg class="animations" version="1.1" >
+				<g stroke="#000" stroke-width="2" fill="none">
+					<path class="calendar_text" id="MyPath"
+				          d="M 20 62 h 26"/>
+				    <text font-family="Verdana" font-size="38">
+				    	<textPath class="calendar_text" xlink:href="#MyPath">
+					      X
+					    </textPath>
+				    </text>
+
+			    </g>
+			</svg>
+		
+		`)
 	    date = this.getAttribute('data-date')
 	    $('.schedule_head').html('<h2>' + date + '</h2>')
 
