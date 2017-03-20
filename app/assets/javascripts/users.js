@@ -291,6 +291,15 @@ $(document).on('turbolinks:load', function() {
 		$('.add_vehicle').removeClass('hidden');
 	});
 
+	$('.add_job_link').on('click', function() {
+		$('.add_job').removeClass('hidden');
+		$('.edit_mechanic_profile').addClass('hidden');
+	})
+	$('.edit_mechanic_link').on('click', function() {
+		$('.add_job').addClass('hidden');
+		$('.edit_mechanic_profile').removeClass('hidden');
+	})
+
 	$('#dropdownMenuButton').on('click', function (event) {
 	    $('.test').toggleClass('show');
 	    $('.test1').removeClass('show');

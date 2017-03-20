@@ -1,4 +1,5 @@
 <h2>Edit Mechanic</h2>
+<<<<<<< HEAD
 <% resource_name = :mechanic %>
 <% resource = @resource ||= Mechanic.new %>
 <% devise_mapping = @devise_mapping ||= Devise.mappings[:mechanic] %>
@@ -6,6 +7,13 @@
   <%= devise_error_messages! %>
 
  <div class="field">
+=======
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, :id => "new_user_form", :"data-parsley-validate" => "" }) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div class="field">
+>>>>>>> mechanics_show_page
     <%= f.label :first_name %><br />
     <%= f.text_field :first_name, autofocus: true, class: 'form-control', "data-parsley-trigger" => "change", "data-parsley-minlength" => "2", required:"" %>
   </div>
@@ -15,11 +23,15 @@
   </div>
   <div class="field">
     <%= f.label :email %><br />
+<<<<<<< HEAD
     <%= f.email_field :email, id: 'email', "data-parsley-remote-validator" => 'user_email_unique', class: 'form-control email', "data-parsley-trigger" => "change", required:"" %>
   </div>
   <div class="field">
     <%= f.label :home_shop_address %><br />
     <%= f.text_field :home_shop_address, class: 'form-control', "data-parsley-trigger" => "change", "data-parsley-minlength" => "3", required:"" %>
+=======
+    <%= f.email_field :email, id: 'email', "data-parsley-remote" => "/home/unique_user_email?email={value}", "data-parsley-remote-validator" => 'user_email_unique', class: 'form-control email', "data-parsley-trigger" => "change" %>
+>>>>>>> mechanics_show_page
   </div>
   <div class="field">
     <%= f.label :city %><br />
@@ -33,7 +45,11 @@
     <%= f.label :zip %><br />
     <%= f.text_field :zip, class: 'form-control', "data-parsley-trigger" => "change", "data-parsley-minlength" => "5", required:"" %>
   </div>
+<<<<<<< HEAD
 
+=======
+ 
+>>>>>>> mechanics_show_page
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
@@ -43,17 +59,29 @@
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
+<<<<<<< HEAD
     <%= f.password_field :password, autocomplete: "off", id: 'edit_mechanic_password', class: 'form-control', "data-parsley-trigger" => "change", "data-parsley-minlength" => "7" %>
+=======
+    <%= f.password_field :password, autocomplete: "off", id: "edit_mechanics_password", class: 'form-control', "data-parsley-trigger" => "change", "data-parsley-minlength" => "7" %>
+>>>>>>> mechanics_show_page
   </div>
 
   <div class="field">
     <%= f.label :password_confirmation %><br />
+<<<<<<< HEAD
     <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control', "data-parsley-trigger" => "change", "data-parsley-equalto" => "#edit_mechanic_password" %>
+=======
+    <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control', "data-parsley-trigger" => "change", "data-parsley-equalto" => "#edit_mechanics_password", "data-parsley-minlength" => "7" %>
+>>>>>>> mechanics_show_page
   </div>
 
   <div class="field">
     <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+<<<<<<< HEAD
     <%= f.password_field :current_password, autocomplete: "off", "data-parsley-trigger" => "change", "data-parsley-minlength" => "5", required:"" %>
+=======
+    <%= f.password_field :current_password, autocomplete: "off", "data-parsley-trigger" => "change", "data-parsley-minlength" => "7", required:"" %>
+>>>>>>> mechanics_show_page
   </div>
 
   <div class="actions">
@@ -65,5 +93,8 @@
 
 <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
 
+<<<<<<< HEAD
 <div class="modal"><!-- Place at bottom of page --></div>
 
+=======
+>>>>>>> mechanics_show_page

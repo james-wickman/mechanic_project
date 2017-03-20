@@ -4,7 +4,7 @@ class MechanicsController < ApplicationController
   	time = Time.new
   	@current_time = time.hour.to_s + time.min.to_s
   	collection_of_jobs = {}
-  	hours_array = 0..23
+  	hours_array = 0..23 
   end
   def show
   	time = Time.new
