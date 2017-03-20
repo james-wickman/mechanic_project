@@ -105,7 +105,7 @@
 		$(".adding_elements").html('')
 		current_job = this.getAttribute('data-id');
 		_this = this
-		$(this).next(".adding_elements").html("<div class='maps_container' style='width: 704px;'><div id='multi_markers' style='width: 700px; height: 400px;'></div></div><div class='adding_schedule'></div>")
+		$(this).next(".adding_elements").html("<div class='maps_container' style='width: 704px;'><div id='multi_markers' style='width: 700px; height: 400px;'></div></div><div class='adding_schedule'></div>");
 		var handler = Gmaps.build('Google');
 		handler.buildMap({ provider: { scrollwheel: false }, internal: {id: 'multi_markers'}}, function(){
 			mechanics_markers = handler.addMarkers(<%=raw @mechanics_hash.to_json %>);
@@ -130,7 +130,7 @@
 		    future[i].style.opacity = "0.9";
 		}
 		this.style.backgroundColor = "lightblue"
-	    date = this.getAttribute('data-date')
+	    date = this.getAttribute('data-date');
 	    $('.mechanic_schedule_head').html('<h2>' + date + '</h2>');
 	    $('.schedule_head').text(date);
 
@@ -145,9 +145,9 @@
 	    });
 	});
 	$(document).on('click','.contact_mechanic_button',function() {
-		console.log(current_job)
-		console.log(current_mechanic)
-		$(".contact_mechanic_space").html("<%= render 'users/contact_mechanic' %>")
+		console.log(current_job);
+		console.log(current_mechanic);
+		$(".contact_mechanic_space").html("<%= j render 'users/contact_mechanic' %>");
 		$("#job_field").val(current_job);
 		$("#mechanic_field").val(current_mechanic);
 		$("#mechanic_field").addClass(current_mechanic)
