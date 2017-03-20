@@ -33,25 +33,13 @@
   </div>
 
   <div class="field">
-<<<<<<< HEAD
     <%= f.password_field :password,placeholder: "Password", autocomplete: "off", id: 'mechanic_signup_password', class: 'form-control', "data-parsley-trigger" => "change", "data-parsley-minlength" => "7", required:"" %>
   </div>
 
   <div class="field">
     <%= f.password_field :password_confirmation,placeholder: "Password Confirmation", autocomplete: "off", class: 'form-control', "data-parsley-trigger" => "change", "data-parsley-equalto" => "#mechanic_signup_password", 'data-required': "true" %>
-=======
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "off", id: 'mechanics_password', class: 'form-control', "data-parsley-trigger" => "change", "data-parsley-minlength" => "7", required:"" %>
   </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control', "data-parsley-trigger" => "change", "data-parsley-equalto" => "#mechanics_password", required: "" %>
->>>>>>> mechanics_show_page
-  </div>
 
   <div class="actions">
     <%= f.submit "Sign up" %>

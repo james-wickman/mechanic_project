@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
                        Prefix Verb   URI Pattern                              Controller#Action
 users_cancel_user_appointment PUT    /users/cancel_user_appointment(.:format) users#cancel_user_appointment
  mechanics_cancel_appointment POST   /mechanics/cancel_appointment(.:format)  mechanics#cancel_appointment
@@ -64,7 +64,6 @@ users_cancel_user_appointment PUT    /users/cancel_user_appointment(.:format) us
                               DELETE /users(.:format)                         users/registrations#destroy
                               POST   /users(.:format)                         users/registrations#create
                          root GET    /                                        home#index
-=======
                       Prefix Verb   URI Pattern                           Controller#Action
                  jobs_create POST   /jobs/create(.:format)                jobs#create
                    jobs_show GET    /jobs/show(.:format)                  jobs#show
@@ -109,4 +108,4 @@ cancel_mechanic_registration GET    /mechanics/cancel(.:format)           mechan
                              DELETE /users(.:format)                      users/registrations#destroy
                              POST   /users(.:format)                      users/registrations#create
                         root GET    /                                     home#index
->>>>>>> mechanics_show_page
+
