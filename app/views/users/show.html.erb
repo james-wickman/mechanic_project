@@ -118,7 +118,7 @@
 			user_marker = handler.addMarkers(<%=raw @user_hash.to_json %>);
 			handler.bounds.extendWith(user_marker);
 	  		handler.fitMapToBounds();
-	  		handler.getMap().setZoom(9);
+	  		handler.getMap().setZoom(10);
 		});
 		$("html, body").animate({ scrollTop: '+=170px'  }, 1000);
 	});

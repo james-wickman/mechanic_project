@@ -29,7 +29,7 @@ $(document).on('turbolinks:load', function() {
     //on a scroll event - execute function
     $(window).scroll(function() {
     //calculate how far down the page the user is 
-	    var $percentageComplete = (($(window).scrollTop() / ($("html").height() - $(window).height())) * 100);
+	    var $percentageComplete = (($(window).scrollTop() / ($("html").height() - $(window).height())) * 15);
 	    //convert dashoffset pixel value to interger
 	    var $newUnit = parseInt($dashOffset, 10);
 	    //get the value to be subtracted from the 'stroke-dashoffset'
