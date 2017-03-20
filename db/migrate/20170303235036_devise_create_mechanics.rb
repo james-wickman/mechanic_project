@@ -37,6 +37,8 @@ class DeviseCreateMechanics < ActiveRecord::Migration[5.0]
       t.string :state
       t.string :zip
       t.boolean :mobile
+      t.float :latitude
+      t.float :longitude
 
       t.timestamps null: false
     end

@@ -1,4 +1,4 @@
-class CreateJobs < ActiveRecord::Migration[5.0]
+class CreateJobsTable < ActiveRecord::Migration[5.0]
   def change
     create_table :jobs do |t|
       t.references :vehicle, foreign_key: true
@@ -10,6 +10,8 @@ class CreateJobs < ActiveRecord::Migration[5.0]
       t.text :customer_description
       t.boolean :available
       t.text :mechanic_notes
+      t.integer :appointment_id
+      t.text :type
 
       t.timestamps
     end

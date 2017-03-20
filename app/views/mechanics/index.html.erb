@@ -58,21 +58,7 @@
 		    future[i].style.opacity = "0.9";
 
 		}
-		$(this).append(`
-			<svg class="animations" version="1.1" >
-				<g stroke="#000" stroke-width="2" fill="none">
-					<path class="calendar_text" id="MyPath"
-				          d="M 20 62 h 26"/>
-				    <text font-family="Verdana" font-size="38">
-				    	<textPath class="calendar_text" xlink:href="#MyPath">
-					      X
-					    </textPath>
-				    </text>
-
-			    </g>
-			</svg>
-		
-		`)
+		$(this).append('<svg class="animations" version="1.1" ><g stroke="#000" stroke-width="2" fill="none"><path class="calendar_text" id="MyPath"d="M 20 62 h 26"/><text font-family="Verdana" font-size="38"><textPath class="calendar_text" xlink:href="#MyPath">X</textPath></text></g></svg>')
 	    date = this.getAttribute('data-date')
 	    $('.schedule_head').html('<h2>' + date + '</h2>')
 
