@@ -80,18 +80,11 @@
                 <button class="btn btn-secondary dropdown-toggle circle_btn" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <%= current_mechanic.first_name + " " + current_mechanic.last_name %>
                 </button>
-<<<<<<< HEAD
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                   <button class="btn"><%= link_to "Home", mechanics_show_path %></button>
                   <button class="btn"><%= link_to "Schedule", mechanics_index_path %></button>
                   <button class="btn edit_mechanic_profile_link">Edit Profile</button>
-=======
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                  <button class="btn"><%= link_to "Home", mechanics_show_path %></button>
-                  <button class="btn edit_mechanic_link">Edit Profile</button>
-                  <button class="btn add_job_link">Add Job</button>
-                  <button class="btn"><%= link_to "Check Map", users_index_path %></button>
->>>>>>> mechanics_show_page
+
                   <button class="btn"><%= link_to "Log Out", destroy_mechanic_session_path, method: :delete %></button>
                 </div>
               </div>
