@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  put '/users/cancel_user_appointment'
+  post '/mechanics/cancel_appointment'
+  post '/users/contact_mechanics'
+  post '/mechanics/contact_customers'
   get '/mechanics/view_jobs'
   get 'calendars/show'
 

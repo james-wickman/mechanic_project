@@ -1,65 +1,68 @@
-<% time = Time.new %>
-<% current_time = time.hour.to_s + time.min.to_s %>
-<% puts current_time.to_i %>
-<div id="accordion" role="tablist" aria-multiselectable="true">
-	<% for i in 0..4 %>
-		<div class="card">
-			<div class="" role="tab" id="heading<%=i%>">
-				<h5 class="mb-0">
-					<a data-toggle="collapse" data-parent="#accordion" href="#collapse<%=i%>" aria-expanded="true" aria-controls="collapse<%=i%>">
-				 		<%= current_day = Date.today + i %>
-				 		<%= current_day.strftime("%A") %>
-					</a>
-				</h5>
-			</div>
-			<% if i == 0 %>
-				<div id="collapse<%=i%>" class="collapse show" role="tabpanel" aria-labelledby="heading<%=i%>">
-			<% else %>
-				<div id="collapse<%=i%>" class="collapse" role="tabpanel" aria-labelledby="heading<%=i%>">
-			<% end %>
-				<div class="card-block">
-					<% counter = 0 %>
-					<% @jobs.each do |job| %>
-						<% if job.appointment_id != nil %>
-							<% appointment = job.appointment %>
-							<% if appointment.date == Date.today %>
-								<% if appointment.hour.to_i < current_time.to_i - 100 %>
-									<div>
-										<%= appointment.hour %>
-										<%= appointment.date %><hr>
-											
-									</div>
-								<% else %>
-									<div>
-										<%= appointment.hour %>
-										<%= appointment.date %><hr>
-									</div>
-								<% end %>
-							<% elsif appointment.date == current_day.to_s %>
-								<% if appointment.job.vehicle != nil %>
-									<% counter = 1 %>
-									<p><%= appointment.hour %></p>
-									<p><%= appointment.job.user.first_name %>
-									<%= appointment.job.user.last_name %><br>
-									<%= appointment.job.vehicle.make %>
-									<%= appointment.job.vehicle.model %></p>
-									<p><%= appointment.job.customer_description %></p> <br>
-									<button>Contact Customer</button>
-									<button>Reschedule Appointment</button>
-									<hr>
-								<% end %>
-							<% end %>
-							
+
+<div class="users_background">
+	<div class="container">
+	  	<div class="row">
+	  	<div class="col-12">
+	  	<div class="vehicles_list effects">
+	  	<div class="vehicles_head"><h1>Jobs</h1></div>
+			<div id="accordion" role="tablist" aria-multiselectable="true">
+				<% @days_array.each_with_index do |day, i| %>
+					<div class="card">
+						<div class="head_of_days" role="tab" id="heading<%=i%>">
+							<a data-toggle="collapse" data-parent="#accordion" href="#collapse<%=i%>" aria-expanded="true" aria-controls="collapse<%=i%>">
+						 		<%= day[:date] %>
+						 		<%= day[:day] %>
+							</a>
+						</div>
+						<% if day[:date] == Date.today %>
+							<div id="collapse<%=i%>" class="collapse show" role="tabpanel" aria-labelledby="heading<%=i%>">
+						<% else %>
+							<div id="collapse<%=i%>" class="collapse" role="tabpanel" aria-labelledby="heading<%=i%>">
 						<% end %>
-					<% end %>
-					<% if counter == 0 %>
-						<h3>Nothing for this day</h3>
-					<% end %>
-				</div>
+								<div class="card-block">
+									<% counter = 0 %>
+									<% @jobs.each do |job| %>
+										<% if job.appointment %>
+											<% if job.appointment.date.to_date == day[:date] %>
+												<% if job.vehicle != nil %>
+													<% counter = 1 %>
+													<%= job.appointment.date.localtime.strftime("%H:%M %p") %>
+													<p><%= job.user.first_name %>
+													<%= job.user.last_name %><br>
+													<%= job.vehicle.make %>
+													<%= job.vehicle.model %></p>
+													<p><%= job.customer_description %></p> <br>
+													<button class="contact_customer_button">Contact Customer</button>
+													<button class="cancel_appointment_button">Cancel Appointment</button>
+													<div class="hidden cancel_appointment">
+														<%= render 'mechanics/cancel_appointment', appointment: job.appointment.id %>
+													</div>
+													<div class="hidden contact_customer">
+														<%= render 'mechanics/contact_customer', job: job %>
+													</div>
+													<hr>
+												<% end %>
+											<% end %>
+										<% end %>
+									<% end %>
+									<% if counter == 0 %>
+										<h3>Nothing for this day</h3>
+									<% end %>
+								</div>
+							</div>
+					</div>
+				<% end %>
 			</div>
 		</div>
-	<% end %>
+		</div>
+	</div>
+	</div>
+
 </div>
 <div class="hidden edit_mechanic_profile">
 	<%= render 'mechanics/registrations/edit' %>
 </div>
+
+
+
+

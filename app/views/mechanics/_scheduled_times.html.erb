@@ -1,45 +1,11 @@
-
-<ul>
-	<% for i in 0..23 %>
-		<% counter = 0%>
-		<%if i < 10 %>
-			<%time = "0" + i.to_s + "00" %>
-
-			<% @appointments.each do |appointment| %>
-			
-				<% if appointment.hour == time %>
-					<%counter = 1%>
-				<% end %>
-			<% end %>
-			<% @taken_jobs.each do |taken_job| %>
-				<% taken_time = Appointment.find(taken_job.appointment_id) %>
-				<% if taken_time.hour == time %>
-					<%counter = 0%>
-				<% end %>
-			<% end %>
-			<% if counter == 0 %>
-				<li class="unavailable" data-time="<%=time%>"><%=time%> - 0<%=i+1%>00</li>
-
-			<% else %>
-				<%current_appointment = @appointments.where(hour: time) %>
-				<li class="available" data-time="<%=time%>" data-id="<%= current_appointment[0].id%>"><%=time%> - 0<%=i+1%>00</li>
-			<% end %>
-			
-		<% end %>
-		<% if i >= 10 %>
-			<%time = i.to_s + "00" %>
-			<% @appointments.each do |appointment| %>
-				<% if appointment.hour == time %>
-					<%counter = 1%>
-				<% end %>
-			<% end %>
-			<% if counter == 0 %>
-				<li class="unavailable" data-time="<%=time%>"><%=time%> - 0<%=i+1%>00</li>
-			<% else %>
-				<%current_appointment = @appointments.where(hour: time) %>
-				<li class="available" data-time="<%=time%>" data-id="<%= current_appointment[0].id%>"><%=time%> - 0<%=i+1%>00</li>
-			<% end %>
-		<% end %>
-
+ <ul>
+	<% @available_array.each_with_index do |available, i| %>
+		<% if available[:available] == 1%>
+		 	<li class="available" data-time="<%=@hours_in_day[i]%>" data-id="<%= available[:id]%>"><%=@hours_in_day[i]%></li>
+		 <% elsif available[:available] == 0 %>
+			<li class="unavailable" data-time="<%=@hours_in_day[i]%>"><%=@hours_in_day[i]%></li>
+		<% elsif available[:available] == 2 %>
+			<li class="unavailable_spot" data-time="<%=@hours_in_day[i]%>"><%=@hours_in_day[i]%></li>
+		 <% end %> 
 	<% end %>
 </ul>

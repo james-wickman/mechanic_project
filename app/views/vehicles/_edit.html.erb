@@ -1,7 +1,7 @@
-<%= form_for @vehicle, :url => vehicles_update_path, :html => {:id => "edit_vehicle_form", :"data-parsley-validate" => ""}, method: :put do |f| %>
+<%= form_for vehicle, :url => vehicles_update_path, :html => {:id => "edit_vehicle_form", :"data-parsley-validate" => ""}, method: :put do |f| %>
 	<br>
   <div class="field">
-    <%= f.hidden_field :id, value: current_user.id %>
+    <%= f.hidden_field :id, value: vehicle.id %>
   </div>
   <div class="field">
     <%= f.label :make %> <br />

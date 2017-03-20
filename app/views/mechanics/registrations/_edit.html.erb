@@ -33,7 +33,7 @@
     <%= f.label :zip %><br />
     <%= f.text_field :zip, class: 'form-control', "data-parsley-trigger" => "change", "data-parsley-minlength" => "5", required:"" %>
   </div>
-
+ 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
@@ -65,5 +65,4 @@
 
 <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
 
-<div class="modal"><!-- Place at bottom of page --></div>
 

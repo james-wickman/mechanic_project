@@ -13,11 +13,15 @@
   </div>
   <div class="field">
     <%= f.label :email %><br />
+<<<<<<< HEAD
     <%= f.email_field :email, id: 'email', "data-parsley-remote-validator" => 'user_email_unique', class: 'form-control email', "data-parsley-trigger" => "change", required:"" %>
   </div>
   <div class="field">
     <%= f.label :address %><br />
     <%= f.text_field :address, class: 'form-control', "data-parsley-trigger" => "change", "data-parsley-minlength" => "3", required:"" %>
+=======
+    <%= f.email_field :email, id: 'email', "data-parsley-remote" => "/home/unique_user_email?email={value}", "data-parsley-remote-validator" => 'user_email_unique', class: 'form-control email', "data-parsley-trigger" => "change" %>
+>>>>>>> mechanics_show_page
   </div>
   <div class="field">
     <%= f.label :city %><br />
@@ -51,7 +55,7 @@
 
   <div class="field">
     <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "off", "data-parsley-trigger" => "change", "data-parsley-minlength" => "5", required:"" %>
+    <%= f.password_field :current_password, autocomplete: "off", "data-parsley-trigger" => "change", "data-parsley-minlength" => "7", required:"" %>
   </div>
 
   <div class="actions">
