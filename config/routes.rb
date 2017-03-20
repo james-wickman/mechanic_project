@@ -1,9 +1,14 @@
 Rails.application.routes.draw do
-  post 'jobs/create'
+  put '/users/cancel_user_appointment'
+  post '/mechanics/cancel_appointment'
+  post '/users/contact_mechanics'
+  post '/mechanics/contact_customers'
+  get '/mechanics/view_jobs'
+  get 'calendars/show'
 
-  get 'jobs/show'
+  resources :appointments
 
-  put 'jobs/update'
+  resources :jobs
 
   post 'vehicles/create'
 
@@ -22,6 +27,10 @@ Rails.application.routes.draw do
   get 'home/unique_user_email'
   
   get 'home/unique_mechanic_email'
+
+  delete 'vehicles/destroy'
+
+  delete 'jobs/destroy'
 
 	devise_for :mechanics, controllers: {
         sessions: 'mechanics/sessions',

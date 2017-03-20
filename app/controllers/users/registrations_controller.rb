@@ -51,7 +51,7 @@ after_filter :handle_failed_signup
 
   # The path used after sign up.
   def after_sign_up_path_for(resource)
-    super(resource)
+    users_show_path
   end
 
   # The path used after sign up for inactive accounts.

@@ -1,47 +1,51 @@
 <h2>Sign up</h2>
-<div class="bs-callout bs-callout-warning hidden">
-  <h4>Oh snap!</h4>
-  <p>This form seems to be invalid :(</p>
-</div>
- 
-<div class="bs-callout bs-callout-info hidden">
-  <h4>Yay!</h4>
-  <p>Everything seems to be ok :)</p>
-</div>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), :html => {:id => "new_user_form", :"data-parsley-validate" => ""}) do |f| %>
   <%= devise_error_messages! %>
 
   <div class="field">
-    <%= f.label :first_name %><br />
-    <%= f.text_field :first_name, autofocus: true, class: 'form-control', "data-parsley-trigger" => "change", "data-parsley-minlength" => "2", required:"" %>
+    <%= f.text_field :first_name, autofocus: true,placeholder: "First Name", class: 'form-control', "data-parsley-trigger" => "change", "data-parsley-minlength" => "2", required:"" %>
   </div>
   <div class="field">
-    <%= f.label :last_name %><br />
-    <%= f.text_field :last_name, class: 'form-control', "data-parsley-trigger" => "change", "data-parsley-minlength" => "2", required:"" %>
+    <%= f.text_field :last_name,placeholder: "Last Name", class: 'form-control', "data-parsley-trigger" => "change", "data-parsley-minlength" => "2", required:"" %>
   </div>
   <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, id: 'email', "data-parsley-remote" => "/home/unique_user_email?email={value}", "data-parsley-remote-validator" => 'user_email_unique', class: 'form-control email', "data-parsley-trigger" => "change", required:"" %>
+    <div class="hidden" id="loading">
+      <div class="email_check_animation loading"></div>
+      <p class="please_wait"> Please Wait</p>
+    </div>
+    <%= f.email_field :email,placeholder: "Email", id: 'email', "data-parsley-remote" => "/home/unique_user_email?email={value}", "data-parsley-remote-validator" => 'user_email_unique', class: 'form-control email', "data-parsley-trigger" => "change", required:"" %>
+  </div>
+  <div class="field">
+    <%= f.text_field :address,placeholder: "Address", class: 'form-control', "data-parsley-trigger" => "change", "data-parsley-minlength" => "3", required:"" %>
+  </div>
+  <div class="field">
+    <%= f.text_field :city,placeholder: "City", class: 'form-control', "data-parsley-trigger" => "change", "data-parsley-minlength" => "3", required:"" %>
+  </div>
+  <div class="field">
+    <%= f.text_field :state,placeholder: "State", class: 'form-control', "data-parsley-trigger" => "change", "data-parsley-minlength" => "2", required:"" %>
+  </div>
+  <div class="field">
+    <%= f.text_field :zip,placeholder: "Zip Code", class: 'form-control', "data-parsley-trigger" => "change", "data-parsley-minlength" => "5", required:"" %>
   </div>
 
   <div class="field">
-    <%= f.label :password %>
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "off", id: 'user_password', class: 'form-control', "data-parsley-trigger" => "change", "data-parsley-minlength" => "7", required:"" %>
+    <% end %>
+    <%= f.password_field :password,placeholder: "Password", autocomplete: "off", id: 'user_signup_password', class: 'form-control', "data-parsley-trigger" => "change", "data-parsley-minlength" => "7", required:"" %>
   </div>
 
   <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control', "data-parsley-trigger" => "change", "data-parsley-equalto" => "#user_password", "data-required" => "true" %>
+    <%= f.password_field :password_confirmation,placeholder: "Password Confirmation", autocomplete: "off", class: 'form-control', "data-parsley-trigger": "change", "data-parsley-equalto": "#user_signup_password", "data-required": "true" %>
+
   </div>
 
   <div class="actions">
     <%= f.submit "Sign up" %>
   </div>
 <% end %>
+
 
 
 

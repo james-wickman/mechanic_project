@@ -1,3 +1,85 @@
 // Place all the styles related to the mechanics controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+
+
+.times, .mechanic_times{
+	width: 300px;
+	display: inline-block;
+}
+
+.selected {
+	background-color: lightgreen;	
+	cursor: pointer;
+	border: 1px solid black;
+	box-shadow: 10px 10px 5px #888888;
+}
+.unselected {
+	cursor: pointer;
+	background-color: lightgrey;
+	opacity: 0.5;
+}
+.selected_with_job {
+	cursor: pointer;
+	background-color: pink;
+	color: black;
+	opacity: 0.9;
+	border: 1px solid black;
+}
+.star_img {
+	height: 20px;
+	opacity: 1;
+}
+.past_date {
+	opacity: 0.3;
+}
+.mechanic_customers {
+	color: black;
+	background-color: pink;
+}
+.contact_customer, .cancel_appointment {
+	background-color: lightblue;
+	width: 1000px;
+}
+.close_contact_user, .close_cancel_appointment {
+	background-color: red;
+	text-align: center;
+	cursor: pointer;
+	color: white;
+	float: right;
+	width: 30px;
+}
+.fc-scroller {
+	height: 385px;
+}
+.animations {
+  max-width: 100px;
+  max-height: 85px;
+  position: absolute;
+  margin: auto;
+  
+  path {
+    fill-opacity: 0;
+    stroke: #000;
+    stroke-width: 2;
+    stroke-dasharray: 870;
+    stroke-dashoffset: 870;
+    animation: draw 10s infinite linear;
+  }
+  text{
+  	fill-opacity: 0;
+    stroke: #000;
+    stroke-width: 3;
+    stroke-dasharray: 870;
+    stroke-dashoffset: 870;
+    animation: draw 10s infinite linear;
+  }
+}
+
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}

@@ -1,2 +1,76 @@
-<h1>Jobs#show</h1>
-<p>Find me in app/views/jobs/show.html.erb</p>
+
+<%if !@job.appointment %>
+	<div class="mechanic_calendar_container">
+		<div id="mechanic_calendar"></div>
+	</div>
+
+	<div class='mechanic_schedule_container'>
+		<div class="mechanic_schedule">
+			<div class="mechanic_schedule_head">
+			</div>
+			<div class="mechanic_schedule_body">
+				<div class="hidden mechanic_times">
+				</div>
+			</div>
+		</div>
+	</div>
+<% end %>
+
+<script>
+$(document).on('turbolinks:load', function() {
+	var date;
+	var time;
+	$('#mechanic_calendar').fullCalendar({
+	    header: {
+	        left: 'prev',
+	        center: 'title today',
+	        right: 'next'
+	    },
+	    body: {
+
+	    }
+	}).on('click', '.fc-future', function() {
+		$('.mechanic_times').removeClass('hidden')
+
+		future = $('.fc-future')
+		for (var i = 0; i < future.length; i++) {
+		    future[i].style.backgroundColor = "#ffffff";
+		    future[i].style.opacity = "0.9";
+		}
+		this.style.backgroundColor = "lightblue"
+	    date = this.getAttribute('data-date')
+	    $('.mechanic_schedule_head').html('<h2>' + date + '</h2>')
+	    $('.schedule_head').text(date)
+
+		$.ajax(
+	    {
+	      url:"/calendars/show",
+	      type:'get',
+	      data: {
+	      	date: date,
+	      	mechanic: <%=@mechanic.id%>,
+	      } 
+	    });
+	});
+	$('.fc-today').on('click', function() {
+		$('.mechanic_times').addClass('hidden')
+	})
+	$(document).on('click','.available', function() {
+		id = this.getAttribute('data-id')
+		my_id = $("[data-id=" + id +"]");
+		$.ajax({
+		  type: "put",
+		  url: '/jobs/'+<%=@job.id%>,
+		  data: {
+		  	appointment_id: id,
+		  	mechanic_id: <%=@mechanic.id %>
+		  },
+		  success: function() {
+		  	location.href = "/users/show"
+		  },
+		  error: function() {
+          }
+		});
+	})
+})
+</script>

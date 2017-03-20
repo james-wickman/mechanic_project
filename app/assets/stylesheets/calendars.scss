@@ -1,0 +1,74 @@
+// Place all the styles related to the calendars controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.calendar_container, .mechanic_calendar_container, .mechanic_appointments_calendar_container{
+	width:45%;
+	display: inline-block;
+	border: 1px solid black;
+	box-shadow: 10px 10px 5px #888888;
+
+}
+.schedule_container, .mechanic_appointments_container, .mechanic_schedule_container{
+	display:inline-block;
+	width:45%;
+	border: 1px solid black;
+	height:450px;
+	vertical-align: top;
+	margin: 20px;
+}
+.schedule_container {
+	margin-top: 100px;
+	height: 410px;
+}
+.fc-toolbar {
+	border: 5px outset grey;
+	background-color: lightblue;
+}
+.mechanic_schedule_body {
+	border: 2px solid black;
+	box-shadow: 10px 10px 5px #888888;
+}
+ul {
+    padding: 0;
+    list-style-type: none;
+}
+.unavailable {
+	cursor: default;
+	background-color: lightgrey;
+	opacity: 0.8;
+}
+.mechanic_schedule_container {
+	height: 400px;
+	margin-top: 95px;
+}
+.available {
+	cursor: pointer;
+	background-color: lightgreen;
+	display: block;
+	box-shadow: 10px 10px 5px #888888;
+}
+.schedule_body {
+	display: inline-block;
+	height: 355px;
+	overflow-x: hidden;
+	word-wrap: break-word;
+	border: 2px solid black;
+	box-shadow: 10px 10px 5px #888888;
+}
+.navbar {
+	background-image: url("https://s-media-cache-ak0.pinimg.com/736x/aa/fe/8d/aafe8ddeee5822329416be8036309e58.jpg");
+
+	border: 2px lightgrey ridge;
+}
+.fc-scroller {
+   overflow-y: hidden;
+}
+
+
+
+
+
+
+

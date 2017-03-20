@@ -12,6 +12,7 @@
  *
  @import "bootstrap";
  @import 'parsley';
+ *= require fullcalendar
  *= require_tree .
  *= require_self
  */

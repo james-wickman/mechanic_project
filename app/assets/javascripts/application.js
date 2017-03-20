@@ -11,9 +11,14 @@
 // about supported directives.
 //
 //= require jquery
-//= require tether
-//= require bootstrap
+//= require underscore
+//= require gmaps/google
 //= require parsley
+//= require tether
+//= require moment 
+//= require fullcalendar
+//= require bootstrap
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+

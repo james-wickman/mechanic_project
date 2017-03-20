@@ -1,2 +1,100 @@
-<h1>Mechanics#index</h1>
-<p>Find me in app/views/mechanics/index.html.erb</p>
+<% time = Time.new %>
+<% current_time = time.hour.to_s + time.min.to_s %>
+
+<div class="calendar_container">
+	<div id="calendar"></div>
+</div>
+<div class='schedule_container'>
+	<div class="schedule">
+		<div class="schedule_head">
+		</div>
+		<div class="schedule_body">
+			<div class="hidden times">
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<script>
+	var date;
+	var time;
+
+	$('#calendar').fullCalendar({
+		height:'1000px',
+    	contentHeight:'1000px',
+	    header: {
+	        left: 'prev',
+	        center: 'title today',
+	        right: 'next'
+	    },
+	    body: {
+
+	    }
+	})
+	$('.fc-day-top').append('<p style="height: 10px; width: 10px; position: absolute;"></p>')
+	<% current_mechanic.jobs.each do |job| %>
+
+		<%if job.appointment %>
+			<%appointment = Appointment.find(job.appointment_id)%>
+			day = $("[data-date=<%=appointment.date.to_date%>]")[1];
+			$(day).children("p").html("<img class='star_img' src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzAOsCVW2qxU7twGUNg9zXyaDYeepFAKrrHCyY5OsS3_WMED8Zpg'>")
+			
+		<% end %>
+	<% end %>
+	$('.fc-future').off('click');
+	$(document).on('click', '[data-date]', function() {
+		if ($('.animations') != $(this).next(".animations")){
+			$('.animations').html('');
+		}
+		
+		future = $('.fc-future');
+		today = $('.fc-today');
+		today[0].style.backgroundColor = "lightyellow";
+		today[1].style.backgroundColor = "lightyellow";
+		today[0].style.opacity = "0.9";
+		for (var i = 0; i < future.length; i++) {
+		    future[i].style.backgroundColor = "#ffffff";
+		    future[i].style.opacity = "0.9";
+
+		}
+		$(this).append(`
+			<svg class="animations" version="1.1" >
+				<g stroke="#000" stroke-width="2" fill="none">
+					<path class="calendar_text" id="MyPath"
+				          d="M 20 62 h 26"/>
+				    <text font-family="Verdana" font-size="38">
+				    	<textPath class="calendar_text" xlink:href="#MyPath">
+					      X
+					    </textPath>
+				    </text>
+
+			    </g>
+			</svg>
+		
+		`)
+	    date = this.getAttribute('data-date')
+	    $('.schedule_head').html('<h2>' + date + '</h2>')
+
+		$.ajax(
+	    {
+	      url:"/appointments/new",
+	      type:'get',
+	      data: {
+	      	appointment: {
+	      		date: date
+	      	}
+	      }
+	    });
+	    
+	});
+	
+	
+</script>
+
+
+
+
+
+
+

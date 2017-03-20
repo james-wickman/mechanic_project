@@ -1,49 +1,49 @@
 <h2>Sign up Mech</h2>
 <% resource_name = :mechanic %>
-<% resource = @resource ||= Mechanic.new %>
-<% devise_mapping = @devise_mapping ||= Devise.mappings[:mechanic] %>
-
-<div class="bs-callout bs-callout-warning hidden">
-  <h4>Oh snap!</h4>
-  <p>This form seems to be invalid :(</p>
-</div>
-
-<div class="bs-callout bs-callout-info hidden">
-  <h4>Yay!</h4>
-  <p>Everything seems to be ok :)</p>
-</div>
+<% resource = Mechanic.new %>
+<% devise_mapping = Devise.mappings[:mechanic] %>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), :html => {:id => "new_mechanic_form", :"data-parsley-validate" => ""}) do |f| %>
   <%= devise_error_messages! %>
 
   <div class="field">
-    <%= f.label :first_name %><br />
-    <%= f.text_field :first_name, autofocus: true, class: 'form-control', "data-parsley-trigger" => "change", "data-parsley-minlength" => "2", required:"" %>
+    <%= f.text_field :first_name, autofocus: true,placeholder: "First Name", class: 'form-control', "data-parsley-trigger" => "change", "data-parsley-minlength" => "2", required:"" %>
   </div>
   <div class="field">
-    <%= f.label :last_name %><br />
-    <%= f.text_field :last_name, class: 'form-control', "data-parsley-trigger" => "change", "data-parsley-minlength" => "2", required:"" %>
+    <%= f.text_field :last_name,placeholder: "Last Name", class: 'form-control', "data-parsley-trigger" => "change", "data-parsley-minlength" => "2", required:"" %>
   </div>
   <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, id: 'email', "data-parsley-remote" => "/home/unique_mechanic_email?email={value}", "data-parsley-remote-validator" => 'mechanic_email_unique', class: 'form-control email', "data-parsley-trigger" => "change", required:"" %>
+    <div class="hidden" id="mechanic_loading">
+      <div class="mechanic_check_animation loading"></div>
+      <p class="mechanic_please_wait"> Please Wait</p>
+    </div>
+    <%= f.email_field :email,placeholder: "Email", id: 'mechanic_email', "data-parsley-remote" => "/home/unique_mechanic_email?email={value}", "data-parsley-remote-validator" => 'mechanic_email_unique', class: 'form-control email', "data-parsley-trigger" => "change", required:"" %>
+  </div>
+  <div class="field">
+    <%= f.text_field :home_shop_address,placeholder: "Home Shop Address", class: 'form-control', "data-parsley-trigger" => "change", "data-parsley-minlength" => "3", required:"" %>
+  </div>
+  <div class="field">
+    <%= f.text_field :city,placeholder: "City", class: 'form-control', "data-parsley-trigger" => "change", "data-parsley-minlength" => "3", required:"" %>
+  </div>
+  <div class="field">
+    <%= f.text_field :state,placeholder: "State", class: 'form-control', "data-parsley-trigger" => "change", "data-parsley-minlength" => "2", required:"" %>
+  </div>
+  <div class="field">
+    <%= f.text_field :zip,placeholder: "Zip Code", class: 'form-control', "data-parsley-trigger" => "change", "data-parsley-minlength" => "5", required:"" %>
   </div>
 
   <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "off", id: 'mechanics_password', class: 'form-control', "data-parsley-trigger" => "change", "data-parsley-minlength" => "7", required:"" %>
+    <%= f.password_field :password,placeholder: "Password", autocomplete: "off", id: 'mechanic_signup_password', class: 'form-control', "data-parsley-trigger" => "change", "data-parsley-minlength" => "7", required:"" %>
   </div>
 
   <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control', "data-parsley-trigger" => "change", "data-parsley-equalto" => "#mechanics_password", required: "" %>
+    <%= f.password_field :password_confirmation,placeholder: "Password Confirmation", autocomplete: "off", class: 'form-control', "data-parsley-trigger" => "change", "data-parsley-equalto" => "#mechanic_signup_password", 'data-required': "true" %>
   </div>
+
 
   <div class="actions">
     <%= f.submit "Sign up" %>
   </div>
 <% end %>
+
 

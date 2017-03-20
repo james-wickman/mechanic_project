@@ -1,26 +1,186 @@
+<div class="users_background">
+	<div class="container">
+	  	<div class="row">
+			<div class="col-12">
+				<div class="vehicles_list effects">
+					<div class="vehicles_head"><h1>Vehicles</h1></div>
+					<div class="user_vehicles_list">
+						<div id="accordion" role="tablist" aria-multiselectable="true">
+							<% current_user.vehicles.each do |vehicle| %>
+								<div class="card">
+								    <div class="card-header" role="tab" id="heading<%= vehicle.id %>">
+								      <h5 class="mb-0">
+								        <a class="full_width" data-toggle="collapse" data-parent="#accordion" href="#collapse<%= vehicle.id %>" aria-expanded="true" aria-controls="collapse<%= vehicle.id %>">
+											<%= vehicle.make %> 
+											<%= vehicle.model %> 
+										</a>
+								      </h5>
+								    </div>
+								    <div id="collapse<%= vehicle.id %>" class="collapse" role="tabpanel" aria-labelledby="heading<%= vehicle.id %>">
+								      <div class="card-bl">
+								      	<h1>
+									       	<%= vehicle.make %> 
+											<%= vehicle.model %>
+									      	
+											<div class="dropdown user_cars_options">
+											  <button class="btn btn-secondary  user_cars_options" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+											    =
+											  </button>
+											  <div class="dropdown-menu user_cars_menue" aria-labelledby="dropdownMenuButton">
+											    <button><%= link_to "Create Job", "/jobs?vehicle=#{vehicle.id}", method: :post%></button><br>
+												<button><%= link_to "Delete Vehicle", vehicles_destroy_path(id: vehicle.id), method: :delete %></button>
+												<button class="edit_vehicle_button" id="edit<%=vehicle.id%>">Edit Vehicle</button>
+											  </div>
+											</div>
+										</h1><hr>
+										<div class="hidden edit_vehicle edit<%=vehicle.id%>">
+											<%= render 'vehicles/edit', vehicle: vehicle %>
+										</div><br>
+										<% vehicle.jobs.each do |job| %>
+											<%= job.customer_description %>
+											<div class="dropdown user_cars_options">
+											  <button class="btn btn-secondary user_cars_options" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+											    =
+											  </button>
+											  <div class="dropdown-menu user_cars_menue" aria-labelledby="dropdownMenuButton">
+											 
+											<button><%= link_to "Delete Job", job_path(id: job.id), method: :delete %></button>
+											<%if job.appointment %>
+												<button><%= link_to "Delete Appointment", users_cancel_user_appointment_path(id: job.id), method: :put %></button>
+											<% end %>
+											</div>
+											</div>
+											<%if job.appointment %>
 
-
-
-<div class="vehicles_list">
-	<div class="vehicles_head"><h1>Vehicles</h1></div>
-
-	<div class="user_vehicles_list">
-		<% current_user.vehicles.each do |vehicle| %>
-			<%= vehicle.make %>
-			<%= vehicle.model %>
-		<% end %>
+												<p>Scheduled for <%=job.appointment.date.localtime%> with
+													<div class="">
+														<button class="mechanic_appointment_button"><%= job.appointment.mechanic.first_name %> <%= job.appointment.mechanic.last_name %>
+														</button>
+														<div class="hidden mechanic_appointment_details">
+														<%= job.appointment.mechanic.home_shop_address %>
+														<%= job.appointment.mechanic.city %>
+														<%= job.appointment.mechanic.state %>
+														<%= job.appointment.mechanic.zip %>
+														</div>
+													</div>
+												</p>
+												<hr>
+											<% else %>
+											<button class="schedule_job_button" data-id="<%= job.id %>">Schedule Job</button>
+												<div class="adding_elements">
+												</div><hr>
+												
+											<% end %><br>
+										<% end %>
+									</div>
+							    </div>
+							<% end %>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>
 
-<div class="users_info">
-	<h3><%= current_user.first_name %>
-	<%= current_user.last_name %></h3><br>
-	<h4><%= current_user.email %></h4>
-	
-</div>
 <div class="hidden edit_profile">
 	<%= render 'users/registrations/edit' %>
 </div>
 <div class="hidden add_vehicle">
 	<%= render 'vehicles/new_vehicle' %>
 </div>
+<% if !@new_job.nil? %>
+	<div class=" edit_job">
+		<%= render 'jobs/edit' %>
+	</div>
+<% end %>
+
+<script>
+	var date;
+	var time;
+	var _this;
+	var current_job;
+	var current_mechanic;
+	$('.schedule_job_button').on('click', function() {
+		$(".adding_elements").html('')
+		current_job = this.getAttribute('data-id');
+		_this = this
+		$(this).next(".adding_elements").html(`
+			<div class="maps_container" style='width: 704px;'>
+			  <div id="multi_markers" style='width: 700px; height: 400px;'></div>
+			</div>
+			<div class="adding_schedule">
+			</div>
+			`)
+		var handler = Gmaps.build('Google');
+		handler.buildMap({ provider: { scrollwheel: false }, internal: {id: 'multi_markers'}}, function(){
+			mechanics_markers = handler.addMarkers(<%=raw @mechanics_hash.to_json %>);
+			user_marker = handler.addMarkers(<%=raw @user_hash.to_json %>);
+			handler.bounds.extendWith(user_marker);
+	  		handler.fitMapToBounds();
+	  		handler.getMap().setZoom(9);
+		});
+		$("html, body").animate({ scrollTop: '+=170px'  }, 1000);
+	});
+	// both calanders have fc-future class so i needed to scope it by putting it within script tage with in the html
+	$(".fc-future").off('click'); // takes off click events for fc-future for the other calendar
+	$(document).on('click', '[data-date]', function() {
+		if ($('.animations') != $(this).next(".animations")){
+			$('.animations').html('');
+		}
+		$('.mechanic_times').removeClass('hidden');
+		$(this).append(`
+			<svg class="animations" version="1.1" >
+				<g stroke="#000" stroke-width="2" fill="none">
+					<path class="calendar_text" id="MyPath"
+				          d="M 20 62 h 26"/>
+				    <text font-family="Verdana" font-size="38">
+				    	<textPath class="calendar_text" xlink:href="#MyPath">
+					      X
+					    </textPath>
+				    </text>
+
+			    </g>
+			</svg>
+		
+		`)
+		future = $('.fc-future')
+		for (var i = 0; i < future.length; i++) {
+		    future[i].style.backgroundColor = "#ffffff";
+		    future[i].style.opacity = "0.9";
+		}
+		this.style.backgroundColor = "lightblue"
+	    date = this.getAttribute('data-date')
+	    $('.mechanic_schedule_head').html('<h2>' + date + '</h2>');
+	    $('.schedule_head').text(date);
+
+		$.ajax(
+	    {
+	      url:"/calendars/show",
+	      type:'get',
+	      data: {
+	      	date: date,
+	      	mechanic: current_mechanic,
+	      } 
+	    });
+	});
+	$(document).on('click','.contact_mechanic_button',function() {
+		console.log(current_job)
+		console.log(current_mechanic)
+		$(".contact_mechanic_space").html(`
+			<%= render 'users/contact_mechanic' %>
+			`)
+		$("#job_field").val(current_job);
+		$("#mechanic_field").val(current_mechanic);
+		$("#mechanic_field").addClass(current_mechanic)
+		$("html, body").animate({ scrollTop: '+=220px' }, 1000);
+	})
+</script>
+
+
+
+
+
+
+
+
