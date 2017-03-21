@@ -43,12 +43,15 @@ button{
 }
 .edit_profile, .add_vehicle, .edit_mechanic_profile, .add_job {
 	position: absolute;
-	top:0px;
+	top:20px;
 	right: 30px;
 	width: 600px;
 	height: 1000px;
 	background-color: silver;
 
+}
+.add_vehicle {
+  margin-top: 20px;
 }
 .user_vehicles_list, .mechanic_jobs_list {
 	text-align: center;
