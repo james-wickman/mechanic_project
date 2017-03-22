@@ -18889,3 +18889,26 @@ Completed 200 OK in 162ms (Views: 159.5ms | ActiveRecord: 0.0ms)
   Rendering /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.text.erb
   Rendered /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.text.erb (0.8ms)
   Rendered /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.text.erb (107.7ms)
+Started GET "/" for ::1 at 2017-03-21 21:15:36 -0600
+  [1m[36mActiveRecord::SchemaMigration Load (1.1ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by HomeController#index as HTML
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (3.1ms)
+  Rendered users/sessions/_new.html.erb (29.8ms)
+  Rendered mechanics/sessions/_new.html.erb (1.5ms)
+  Rendered users/registrations/_new.html.erb (2.9ms)
+  Rendered mechanics/registrations/_new.html.erb (2.8ms)
+Completed 200 OK in 613ms (Views: 528.1ms | ActiveRecord: 2.6ms)
+
+
+Started GET "/" for ::1 at 2017-03-21 21:16:13 -0600
+Processing by HomeController#index as HTML
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (1.7ms)
+  Rendered users/sessions/_new.html.erb (2.3ms)
+  Rendered mechanics/sessions/_new.html.erb (1.6ms)
+  Rendered users/registrations/_new.html.erb (2.5ms)
+  Rendered mechanics/registrations/_new.html.erb (2.2ms)
+Completed 200 OK in 391ms (Views: 387.0ms | ActiveRecord: 0.0ms)
+
+
