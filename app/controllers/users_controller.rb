@@ -11,11 +11,7 @@ class UsersController < ApplicationController
     @mechanics_hash = Gmaps4rails.build_markers(@mechanics) do |mechanic, marker|
       marker.lat mechanic.latitude
       marker.lng mechanic.longitude
-      marker.picture({
-        url: "/assets/red_flag.gif",
-        width: 32,
-        height: 32
-       })
+
       marker.infowindow %Q{
         <h2>
           #{mechanic.first_name} 
