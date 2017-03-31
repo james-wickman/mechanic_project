@@ -23869,3 +23869,1249 @@ Completed 200 OK in 111ms (Views: 88.4ms | ActiveRecord: 0.3ms)
 Completed 200 OK in 99ms (Views: 61.8ms | ActiveRecord: 0.0ms)
 
 
+Started GET "/mechanics/index" for ::1 at 2017-03-31 14:39:02 -0600
+  [1m[36mActiveRecord::SchemaMigration Load (0.8ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by MechanicsController#index as HTML
+Completed 500 Internal Server Error in 17ms (ActiveRecord: 0.0ms)
+
+
+  
+NoMethodError (undefined method `jobs' for nil:NilClass):
+  
+app/controllers/mechanics_controller.rb:3:in `index'
+  Rendering /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout
+  Rendering /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (10.1ms)
+  Rendering /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (7.4ms)
+  Rendering /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.8ms)
+  Rendered /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (100.5ms)
+Started GET "/" for ::1 at 2017-03-31 14:39:09 -0600
+Processing by HomeController#index as HTML
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (1.7ms)
+  Rendered users/sessions/_new.html.erb (29.3ms)
+  Rendered mechanics/sessions/_new.html.erb (1.6ms)
+  Rendered users/registrations/_new.html.erb (2.0ms)
+  Rendered mechanics/registrations/_new.html.erb (2.2ms)
+Completed 200 OK in 2493ms (Views: 2460.8ms | ActiveRecord: 1.4ms)
+
+
+Started POST "/mechanics/sign_in" for ::1 at 2017-03-31 14:39:18 -0600
+Processing by Mechanics::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"V+F7lxOgPUJhvKDVTKXCUgc/WWKdMCOhBBDqhy0Mjtf0WOMdNd0lLsOvB4jlJZ+TTBfCicATn01L7KUyt3CazQ==", "mechanic"=>{"email"=>"nauticalnova@hotmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mMechanic Load (0.8ms)[0m  [1m[34mSELECT  "mechanics".* FROM "mechanics" WHERE "mechanics"."email" = ? ORDER BY "mechanics"."id" ASC LIMIT ?[0m  [["email", "nauticalnova@hotmail.com"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.8ms)[0m  [1m[33mUPDATE "mechanics" SET "current_sign_in_at" = ?, "last_sign_in_at" = ?, "sign_in_count" = ?, "updated_at" = ? WHERE "mechanics"."id" = ?[0m  [["current_sign_in_at", 2017-03-31 20:39:18 UTC], ["last_sign_in_at", 2017-03-24 00:11:13 UTC], ["sign_in_count", 9], ["updated_at", 2017-03-31 20:39:18 UTC], ["id", 1]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/mechanics/show
+Completed 302 Found in 175ms (ActiveRecord: 2.5ms)
+
+
+Started GET "/mechanics/show" for ::1 at 2017-03-31 14:39:18 -0600
+Processing by MechanicsController#show as HTML
+  [1m[36mMechanic Load (0.2ms)[0m  [1m[34mSELECT  "mechanics".* FROM "mechanics" WHERE "mechanics"."id" = ? ORDER BY "mechanics"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mJob Load (0.4ms)[0m  [1m[34mSELECT "jobs".* FROM "jobs" WHERE "jobs"."mechanic_id" = ?[0m  [["mechanic_id", 1]]
+  [1m[36mAppointment Load (0.4ms)[0m  [1m[34mSELECT  "appointments".* FROM "appointments" WHERE "appointments"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering mechanics/show.html.erb within layouts/application
+  Rendered mechanics/registrations/_edit.html.erb (6.9ms)
+  Rendered mechanics/show.html.erb within layouts/application (10.1ms)
+Completed 200 OK in 148ms (Views: 93.4ms | ActiveRecord: 1.9ms)
+
+
+Started GET "/mechanics/index" for ::1 at 2017-03-31 14:39:21 -0600
+Processing by MechanicsController#index as HTML
+  [1m[36mMechanic Load (0.2ms)[0m  [1m[34mSELECT  "mechanics".* FROM "mechanics" WHERE "mechanics"."id" = ? ORDER BY "mechanics"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering mechanics/index.html.erb within layouts/application
+  [1m[36mJob Load (0.1ms)[0m  [1m[34mSELECT "jobs".* FROM "jobs" WHERE "jobs"."mechanic_id" = ?[0m  [["mechanic_id", 1]]
+  [1m[36mAppointment Load (0.1ms)[0m  [1m[34mSELECT  "appointments".* FROM "appointments" WHERE "appointments"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "appointments".* FROM "appointments" WHERE "appointments"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered mechanics/index.html.erb within layouts/application (4.1ms)
+Completed 200 OK in 129ms (Views: 121.3ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/appointments/new?date=2017-03-31" for ::1 at 2017-03-31 14:39:22 -0600
+Processing by AppointmentsController#new as */*
+  Parameters: {"date"=>"2017-03-31"}
+Started GET "/appointments/new?appointment%5Bdate%5D=2017-03-31" for ::1 at 2017-03-31 14:39:22 -0600
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.0ms)
+
+
+Processing by AppointmentsController#new as */*
+  
+  Parameters: {"appointment"=>{"date"=>"2017-03-31"}}
+NoMethodError (undefined method `[]' for nil:NilClass):
+  [1m[36mMechanic Load (0.7ms)[0m  [1m[34mSELECT  "mechanics".* FROM "mechanics" WHERE "mechanics"."id" = ? ORDER BY "mechanics"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  
+  [1m[36mAppointment Load (0.4ms)[0m  [1m[34mSELECT "appointments".* FROM "appointments" WHERE "appointments"."mechanic_id" = ? AND ("appointments"."date" BETWEEN ? AND ?)[0m  [["mechanic_id", 1], ["date", Fri, 31 Mar 2017], ["date", Sat, 01 Apr 2017]]
+app/controllers/appointments_controller.rb:13:in `block in new'
+app/controllers/appointments_controller.rb:12:in `new'
+  Rendering appointments/new.js.erb
+  Rendered mechanics/_times.html.erb (1.1ms)
+  Rendered appointments/new.js.erb (5.1ms)
+Completed 200 OK in 85ms (Views: 15.4ms | ActiveRecord: 1.1ms)
+
+
+  Rendering /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.text.erb
+  Rendering /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.text.erb
+  Rendered /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.text.erb (0.7ms)
+  Rendering /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb
+  Rendered /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb (0.7ms)
+  Rendering /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.text.erb
+  Rendered /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.text.erb (0.8ms)
+  Rendered /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.text.erb (62.7ms)
+Started GET "/appointments/new?date=2017-03-31" for ::1 at 2017-03-31 14:39:23 -0600
+Processing by AppointmentsController#new as */*
+  Parameters: {"date"=>"2017-03-31"}
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.0ms)
+
+
+  
+NoMethodError (undefined method `[]' for nil:NilClass):
+  
+app/controllers/appointments_controller.rb:13:in `block in new'
+app/controllers/appointments_controller.rb:12:in `new'
+  Rendering /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.text.erb
+  Rendering /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.text.erb
+  Rendered /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.text.erb (0.6ms)
+  Rendering /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb
+  Rendered /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb (1.0ms)
+  Rendering /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.text.erb
+  Rendered /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.text.erb (0.8ms)
+  Rendered /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.text.erb (62.2ms)
+Started POST "/appointments" for ::1 at 2017-03-31 14:39:25 -0600
+Processing by AppointmentsController#create as */*
+  Parameters: {"appointment"=>{"date"=>"Fri Mar 31 2017 06:00:00 GMT-0600 (MDT)"}}
+Started POST "/appointments" for ::1 at 2017-03-31 14:39:25 -0600
+  [1m[36mMechanic Load (0.4ms)[0m  [1m[34mSELECT  "mechanics".* FROM "mechanics" WHERE "mechanics"."id" = ? ORDER BY "mechanics"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+Processing by AppointmentsController#create as */*
+  Parameters: {"appointment"=>{"date"=>"Fri Mar 31 2017 06:00:00 GMT-0600 (MDT)"}}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mMechanic Load (0.2ms)[0m  [1m[34mSELECT  "mechanics".* FROM "mechanics" WHERE "mechanics"."id" = ? ORDER BY "mechanics"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mMechanic Load (0.4ms)[0m  [1m[34mSELECT  "mechanics".* FROM "mechanics" WHERE "mechanics"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "appointments" ("date", "created_at", "updated_at", "mechanic_id") VALUES (?, ?, ?, ?)[0m  [["date", 2017-03-31 12:00:00 UTC], ["created_at", 2017-03-31 20:39:25 UTC], ["updated_at", 2017-03-31 20:39:25 UTC], ["mechanic_id", 1]]
+  [1m[36mMechanic Load (0.2ms)[0m  [1m[34mSELECT  "mechanics".* FROM "mechanics" WHERE "mechanics"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "appointments" ("date", "created_at", "updated_at", "mechanic_id") VALUES (?, ?, ?, ?)[0m  [["date", 2017-03-31 12:00:00 UTC], ["created_at", 2017-03-31 20:39:30 UTC], ["updated_at", 2017-03-31 20:39:30 UTC], ["mechanic_id", 1]]
+Started GET "/mechanics/view_jobs?date=2017-04-01" for ::1 at 2017-03-31 14:39:30 -0600
+  [1m[35m (5151.6ms)[0m  [1m[36mcommit transaction[0m
+Started GET "/appointments/new?appointment%5Bdate%5D=2017-04-01" for ::1 at 2017-03-31 14:39:30 -0600
+Started GET "/appointments/new?date=2017-03-31" for ::1 at 2017-03-31 14:39:30 -0600
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.9ms)[0m  [1m[31mrollback transaction[0m
+Processing by MechanicsController#view_jobs as */*
+Processing by AppointmentsController#new as */*
+Processing by AppointmentsController#new as */*
+Completed 500 Internal Server Error in 5189ms (ActiveRecord: 1.4ms)
+
+
+Completed 500 Internal Server Error in 5195ms (ActiveRecord: 5153.8ms)
+
+
+  Parameters: {"date"=>"2017-04-01"}
+  Parameters: {"appointment"=>{"date"=>"2017-04-01"}}
+  Parameters: {"date"=>"2017-03-31"}
+  
+  
+  Rendering mechanics/view_jobs.js.erb
+  [1m[36mMechanic Load (0.8ms)[0m  [1m[34mSELECT  "mechanics".* FROM "mechanics" WHERE "mechanics"."id" = ? ORDER BY "mechanics"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.0ms)
+
+
+ActiveRecord::StatementInvalid (SQLite3::BusyException: database is locked: INSERT INTO "appointments" ("date", "created_at", "updated_at", "mechanic_id") VALUES (?, ?, ?, ?)):
+ActiveRecord::StatementInvalid (SQLite3::BusyException: database is locked: commit transaction):
+  Rendered mechanics/view_jobs.js.erb (0.6ms)
+  [1m[36mAppointment Load (0.2ms)[0m  [1m[34mSELECT "appointments".* FROM "appointments" WHERE "appointments"."mechanic_id" = ? AND ("appointments"."date" BETWEEN ? AND ?)[0m  [["mechanic_id", 1], ["date", Sat, 01 Apr 2017], ["date", Sun, 02 Apr 2017]]
+  
+  
+  
+Completed 200 OK in 35ms (Views: 25.7ms | ActiveRecord: 0.0ms)
+
+
+NoMethodError (undefined method `[]' for nil:NilClass):
+app/controllers/appointments_controller.rb:48:in `block in create'
+app/controllers/appointments_controller.rb:47:in `create'
+app/controllers/appointments_controller.rb:48:in `block in create'
+app/controllers/appointments_controller.rb:47:in `create'
+  Rendering appointments/new.js.erb
+Started POST "/appointments" for ::1 at 2017-03-31 14:39:30 -0600
+  
+  Rendered mechanics/_times.html.erb (0.7ms)
+Processing by AppointmentsController#create as */*
+app/controllers/appointments_controller.rb:13:in `block in new'
+app/controllers/appointments_controller.rb:12:in `new'
+  Rendered appointments/new.js.erb (5.9ms)
+  Parameters: {"appointment"=>{"date"=>"Fri Mar 31 2017 08:00:00 GMT-0600 (MDT)"}}
+Completed 200 OK in 261ms (Views: 247.2ms | ActiveRecord: 1.0ms)
+
+
+  [1m[36mMechanic Load (0.6ms)[0m  [1m[34mSELECT  "mechanics".* FROM "mechanics" WHERE "mechanics"."id" = ? ORDER BY "mechanics"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+Started POST "/appointments" for ::1 at 2017-03-31 14:39:30 -0600
+  [1m[36mMechanic Load (0.2ms)[0m  [1m[34mSELECT  "mechanics".* FROM "mechanics" WHERE "mechanics"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+Processing by AppointmentsController#create as */*
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "appointments" ("date", "created_at", "updated_at", "mechanic_id") VALUES (?, ?, ?, ?)[0m  [["date", 2017-03-31 14:00:00 UTC], ["created_at", 2017-03-31 20:39:30 UTC], ["updated_at", 2017-03-31 20:39:30 UTC], ["mechanic_id", 1]]
+  Parameters: {"appointment"=>{"date"=>"Fri Mar 31 2017 08:00:00 GMT-0600 (MDT)"}}
+  [1m[35m (1.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mMechanic Load (0.2ms)[0m  [1m[34mSELECT  "mechanics".* FROM "mechanics" WHERE "mechanics"."id" = ? ORDER BY "mechanics"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mMechanic Load (0.3ms)[0m  [1m[34mSELECT  "mechanics".* FROM "mechanics" WHERE "mechanics"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "appointments" ("date", "created_at", "updated_at", "mechanic_id") VALUES (?, ?, ?, ?)[0m  [["date", 2017-03-31 14:00:00 UTC], ["created_at", 2017-03-31 20:39:30 UTC], ["updated_at", 2017-03-31 20:39:30 UTC], ["mechanic_id", 1]]
+  Rendering appointments/create.js.erb
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  Rendered appointments/create.js.erb (0.6ms)
+  Rendering appointments/create.js.erb
+Completed 200 OK in 74ms (Views: 39.5ms | ActiveRecord: 2.3ms)
+
+
+  Rendered appointments/create.js.erb (0.1ms)
+Completed 200 OK in 55ms (Views: 11.0ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/mechanics/view_jobs?date=2017-04-01" for ::1 at 2017-03-31 14:39:30 -0600
+Processing by MechanicsController#view_jobs as */*
+  Parameters: {"date"=>"2017-04-01"}
+  Rendering mechanics/view_jobs.js.erb
+  Rendered mechanics/view_jobs.js.erb (0.3ms)
+Completed 200 OK in 38ms (Views: 23.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/appointments/new?appointment%5Bdate%5D=2017-04-01" for ::1 at 2017-03-31 14:39:30 -0600
+Started GET "/mechanics/view_jobs?date=2017-04-01" for ::1 at 2017-03-31 14:39:30 -0600
+Processing by AppointmentsController#new as */*
+Processing by MechanicsController#view_jobs as */*
+  Parameters: {"appointment"=>{"date"=>"2017-04-01"}}
+  Parameters: {"date"=>"2017-04-01"}
+  [1m[36mMechanic Load (0.2ms)[0m  [1m[34mSELECT  "mechanics".* FROM "mechanics" WHERE "mechanics"."id" = ? ORDER BY "mechanics"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mAppointment Load (0.2ms)[0m  [1m[34mSELECT "appointments".* FROM "appointments" WHERE "appointments"."mechanic_id" = ? AND ("appointments"."date" BETWEEN ? AND ?)[0m  [["mechanic_id", 1], ["date", Sat, 01 Apr 2017], ["date", Sun, 02 Apr 2017]]
+  Rendering mechanics/view_jobs.js.erb
+  Rendered mechanics/view_jobs.js.erb (0.3ms)
+Completed 200 OK in 41ms (Views: 29.9ms | ActiveRecord: 0.0ms)
+
+
+  Rendering appointments/new.js.erb
+  Rendering /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.text.erb
+Started GET "/mechanics/view_jobs?date=2017-04-01" for ::1 at 2017-03-31 14:39:30 -0600
+  Rendered mechanics/_times.html.erb (0.8ms)
+  Rendering /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.text.erb
+Processing by MechanicsController#view_jobs as */*
+  Rendered appointments/new.js.erb (40.5ms)
+  Rendered /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.text.erb (0.5ms)
+  Parameters: {"date"=>"2017-04-01"}
+Completed 200 OK in 98ms (Views: 64.0ms | ActiveRecord: 0.4ms)
+
+
+  Rendering /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb
+  Rendered /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb (0.9ms)
+  Rendering /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.text.erb
+  Rendered /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.text.erb (0.8ms)
+  Rendering mechanics/view_jobs.js.erb
+  Rendered /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.text.erb (107.8ms)
+  Rendered mechanics/view_jobs.js.erb (0.7ms)
+Completed 200 OK in 62ms (Views: 25.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/appointments/new?date=2017-03-31" for ::1 at 2017-03-31 14:39:31 -0600
+Processing by AppointmentsController#new as */*
+  Parameters: {"date"=>"2017-03-31"}
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.0ms)
+
+
+  
+NoMethodError (undefined method `[]' for nil:NilClass):
+  
+app/controllers/appointments_controller.rb:13:in `block in new'
+app/controllers/appointments_controller.rb:12:in `new'
+  Rendering /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.text.erb
+  Rendering /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.text.erb
+  Rendered /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.text.erb (0.6ms)
+  Rendering /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb
+  Rendered /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb (1.1ms)
+  Rendering /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.text.erb
+  Rendered /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.text.erb (0.9ms)
+  Rendered /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.text.erb (63.1ms)
+  Rendering /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.text.erb
+Started GET "/appointments/new?appointment%5Bdate%5D=2017-03-31" for ::1 at 2017-03-31 14:39:31 -0600
+Processing by AppointmentsController#new as */*
+  Parameters: {"appointment"=>{"date"=>"2017-03-31"}}
+  [1m[36mMechanic Load (0.6ms)[0m  [1m[34mSELECT  "mechanics".* FROM "mechanics" WHERE "mechanics"."id" = ? ORDER BY "mechanics"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.text.erb
+  [1m[36mAppointment Load (0.2ms)[0m  [1m[34mSELECT "appointments".* FROM "appointments" WHERE "appointments"."mechanic_id" = ? AND ("appointments"."date" BETWEEN ? AND ?)[0m  [["mechanic_id", 1], ["date", Fri, 31 Mar 2017], ["date", Sat, 01 Apr 2017]]
+  Rendered /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.text.erb (0.7ms)
+  [1m[36mJob Load (0.1ms)[0m  [1m[34mSELECT  "jobs".* FROM "jobs" WHERE "jobs"."appointment_id" = ? LIMIT ?[0m  [["appointment_id", 42], ["LIMIT", 1]]
+  Rendering /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb
+  [1m[36mJob Load (0.1ms)[0m  [1m[34mSELECT  "jobs".* FROM "jobs" WHERE "jobs"."appointment_id" = ? LIMIT ?[0m  [["appointment_id", 43], ["LIMIT", 1]]
+  Rendered /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb (0.6ms)
+  Rendering appointments/new.js.erb
+  Rendering /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.text.erb
+  Rendered mechanics/_times.html.erb (1.7ms)
+  Rendered /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.text.erb (0.7ms)
+  Rendered appointments/new.js.erb (6.4ms)
+  Rendered /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.text.erb (111.7ms)
+Completed 200 OK in 79ms (Views: 33.4ms | ActiveRecord: 1.1ms)
+
+
+  Rendering /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.text.erb
+  Rendering /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.text.erb
+  Rendered /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.text.erb (1.7ms)
+Started GET "/appointments/new?appointment%5Bdate%5D=2017-03-31" for ::1 at 2017-03-31 14:39:31 -0600
+Processing by AppointmentsController#new as */*
+  Parameters: {"appointment"=>{"date"=>"2017-03-31"}}
+  Rendering /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb
+  [1m[36mMechanic Load (1.0ms)[0m  [1m[34mSELECT  "mechanics".* FROM "mechanics" WHERE "mechanics"."id" = ? ORDER BY "mechanics"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb (0.7ms)
+  [1m[36mAppointment Load (0.2ms)[0m  [1m[34mSELECT "appointments".* FROM "appointments" WHERE "appointments"."mechanic_id" = ? AND ("appointments"."date" BETWEEN ? AND ?)[0m  [["mechanic_id", 1], ["date", Fri, 31 Mar 2017], ["date", Sat, 01 Apr 2017]]
+  [1m[36mJob Load (0.1ms)[0m  [1m[34mSELECT  "jobs".* FROM "jobs" WHERE "jobs"."appointment_id" = ? LIMIT ?[0m  [["appointment_id", 42], ["LIMIT", 1]]
+  [1m[36mJob Load (0.1ms)[0m  [1m[34mSELECT  "jobs".* FROM "jobs" WHERE "jobs"."appointment_id" = ? LIMIT ?[0m  [["appointment_id", 43], ["LIMIT", 1]]
+  Rendering /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.text.erb
+  Rendered /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.text.erb (1.1ms)
+  Rendered /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.text.erb (96.2ms)
+  Rendering appointments/new.js.erb
+Started GET "/appointments/new?date=2017-03-31" for ::1 at 2017-03-31 14:39:31 -0600
+  Rendered mechanics/_times.html.erb (1.7ms)
+  Rendered appointments/new.js.erb (6.2ms)
+Completed 200 OK in 52ms (Views: 16.8ms | ActiveRecord: 1.4ms)
+
+
+Processing by AppointmentsController#new as */*
+  Parameters: {"date"=>"2017-03-31"}
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.0ms)
+
+
+  
+NoMethodError (undefined method `[]' for nil:NilClass):
+  
+app/controllers/appointments_controller.rb:13:in `block in new'
+app/controllers/appointments_controller.rb:12:in `new'
+  Rendering /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.text.erb
+  Rendering /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.text.erb
+  Rendered /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.text.erb (1.2ms)
+  Rendering /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb
+  Rendered /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb (1.1ms)
+  Rendering /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.text.erb
+  Rendered /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.text.erb (0.7ms)
+  Rendered /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.text.erb (58.6ms)
+Started GET "/appointments/new?date=2017-03-31" for ::1 at 2017-03-31 14:39:31 -0600
+Processing by AppointmentsController#new as */*
+  Parameters: {"date"=>"2017-03-31"}
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.0ms)
+
+
+  
+NoMethodError (undefined method `[]' for nil:NilClass):
+  
+app/controllers/appointments_controller.rb:13:in `block in new'
+app/controllers/appointments_controller.rb:12:in `new'
+  Rendering /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.text.erb
+  Rendering /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.text.erb
+  Rendered /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.text.erb (0.6ms)
+  Rendering /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb
+  Rendered /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb (0.6ms)
+  Rendering /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.text.erb
+  Rendered /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.text.erb (2.1ms)
+  Rendered /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.text.erb (56.3ms)
+Started GET "/mechanics/view_jobs?date=2017-04-01" for ::1 at 2017-03-31 14:39:32 -0600
+Processing by MechanicsController#view_jobs as */*
+Started GET "/appointments/new?appointment%5Bdate%5D=2017-04-01" for ::1 at 2017-03-31 14:39:32 -0600
+  Parameters: {"date"=>"2017-04-01"}
+Processing by AppointmentsController#new as */*
+  Rendering mechanics/view_jobs.js.erb
+  Parameters: {"appointment"=>{"date"=>"2017-04-01"}}
+  Rendered mechanics/view_jobs.js.erb (0.4ms)
+  [1m[36mMechanic Load (0.4ms)[0m  [1m[34mSELECT  "mechanics".* FROM "mechanics" WHERE "mechanics"."id" = ? ORDER BY "mechanics"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+Completed 200 OK in 34ms (Views: 22.8ms | ActiveRecord: 0.0ms)
+
+
+  [1m[36mAppointment Load (0.2ms)[0m  [1m[34mSELECT "appointments".* FROM "appointments" WHERE "appointments"."mechanic_id" = ? AND ("appointments"."date" BETWEEN ? AND ?)[0m  [["mechanic_id", 1], ["date", Sat, 01 Apr 2017], ["date", Sun, 02 Apr 2017]]
+Started GET "/mechanics/view_jobs?date=2017-04-01" for ::1 at 2017-03-31 14:39:32 -0600
+Processing by MechanicsController#view_jobs as */*
+  Parameters: {"date"=>"2017-04-01"}
+  Rendering appointments/new.js.erb
+  Rendered mechanics/_times.html.erb (0.8ms)
+  Rendering mechanics/view_jobs.js.erb
+  Rendered appointments/new.js.erb (18.0ms)
+  Rendered mechanics/view_jobs.js.erb (0.3ms)
+Completed 200 OK in 64ms (Views: 54.1ms | ActiveRecord: 0.6ms)
+
+
+Completed 200 OK in 35ms (Views: 17.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/appointments/new?date=2017-03-31" for ::1 at 2017-03-31 14:39:33 -0600
+Processing by AppointmentsController#new as */*
+  Parameters: {"date"=>"2017-03-31"}
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/appointments/new?appointment%5Bdate%5D=2017-03-31" for ::1 at 2017-03-31 14:39:33 -0600
+Processing by AppointmentsController#new as */*
+  
+  Parameters: {"appointment"=>{"date"=>"2017-03-31"}}
+NoMethodError (undefined method `[]' for nil:NilClass):
+  [1m[36mMechanic Load (0.3ms)[0m  [1m[34mSELECT  "mechanics".* FROM "mechanics" WHERE "mechanics"."id" = ? ORDER BY "mechanics"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  
+  [1m[36mAppointment Load (0.2ms)[0m  [1m[34mSELECT "appointments".* FROM "appointments" WHERE "appointments"."mechanic_id" = ? AND ("appointments"."date" BETWEEN ? AND ?)[0m  [["mechanic_id", 1], ["date", Fri, 31 Mar 2017], ["date", Sat, 01 Apr 2017]]
+app/controllers/appointments_controller.rb:13:in `block in new'
+app/controllers/appointments_controller.rb:12:in `new'
+  [1m[36mJob Load (0.3ms)[0m  [1m[34mSELECT  "jobs".* FROM "jobs" WHERE "jobs"."appointment_id" = ? LIMIT ?[0m  [["appointment_id", 42], ["LIMIT", 1]]
+  [1m[36mJob Load (0.1ms)[0m  [1m[34mSELECT  "jobs".* FROM "jobs" WHERE "jobs"."appointment_id" = ? LIMIT ?[0m  [["appointment_id", 43], ["LIMIT", 1]]
+  Rendering appointments/new.js.erb
+  Rendered mechanics/_times.html.erb (1.1ms)
+  Rendered appointments/new.js.erb (3.9ms)
+Completed 200 OK in 70ms (Views: 15.1ms | ActiveRecord: 0.9ms)
+
+
+  Rendering /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.text.erb
+  Rendering /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.text.erb
+  Rendered /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.text.erb (0.6ms)
+  Rendering /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb
+  Rendered /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb (0.9ms)
+  Rendering /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.text.erb
+  Rendered /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.text.erb (0.7ms)
+  Rendered /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.text.erb (60.5ms)
+Started GET "/appointments/new?date=2017-03-31" for ::1 at 2017-03-31 14:39:33 -0600
+Processing by AppointmentsController#new as */*
+  Parameters: {"date"=>"2017-03-31"}
+Completed 500 Internal Server Error in 10ms (ActiveRecord: 0.0ms)
+
+
+  
+NoMethodError (undefined method `[]' for nil:NilClass):
+  
+app/controllers/appointments_controller.rb:13:in `block in new'
+app/controllers/appointments_controller.rb:12:in `new'
+  Rendering /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.text.erb
+  Rendering /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.text.erb
+  Rendered /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.text.erb (0.9ms)
+  Rendering /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb
+  Rendered /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb (0.7ms)
+  Rendering /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.text.erb
+  Rendered /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.text.erb (0.7ms)
+  Rendered /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.text.erb (67.1ms)
+Started POST "/appointments" for ::1 at 2017-03-31 14:39:34 -0600
+Processing by AppointmentsController#create as */*
+  Parameters: {"appointment"=>{"date"=>"Fri Mar 31 2017 09:00:00 GMT-0600 (MDT)"}}
+Started POST "/appointments" for ::1 at 2017-03-31 14:39:34 -0600
+  [1m[36mMechanic Load (0.3ms)[0m  [1m[34mSELECT  "mechanics".* FROM "mechanics" WHERE "mechanics"."id" = ? ORDER BY "mechanics"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+Processing by AppointmentsController#create as */*
+  Parameters: {"appointment"=>{"date"=>"Fri Mar 31 2017 09:00:00 GMT-0600 (MDT)"}}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mMechanic Load (0.2ms)[0m  [1m[34mSELECT  "mechanics".* FROM "mechanics" WHERE "mechanics"."id" = ? ORDER BY "mechanics"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mMechanic Load (0.1ms)[0m  [1m[34mSELECT  "mechanics".* FROM "mechanics" WHERE "mechanics"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "appointments" ("date", "created_at", "updated_at", "mechanic_id") VALUES (?, ?, ?, ?)[0m  [["date", 2017-03-31 15:00:00 UTC], ["created_at", 2017-03-31 20:39:34 UTC], ["updated_at", 2017-03-31 20:39:34 UTC], ["mechanic_id", 1]]
+  [1m[36mMechanic Load (0.2ms)[0m  [1m[34mSELECT  "mechanics".* FROM "mechanics" WHERE "mechanics"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (5149.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "appointments" ("date", "created_at", "updated_at", "mechanic_id") VALUES (?, ?, ?, ?)[0m  [["date", 2017-03-31 15:00:00 UTC], ["created_at", 2017-03-31 20:39:39 UTC], ["updated_at", 2017-03-31 20:39:39 UTC], ["mechanic_id", 1]]
+  [1m[35m (0.9ms)[0m  [1m[31mrollback transaction[0m
+Started GET "/mechanics/view_jobs?date=2017-04-01" for ::1 at 2017-03-31 14:39:39 -0600
+Started GET "/appointments/new?appointment%5Bdate%5D=2017-03-31" for ::1 at 2017-03-31 14:39:39 -0600
+Started GET "/appointments/new?date=2017-03-31" for ::1 at 2017-03-31 14:39:39 -0600
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+Completed 500 Internal Server Error in 5169ms (ActiveRecord: 5151.6ms)
+
+
+Processing by MechanicsController#view_jobs as */*
+Processing by AppointmentsController#new as */*
+Processing by AppointmentsController#new as */*
+Completed 500 Internal Server Error in 5176ms (ActiveRecord: 1.0ms)
+
+
+  
+  Parameters: {"date"=>"2017-04-01"}
+  Parameters: {"appointment"=>{"date"=>"2017-03-31"}}
+  Parameters: {"date"=>"2017-03-31"}
+  
+ActiveRecord::StatementInvalid (SQLite3::BusyException: database is locked: commit transaction):
+  Rendering mechanics/view_jobs.js.erb
+  [1m[36mMechanic Load (0.2ms)[0m  [1m[34mSELECT  "mechanics".* FROM "mechanics" WHERE "mechanics"."id" = ? ORDER BY "mechanics"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 1ms (ActiveRecord: 0.0ms)
+
+
+ActiveRecord::StatementInvalid (SQLite3::BusyException: database is locked: INSERT INTO "appointments" ("date", "created_at", "updated_at", "mechanic_id") VALUES (?, ?, ?, ?)):
+  
+  Rendered mechanics/view_jobs.js.erb (0.3ms)
+  [1m[36mAppointment Load (0.2ms)[0m  [1m[34mSELECT "appointments".* FROM "appointments" WHERE "appointments"."mechanic_id" = ? AND ("appointments"."date" BETWEEN ? AND ?)[0m  [["mechanic_id", 1], ["date", Fri, 31 Mar 2017], ["date", Sat, 01 Apr 2017]]
+  
+  
+app/controllers/appointments_controller.rb:48:in `block in create'
+app/controllers/appointments_controller.rb:47:in `create'
+Completed 200 OK in 30ms (Views: 20.2ms | ActiveRecord: 0.0ms)
+
+
+NoMethodError (undefined method `[]' for nil:NilClass):
+  [1m[36mJob Load (0.2ms)[0m  [1m[34mSELECT  "jobs".* FROM "jobs" WHERE "jobs"."appointment_id" = ? LIMIT ?[0m  [["appointment_id", 42], ["LIMIT", 1]]
+app/controllers/appointments_controller.rb:48:in `block in create'
+app/controllers/appointments_controller.rb:47:in `create'
+  
+  [1m[36mJob Load (0.1ms)[0m  [1m[34mSELECT  "jobs".* FROM "jobs" WHERE "jobs"."appointment_id" = ? LIMIT ?[0m  [["appointment_id", 43], ["LIMIT", 1]]
+Started GET "/mechanics/view_jobs?date=2017-04-01" for ::1 at 2017-03-31 14:39:39 -0600
+app/controllers/appointments_controller.rb:13:in `block in new'
+app/controllers/appointments_controller.rb:12:in `new'
+Processing by MechanicsController#view_jobs as */*
+  Parameters: {"date"=>"2017-04-01"}
+  Rendering appointments/new.js.erb
+  Rendering mechanics/view_jobs.js.erb
+  Rendered mechanics/_times.html.erb (0.8ms)
+  Rendered mechanics/view_jobs.js.erb (0.3ms)
+  Rendered appointments/new.js.erb (6.5ms)
+Completed 200 OK in 38ms (Views: 22.0ms | ActiveRecord: 0.0ms)
+
+
+Completed 200 OK in 291ms (Views: 77.0ms | ActiveRecord: 0.7ms)
+
+
+  Rendering /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.text.erb
+  Rendering /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.text.erb
+  Rendering /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.text.erb
+  Rendered /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.text.erb (0.5ms)
+  Rendering /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.text.erb
+  Rendered /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.text.erb (0.6ms)
+  Rendering /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb
+  Rendered /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb (0.6ms)
+  Rendering /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb
+  Rendered /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb (0.6ms)
+  Rendering /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.text.erb
+  Rendered /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.text.erb (0.7ms)
+  Rendered /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.text.erb (117.6ms)
+  Rendering /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.text.erb
+  Rendered /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.text.erb (0.9ms)
+  Rendered /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.text.erb (100.4ms)
+  Rendering /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.text.erb
+Started GET "/appointments/new?appointment%5Bdate%5D=2017-04-01" for ::1 at 2017-03-31 14:39:40 -0600
+Started GET "/appointments/new?date=2017-03-31" for ::1 at 2017-03-31 14:39:40 -0600
+  Rendering /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.text.erb
+Processing by AppointmentsController#new as */*
+  Parameters: {"appointment"=>{"date"=>"2017-04-01"}}
+Processing by AppointmentsController#new as */*
+  Rendered /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.text.erb (0.8ms)
+  [1m[36mMechanic Load (0.7ms)[0m  [1m[34mSELECT  "mechanics".* FROM "mechanics" WHERE "mechanics"."id" = ? ORDER BY "mechanics"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Parameters: {"date"=>"2017-03-31"}
+  Rendering /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb
+  [1m[36mAppointment Load (0.2ms)[0m  [1m[34mSELECT "appointments".* FROM "appointments" WHERE "appointments"."mechanic_id" = ? AND ("appointments"."date" BETWEEN ? AND ?)[0m  [["mechanic_id", 1], ["date", Sat, 01 Apr 2017], ["date", Sun, 02 Apr 2017]]
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.0ms)
+
+
+  Rendered /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb (3.0ms)
+  
+NoMethodError (undefined method `[]' for nil:NilClass):
+  Rendering appointments/new.js.erb
+  
+  Rendering /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.text.erb
+app/controllers/appointments_controller.rb:13:in `block in new'
+app/controllers/appointments_controller.rb:12:in `new'
+  Rendered mechanics/_times.html.erb (1.1ms)
+  Rendered /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.text.erb (0.6ms)
+  Rendered appointments/new.js.erb (42.3ms)
+  Rendered /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.text.erb (131.4ms)
+Completed 200 OK in 100ms (Views: 53.6ms | ActiveRecord: 0.8ms)
+
+
+  Rendering /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.text.erb
+  Rendering /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.text.erb
+  Rendered /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.text.erb (0.6ms)
+  Rendering /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb
+  Rendered /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb (1.1ms)
+  Rendering /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.text.erb
+  Rendered /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.text.erb (0.6ms)
+  Rendered /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.text.erb (56.3ms)
+Started GET "/mechanics/index" for ::1 at 2017-03-31 14:40:03 -0600
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by MechanicsController#index as HTML
+  [1m[36mMechanic Load (0.2ms)[0m  [1m[34mSELECT  "mechanics".* FROM "mechanics" WHERE "mechanics"."id" = ? ORDER BY "mechanics"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering mechanics/index.html.erb within layouts/application
+  [1m[36mJob Load (0.3ms)[0m  [1m[34mSELECT "jobs".* FROM "jobs" WHERE "jobs"."mechanic_id" = ?[0m  [["mechanic_id", 1]]
+  [1m[36mAppointment Load (0.2ms)[0m  [1m[34mSELECT  "appointments".* FROM "appointments" WHERE "appointments"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.1ms)[0m  [1m[34mSELECT  "appointments".* FROM "appointments" WHERE "appointments"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered mechanics/index.html.erb within layouts/application (43.7ms)
+Completed 200 OK in 567ms (Views: 491.8ms | ActiveRecord: 2.7ms)
+
+
+Started GET "/appointments/new?appointment%5Bdate%5D=2017-04-01" for ::1 at 2017-03-31 14:40:04 -0600
+Processing by AppointmentsController#new as */*
+  Parameters: {"appointment"=>{"date"=>"2017-04-01"}}
+  [1m[36mMechanic Load (0.3ms)[0m  [1m[34mSELECT  "mechanics".* FROM "mechanics" WHERE "mechanics"."id" = ? ORDER BY "mechanics"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+Started GET "/mechanics/view_jobs?date=2017-04-01" for ::1 at 2017-03-31 14:40:04 -0600
+  [1m[36mAppointment Load (0.2ms)[0m  [1m[34mSELECT "appointments".* FROM "appointments" WHERE "appointments"."mechanic_id" = ? AND ("appointments"."date" BETWEEN ? AND ?)[0m  [["mechanic_id", 1], ["date", Sat, 01 Apr 2017], ["date", Sun, 02 Apr 2017]]
+Processing by MechanicsController#view_jobs as */*
+  Parameters: {"date"=>"2017-04-01"}
+  Rendering mechanics/view_jobs.js.erb
+  Rendered mechanics/view_jobs.js.erb (0.9ms)
+  Rendering appointments/new.js.erb
+Completed 200 OK in 38ms (Views: 22.9ms | ActiveRecord: 0.0ms)
+
+
+  Rendered mechanics/_times.html.erb (0.7ms)
+  Rendered appointments/new.js.erb (3.9ms)
+Completed 200 OK in 68ms (Views: 18.0ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/appointments" for ::1 at 2017-03-31 14:40:05 -0600
+Processing by AppointmentsController#create as */*
+  Parameters: {"appointment"=>{"date"=>"Sat Apr 01 2017 06:00:00 GMT-0600 (MDT)"}}
+  [1m[36mMechanic Load (0.8ms)[0m  [1m[34mSELECT  "mechanics".* FROM "mechanics" WHERE "mechanics"."id" = ? ORDER BY "mechanics"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mMechanic Load (0.4ms)[0m  [1m[34mSELECT  "mechanics".* FROM "mechanics" WHERE "mechanics"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "appointments" ("date", "created_at", "updated_at", "mechanic_id") VALUES (?, ?, ?, ?)[0m  [["date", 2017-04-01 12:00:00 UTC], ["created_at", 2017-03-31 20:40:05 UTC], ["updated_at", 2017-03-31 20:40:05 UTC], ["mechanic_id", 1]]
+  [1m[35m (1.3ms)[0m  [1m[36mcommit transaction[0m
+  Rendering appointments/create.js.erb
+  Rendered appointments/create.js.erb (0.6ms)
+Completed 200 OK in 27ms (Views: 8.9ms | ActiveRecord: 3.0ms)
+
+
+Started GET "/appointments/new?appointment%5Bdate%5D=2017-04-07" for ::1 at 2017-03-31 14:40:07 -0600
+Started GET "/mechanics/view_jobs?date=2017-04-07" for ::1 at 2017-03-31 14:40:07 -0600
+Processing by AppointmentsController#new as */*
+Processing by MechanicsController#view_jobs as */*
+  Parameters: {"appointment"=>{"date"=>"2017-04-07"}}
+  Parameters: {"date"=>"2017-04-07"}
+  [1m[36mMechanic Load (0.4ms)[0m  [1m[34mSELECT  "mechanics".* FROM "mechanics" WHERE "mechanics"."id" = ? ORDER BY "mechanics"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mAppointment Load (0.2ms)[0m  [1m[34mSELECT "appointments".* FROM "appointments" WHERE "appointments"."mechanic_id" = ? AND ("appointments"."date" BETWEEN ? AND ?)[0m  [["mechanic_id", 1], ["date", Fri, 07 Apr 2017], ["date", Sat, 08 Apr 2017]]
+  Rendering mechanics/view_jobs.js.erb
+  Rendered mechanics/view_jobs.js.erb (0.3ms)
+Completed 200 OK in 33ms (Views: 22.4ms | ActiveRecord: 0.0ms)
+
+
+  Rendering appointments/new.js.erb
+  Rendered mechanics/_times.html.erb (1.2ms)
+  Rendered appointments/new.js.erb (4.6ms)
+Completed 200 OK in 49ms (Views: 13.3ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/appointments/new?appointment%5Bdate%5D=2017-04-01" for ::1 at 2017-03-31 14:40:08 -0600
+Processing by AppointmentsController#new as */*
+  Parameters: {"appointment"=>{"date"=>"2017-04-01"}}
+  [1m[36mMechanic Load (0.6ms)[0m  [1m[34mSELECT  "mechanics".* FROM "mechanics" WHERE "mechanics"."id" = ? ORDER BY "mechanics"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mAppointment Load (0.2ms)[0m  [1m[34mSELECT "appointments".* FROM "appointments" WHERE "appointments"."mechanic_id" = ? AND ("appointments"."date" BETWEEN ? AND ?)[0m  [["mechanic_id", 1], ["date", Sat, 01 Apr 2017], ["date", Sun, 02 Apr 2017]]
+  [1m[36mJob Load (0.2ms)[0m  [1m[34mSELECT  "jobs".* FROM "jobs" WHERE "jobs"."appointment_id" = ? LIMIT ?[0m  [["appointment_id", 44], ["LIMIT", 1]]
+Started GET "/mechanics/view_jobs?date=2017-04-01" for ::1 at 2017-03-31 14:40:08 -0600
+Processing by MechanicsController#view_jobs as */*
+  Parameters: {"date"=>"2017-04-01"}
+  Rendering appointments/new.js.erb
+  Rendering mechanics/view_jobs.js.erb
+  Rendered mechanics/_times.html.erb (1.2ms)
+  Rendered mechanics/view_jobs.js.erb (0.2ms)
+  Rendered appointments/new.js.erb (3.3ms)
+Completed 200 OK in 35ms (Views: 25.7ms | ActiveRecord: 0.0ms)
+
+
+Completed 200 OK in 59ms (Views: 37.0ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/mechanics/index" for ::1 at 2017-03-31 14:40:59 -0600
+Processing by MechanicsController#index as HTML
+  [1m[36mMechanic Load (0.2ms)[0m  [1m[34mSELECT  "mechanics".* FROM "mechanics" WHERE "mechanics"."id" = ? ORDER BY "mechanics"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering mechanics/index.html.erb within layouts/application
+  [1m[36mJob Load (0.2ms)[0m  [1m[34mSELECT "jobs".* FROM "jobs" WHERE "jobs"."mechanic_id" = ?[0m  [["mechanic_id", 1]]
+  [1m[36mAppointment Load (0.5ms)[0m  [1m[34mSELECT  "appointments".* FROM "appointments" WHERE "appointments"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "appointments".* FROM "appointments" WHERE "appointments"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered mechanics/index.html.erb within layouts/application (23.9ms)
+Completed 200 OK in 174ms (Views: 133.7ms | ActiveRecord: 2.7ms)
+
+
+Started GET "/appointments/new?appointment%5Bdate%5D=2017-04-01" for ::1 at 2017-03-31 14:41:00 -0600
+Processing by AppointmentsController#new as */*
+  Parameters: {"appointment"=>{"date"=>"2017-04-01"}}
+Started GET "/mechanics/view_jobs?date=2017-04-01" for ::1 at 2017-03-31 14:41:00 -0600
+  [1m[36mMechanic Load (0.3ms)[0m  [1m[34mSELECT  "mechanics".* FROM "mechanics" WHERE "mechanics"."id" = ? ORDER BY "mechanics"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mAppointment Load (0.2ms)[0m  [1m[34mSELECT "appointments".* FROM "appointments" WHERE "appointments"."mechanic_id" = ? AND ("appointments"."date" BETWEEN ? AND ?)[0m  [["mechanic_id", 1], ["date", Sat, 01 Apr 2017], ["date", Sun, 02 Apr 2017]]
+Processing by MechanicsController#view_jobs as */*
+Completed 500 Internal Server Error in 24ms (ActiveRecord: 0.4ms)
+
+
+  Parameters: {"date"=>"2017-04-01"}
+  
+NoMethodError (undefined method `time' for #<Appointment:0x007fa0b3e230c8>):
+  
+app/controllers/appointments_controller.rb:31:in `block (2 levels) in new'
+app/controllers/appointments_controller.rb:30:in `block in new'
+app/controllers/appointments_controller.rb:12:in `new'
+  Rendering mechanics/view_jobs.js.erb
+  Rendered mechanics/view_jobs.js.erb (0.5ms)
+Completed 200 OK in 82ms (Views: 22.3ms | ActiveRecord: 0.0ms)
+
+
+  Rendering /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.text.erb
+  Rendering /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.text.erb
+  Rendered /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.text.erb (0.6ms)
+  Rendering /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb
+  Rendered /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb (1.0ms)
+  Rendering /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.text.erb
+  Rendered /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.text.erb (0.8ms)
+  Rendered /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.text.erb (77.5ms)
+Started GET "/mechanics/index" for ::1 at 2017-03-31 14:41:52 -0600
+Processing by MechanicsController#index as HTML
+  [1m[36mMechanic Load (0.2ms)[0m  [1m[34mSELECT  "mechanics".* FROM "mechanics" WHERE "mechanics"."id" = ? ORDER BY "mechanics"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering mechanics/index.html.erb within layouts/application
+  [1m[36mJob Load (0.2ms)[0m  [1m[34mSELECT "jobs".* FROM "jobs" WHERE "jobs"."mechanic_id" = ?[0m  [["mechanic_id", 1]]
+  [1m[36mAppointment Load (0.1ms)[0m  [1m[34mSELECT  "appointments".* FROM "appointments" WHERE "appointments"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "appointments".* FROM "appointments" WHERE "appointments"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered mechanics/index.html.erb within layouts/application (25.4ms)
+Completed 200 OK in 189ms (Views: 161.2ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/appointments/new?appointment%5Bdate%5D=2017-04-01" for ::1 at 2017-03-31 14:41:53 -0600
+Processing by AppointmentsController#new as */*
+  Parameters: {"appointment"=>{"date"=>"2017-04-01"}}
+  [1m[36mMechanic Load (0.3ms)[0m  [1m[34mSELECT  "mechanics".* FROM "mechanics" WHERE "mechanics"."id" = ? ORDER BY "mechanics"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+Started GET "/mechanics/view_jobs?date=2017-04-01" for ::1 at 2017-03-31 14:41:53 -0600
+  [1m[36mAppointment Load (0.2ms)[0m  [1m[34mSELECT "appointments".* FROM "appointments" WHERE "appointments"."mechanic_id" = ? AND ("appointments"."date" BETWEEN ? AND ?)[0m  [["mechanic_id", 1], ["date", Sat, 01 Apr 2017], ["date", Sun, 02 Apr 2017]]
+Completed 500 Internal Server Error in 26ms (ActiveRecord: 0.5ms)
+
+
+Processing by MechanicsController#view_jobs as */*
+  
+  Parameters: {"date"=>"2017-04-01"}
+NoMethodError (undefined method `strftime' for #<Appointment:0x007fa0ba8021d8>):
+  Rendering mechanics/view_jobs.js.erb
+  
+app/controllers/appointments_controller.rb:31:in `block (2 levels) in new'
+app/controllers/appointments_controller.rb:30:in `block in new'
+app/controllers/appointments_controller.rb:12:in `new'
+  Rendered mechanics/view_jobs.js.erb (0.4ms)
+Completed 200 OK in 63ms (Views: 53.4ms | ActiveRecord: 0.0ms)
+
+
+  Rendering /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.text.erb
+  Rendering /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.text.erb
+  Rendered /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.text.erb (0.7ms)
+  Rendering /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb
+  Rendered /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb (0.7ms)
+  Rendering /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.text.erb
+  Rendered /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.text.erb (0.9ms)
+  Rendered /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.text.erb (57.7ms)
+Started GET "/appointments/new?appointment%5Bdate%5D=2017-04-07" for ::1 at 2017-03-31 14:41:55 -0600
+Processing by AppointmentsController#new as */*
+  Parameters: {"appointment"=>{"date"=>"2017-04-07"}}
+Started GET "/mechanics/view_jobs?date=2017-04-07" for ::1 at 2017-03-31 14:41:55 -0600
+  [1m[36mMechanic Load (0.4ms)[0m  [1m[34mSELECT  "mechanics".* FROM "mechanics" WHERE "mechanics"."id" = ? ORDER BY "mechanics"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mAppointment Load (0.2ms)[0m  [1m[34mSELECT "appointments".* FROM "appointments" WHERE "appointments"."mechanic_id" = ? AND ("appointments"."date" BETWEEN ? AND ?)[0m  [["mechanic_id", 1], ["date", Fri, 07 Apr 2017], ["date", Sat, 08 Apr 2017]]
+Processing by MechanicsController#view_jobs as */*
+  Parameters: {"date"=>"2017-04-07"}
+  Rendering mechanics/view_jobs.js.erb
+  Rendered mechanics/view_jobs.js.erb (0.4ms)
+Completed 200 OK in 27ms (Views: 17.5ms | ActiveRecord: 0.0ms)
+
+
+  Rendering appointments/new.js.erb
+  Rendered mechanics/_times.html.erb (1.5ms)
+  Rendered appointments/new.js.erb (4.1ms)
+Completed 200 OK in 58ms (Views: 13.9ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/appointments/new?appointment%5Bdate%5D=2017-04-01" for ::1 at 2017-03-31 14:41:55 -0600
+Processing by AppointmentsController#new as */*
+Started GET "/mechanics/view_jobs?date=2017-04-01" for ::1 at 2017-03-31 14:41:55 -0600
+  Parameters: {"appointment"=>{"date"=>"2017-04-01"}}
+Processing by MechanicsController#view_jobs as */*
+  [1m[36mMechanic Load (0.4ms)[0m  [1m[34mSELECT  "mechanics".* FROM "mechanics" WHERE "mechanics"."id" = ? ORDER BY "mechanics"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Parameters: {"date"=>"2017-04-01"}
+  [1m[36mAppointment Load (0.2ms)[0m  [1m[34mSELECT "appointments".* FROM "appointments" WHERE "appointments"."mechanic_id" = ? AND ("appointments"."date" BETWEEN ? AND ?)[0m  [["mechanic_id", 1], ["date", Sat, 01 Apr 2017], ["date", Sun, 02 Apr 2017]]
+Completed 500 Internal Server Error in 30ms (ActiveRecord: 0.5ms)
+
+
+  Rendering mechanics/view_jobs.js.erb
+  
+  Rendered mechanics/view_jobs.js.erb (0.4ms)
+NoMethodError (undefined method `strftime' for #<Appointment:0x007fa0b7c756a0>):
+Completed 200 OK in 33ms (Views: 23.7ms | ActiveRecord: 0.0ms)
+
+
+  
+app/controllers/appointments_controller.rb:31:in `block (2 levels) in new'
+app/controllers/appointments_controller.rb:30:in `block in new'
+app/controllers/appointments_controller.rb:12:in `new'
+  Rendering /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.text.erb
+  Rendering /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.text.erb
+  Rendered /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.text.erb (0.6ms)
+  Rendering /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb
+  Rendered /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb (0.5ms)
+  Rendering /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.text.erb
+  Rendered /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.text.erb (0.6ms)
+  Rendered /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.text.erb (52.2ms)
+Started POST "/appointments" for ::1 at 2017-03-31 14:41:57 -0600
+Processing by AppointmentsController#create as */*
+  Parameters: {"appointment"=>{"date"=>"Sat Apr 01 2017 06:00:00 GMT-0600 (MDT)"}}
+  [1m[36mMechanic Load (0.3ms)[0m  [1m[34mSELECT  "mechanics".* FROM "mechanics" WHERE "mechanics"."id" = ? ORDER BY "mechanics"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mMechanic Load (0.4ms)[0m  [1m[34mSELECT  "mechanics".* FROM "mechanics" WHERE "mechanics"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (1.3ms)[0m  [1m[32mINSERT INTO "appointments" ("date", "created_at", "updated_at", "mechanic_id") VALUES (?, ?, ?, ?)[0m  [["date", 2017-04-01 12:00:00 UTC], ["created_at", 2017-03-31 20:41:57 UTC], ["updated_at", 2017-03-31 20:41:57 UTC], ["mechanic_id", 1]]
+  [1m[35m (1.2ms)[0m  [1m[36mcommit transaction[0m
+  Rendering appointments/create.js.erb
+  Rendered appointments/create.js.erb (0.5ms)
+Completed 200 OK in 25ms (Views: 8.8ms | ActiveRecord: 3.2ms)
+
+
+Started GET "/appointments/new?appointment%5Bdate%5D=2017-04-07" for ::1 at 2017-03-31 14:41:59 -0600
+Processing by AppointmentsController#new as */*
+  Parameters: {"appointment"=>{"date"=>"2017-04-07"}}
+  [1m[36mMechanic Load (0.2ms)[0m  [1m[34mSELECT  "mechanics".* FROM "mechanics" WHERE "mechanics"."id" = ? ORDER BY "mechanics"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mAppointment Load (0.2ms)[0m  [1m[34mSELECT "appointments".* FROM "appointments" WHERE "appointments"."mechanic_id" = ? AND ("appointments"."date" BETWEEN ? AND ?)[0m  [["mechanic_id", 1], ["date", Fri, 07 Apr 2017], ["date", Sat, 08 Apr 2017]]
+Started GET "/mechanics/view_jobs?date=2017-04-07" for ::1 at 2017-03-31 14:41:59 -0600
+Processing by MechanicsController#view_jobs as */*
+  Parameters: {"date"=>"2017-04-07"}
+  Rendering appointments/new.js.erb
+  Rendered mechanics/_times.html.erb (0.7ms)
+  Rendering mechanics/view_jobs.js.erb
+  Rendered appointments/new.js.erb (7.7ms)
+  Rendered mechanics/view_jobs.js.erb (0.5ms)
+Completed 200 OK in 55ms (Views: 35.2ms | ActiveRecord: 0.5ms)
+
+
+Completed 200 OK in 33ms (Views: 18.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/appointments/new?appointment%5Bdate%5D=2017-04-01" for ::1 at 2017-03-31 14:42:00 -0600
+Processing by AppointmentsController#new as */*
+Started GET "/mechanics/view_jobs?date=2017-04-01" for ::1 at 2017-03-31 14:42:00 -0600
+  Parameters: {"appointment"=>{"date"=>"2017-04-01"}}
+Processing by MechanicsController#view_jobs as */*
+  [1m[36mMechanic Load (0.2ms)[0m  [1m[34mSELECT  "mechanics".* FROM "mechanics" WHERE "mechanics"."id" = ? ORDER BY "mechanics"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Parameters: {"date"=>"2017-04-01"}
+  [1m[36mAppointment Load (0.2ms)[0m  [1m[34mSELECT "appointments".* FROM "appointments" WHERE "appointments"."mechanic_id" = ? AND ("appointments"."date" BETWEEN ? AND ?)[0m  [["mechanic_id", 1], ["date", Sat, 01 Apr 2017], ["date", Sun, 02 Apr 2017]]
+Completed 500 Internal Server Error in 21ms (ActiveRecord: 0.4ms)
+
+
+  
+  Rendering mechanics/view_jobs.js.erb
+NoMethodError (undefined method `strftime' for #<Appointment:0x007fa0b3657d80>):
+  Rendered mechanics/view_jobs.js.erb (0.3ms)
+  
+Completed 200 OK in 33ms (Views: 15.8ms | ActiveRecord: 0.0ms)
+
+
+app/controllers/appointments_controller.rb:31:in `block (2 levels) in new'
+app/controllers/appointments_controller.rb:30:in `block in new'
+app/controllers/appointments_controller.rb:12:in `new'
+  Rendering /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.text.erb
+  Rendering /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.text.erb
+  Rendered /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.text.erb (0.6ms)
+  Rendering /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb
+  Rendered /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb (0.6ms)
+  Rendering /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.text.erb
+  Rendered /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.text.erb (0.8ms)
+  Rendered /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.text.erb (50.7ms)
+Started GET "/mechanics/index" for ::1 at 2017-03-31 14:42:13 -0600
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by MechanicsController#index as HTML
+  [1m[36mMechanic Load (0.2ms)[0m  [1m[34mSELECT  "mechanics".* FROM "mechanics" WHERE "mechanics"."id" = ? ORDER BY "mechanics"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering mechanics/index.html.erb within layouts/application
+  [1m[36mJob Load (0.2ms)[0m  [1m[34mSELECT "jobs".* FROM "jobs" WHERE "jobs"."mechanic_id" = ?[0m  [["mechanic_id", 1]]
+  [1m[36mAppointment Load (0.1ms)[0m  [1m[34mSELECT  "appointments".* FROM "appointments" WHERE "appointments"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "appointments".* FROM "appointments" WHERE "appointments"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered mechanics/index.html.erb within layouts/application (40.7ms)
+Completed 200 OK in 684ms (Views: 620.4ms | ActiveRecord: 1.9ms)
+
+
+Started GET "/appointments/new?appointment%5Bdate%5D=2017-04-01" for ::1 at 2017-03-31 14:42:15 -0600
+Processing by AppointmentsController#new as */*
+  Parameters: {"appointment"=>{"date"=>"2017-04-01"}}
+  [1m[36mMechanic Load (0.4ms)[0m  [1m[34mSELECT  "mechanics".* FROM "mechanics" WHERE "mechanics"."id" = ? ORDER BY "mechanics"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mAppointment Load (0.4ms)[0m  [1m[34mSELECT "appointments".* FROM "appointments" WHERE "appointments"."mechanic_id" = ? AND ("appointments"."date" BETWEEN ? AND ?)[0m  [["mechanic_id", 1], ["date", Sat, 01 Apr 2017], ["date", Sun, 02 Apr 2017]]
+Completed 500 Internal Server Error in 17ms (ActiveRecord: 0.8ms)
+
+
+Started GET "/mechanics/view_jobs?date=2017-04-01" for ::1 at 2017-03-31 14:42:15 -0600
+  
+NoMethodError (undefined method `strftime' for #<Appointment:0x007fd0ade80910>):
+Processing by MechanicsController#view_jobs as */*
+  
+  Parameters: {"date"=>"2017-04-01"}
+app/controllers/appointments_controller.rb:31:in `block (2 levels) in new'
+app/controllers/appointments_controller.rb:30:in `block in new'
+app/controllers/appointments_controller.rb:12:in `new'
+  Rendering mechanics/view_jobs.js.erb
+  Rendered mechanics/view_jobs.js.erb (0.4ms)
+Completed 200 OK in 70ms (Views: 17.4ms | ActiveRecord: 0.0ms)
+
+
+  Rendering /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.text.erb
+  Rendering /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.text.erb
+  Rendered /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.text.erb (0.5ms)
+  Rendering /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb
+  Rendered /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb (0.6ms)
+  Rendering /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.text.erb
+  Rendered /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.text.erb (0.9ms)
+  Rendered /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.text.erb (59.2ms)
+Started GET "/appointments/new?appointment%5Bdate%5D=2017-04-07" for ::1 at 2017-03-31 14:42:22 -0600
+Processing by AppointmentsController#new as */*
+  Parameters: {"appointment"=>{"date"=>"2017-04-07"}}
+Started GET "/mechanics/view_jobs?date=2017-04-07" for ::1 at 2017-03-31 14:42:22 -0600
+  [1m[36mMechanic Load (0.8ms)[0m  [1m[34mSELECT  "mechanics".* FROM "mechanics" WHERE "mechanics"."id" = ? ORDER BY "mechanics"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mAppointment Load (0.2ms)[0m  [1m[34mSELECT "appointments".* FROM "appointments" WHERE "appointments"."mechanic_id" = ? AND ("appointments"."date" BETWEEN ? AND ?)[0m  [["mechanic_id", 1], ["date", Fri, 07 Apr 2017], ["date", Sat, 08 Apr 2017]]
+Processing by MechanicsController#view_jobs as */*
+  Rendering appointments/new.js.erb
+  Parameters: {"date"=>"2017-04-07"}
+  Rendered mechanics/_times.html.erb (0.9ms)
+  Rendered appointments/new.js.erb (23.3ms)
+Completed 200 OK in 52ms (Views: 30.3ms | ActiveRecord: 0.9ms)
+
+
+  Rendering mechanics/view_jobs.js.erb
+  Rendered mechanics/view_jobs.js.erb (0.3ms)
+Completed 200 OK in 33ms (Views: 21.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/appointments/new?appointment%5Bdate%5D=2017-04-01" for ::1 at 2017-03-31 14:42:23 -0600
+Processing by AppointmentsController#new as */*
+  Parameters: {"appointment"=>{"date"=>"2017-04-01"}}
+Started GET "/mechanics/view_jobs?date=2017-04-01" for ::1 at 2017-03-31 14:42:23 -0600
+  [1m[36mMechanic Load (0.3ms)[0m  [1m[34mSELECT  "mechanics".* FROM "mechanics" WHERE "mechanics"."id" = ? ORDER BY "mechanics"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+Processing by MechanicsController#view_jobs as */*
+  [1m[36mAppointment Load (0.2ms)[0m  [1m[34mSELECT "appointments".* FROM "appointments" WHERE "appointments"."mechanic_id" = ? AND ("appointments"."date" BETWEEN ? AND ?)[0m  [["mechanic_id", 1], ["date", Sat, 01 Apr 2017], ["date", Sun, 02 Apr 2017]]
+  Parameters: {"date"=>"2017-04-01"}
+Completed 500 Internal Server Error in 22ms (ActiveRecord: 0.5ms)
+
+
+  
+NoMethodError (undefined method `strftime' for #<Appointment:0x007fd0b16df2c0>):
+  Rendering mechanics/view_jobs.js.erb
+  
+  Rendered mechanics/view_jobs.js.erb (0.5ms)
+app/controllers/appointments_controller.rb:31:in `block (2 levels) in new'
+app/controllers/appointments_controller.rb:30:in `block in new'
+app/controllers/appointments_controller.rb:12:in `new'
+Completed 200 OK in 32ms (Views: 21.1ms | ActiveRecord: 0.0ms)
+
+
+  Rendering /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.text.erb
+  Rendering /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.text.erb
+  Rendered /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.text.erb (0.9ms)
+  Rendering /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb
+  Rendered /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb (0.6ms)
+  Rendering /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.text.erb
+  Rendered /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.text.erb (0.9ms)
+  Rendered /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.text.erb (60.8ms)
+Started POST "/appointments" for ::1 at 2017-03-31 14:42:24 -0600
+Processing by AppointmentsController#create as */*
+  Parameters: {"appointment"=>{"date"=>"Sat Apr 01 2017 07:00:00 GMT-0600 (MDT)"}}
+  [1m[36mMechanic Load (0.2ms)[0m  [1m[34mSELECT  "mechanics".* FROM "mechanics" WHERE "mechanics"."id" = ? ORDER BY "mechanics"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mMechanic Load (0.3ms)[0m  [1m[34mSELECT  "mechanics".* FROM "mechanics" WHERE "mechanics"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "appointments" ("date", "created_at", "updated_at", "mechanic_id") VALUES (?, ?, ?, ?)[0m  [["date", 2017-04-01 13:00:00 UTC], ["created_at", 2017-03-31 20:42:24 UTC], ["updated_at", 2017-03-31 20:42:24 UTC], ["mechanic_id", 1]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  Rendering appointments/create.js.erb
+  Rendered appointments/create.js.erb (1.8ms)
+Completed 200 OK in 25ms (Views: 12.9ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/mechanics/index" for ::1 at 2017-03-31 14:44:16 -0600
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by MechanicsController#index as HTML
+  [1m[36mMechanic Load (0.2ms)[0m  [1m[34mSELECT  "mechanics".* FROM "mechanics" WHERE "mechanics"."id" = ? ORDER BY "mechanics"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering mechanics/index.html.erb within layouts/application
+  [1m[36mJob Load (0.5ms)[0m  [1m[34mSELECT "jobs".* FROM "jobs" WHERE "jobs"."mechanic_id" = ?[0m  [["mechanic_id", 1]]
+  [1m[36mAppointment Load (0.2ms)[0m  [1m[34mSELECT  "appointments".* FROM "appointments" WHERE "appointments"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "appointments".* FROM "appointments" WHERE "appointments"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered mechanics/index.html.erb within layouts/application (42.2ms)
+Completed 200 OK in 547ms (Views: 489.7ms | ActiveRecord: 3.4ms)
+
+
+Started GET "/appointments/new?appointment%5Bdate%5D=2017-04-01" for ::1 at 2017-03-31 14:44:18 -0600
+Processing by AppointmentsController#new as */*
+  Parameters: {"appointment"=>{"date"=>"2017-04-01"}}
+Started GET "/mechanics/view_jobs?date=2017-04-01" for ::1 at 2017-03-31 14:44:18 -0600
+  [1m[36mMechanic Load (0.4ms)[0m  [1m[34mSELECT  "mechanics".* FROM "mechanics" WHERE "mechanics"."id" = ? ORDER BY "mechanics"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+Processing by MechanicsController#view_jobs as */*
+  [1m[36mAppointment Load (0.3ms)[0m  [1m[34mSELECT "appointments".* FROM "appointments" WHERE "appointments"."mechanic_id" = ? AND ("appointments"."date" BETWEEN ? AND ?)[0m  [["mechanic_id", 1], ["date", Sat, 01 Apr 2017], ["date", Sun, 02 Apr 2017]]
+  Parameters: {"date"=>"2017-04-01"}
+Completed 500 Internal Server Error in 36ms (ActiveRecord: 0.6ms)
+
+
+  Rendering mechanics/view_jobs.js.erb
+  
+  Rendered mechanics/view_jobs.js.erb (0.3ms)
+NoMethodError (undefined method `strftime' for #<Appointment:0x007f9593f01768>):
+Completed 200 OK in 32ms (Views: 23.3ms | ActiveRecord: 0.0ms)
+
+
+  
+app/controllers/appointments_controller.rb:31:in `block (2 levels) in new'
+app/controllers/appointments_controller.rb:30:in `block in new'
+app/controllers/appointments_controller.rb:12:in `new'
+  Rendering /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.text.erb
+  Rendering /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.text.erb
+  Rendered /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.text.erb (0.6ms)
+  Rendering /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb
+  Rendered /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb (1.0ms)
+  Rendering /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.text.erb
+  Rendered /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.text.erb (0.7ms)
+  Rendered /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.text.erb (64.2ms)
+Started GET "/appointments/new?appointment%5Bdate%5D=2017-04-07" for ::1 at 2017-03-31 14:44:20 -0600
+Processing by AppointmentsController#new as */*
+  Parameters: {"appointment"=>{"date"=>"2017-04-07"}}
+  [1m[36mMechanic Load (0.7ms)[0m  [1m[34mSELECT  "mechanics".* FROM "mechanics" WHERE "mechanics"."id" = ? ORDER BY "mechanics"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+Started GET "/mechanics/view_jobs?date=2017-04-07" for ::1 at 2017-03-31 14:44:20 -0600
+  [1m[36mAppointment Load (0.2ms)[0m  [1m[34mSELECT "appointments".* FROM "appointments" WHERE "appointments"."mechanic_id" = ? AND ("appointments"."date" BETWEEN ? AND ?)[0m  [["mechanic_id", 1], ["date", Fri, 07 Apr 2017], ["date", Sat, 08 Apr 2017]]
+Processing by MechanicsController#view_jobs as */*
+  Parameters: {"date"=>"2017-04-07"}
+  Rendering mechanics/view_jobs.js.erb
+  Rendered mechanics/view_jobs.js.erb (0.3ms)
+Completed 200 OK in 31ms (Views: 17.8ms | ActiveRecord: 0.0ms)
+
+
+  Rendering appointments/new.js.erb
+  Rendered mechanics/_times.html.erb (1.2ms)
+  Rendered appointments/new.js.erb (4.7ms)
+Completed 200 OK in 67ms (Views: 44.6ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/appointments/new?appointment%5Bdate%5D=2017-04-01" for ::1 at 2017-03-31 14:44:20 -0600
+Processing by AppointmentsController#new as */*
+Started GET "/mechanics/view_jobs?date=2017-04-01" for ::1 at 2017-03-31 14:44:20 -0600
+  Parameters: {"appointment"=>{"date"=>"2017-04-01"}}
+Processing by MechanicsController#view_jobs as */*
+  [1m[36mMechanic Load (0.5ms)[0m  [1m[34mSELECT  "mechanics".* FROM "mechanics" WHERE "mechanics"."id" = ? ORDER BY "mechanics"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Parameters: {"date"=>"2017-04-01"}
+  [1m[36mAppointment Load (0.2ms)[0m  [1m[34mSELECT "appointments".* FROM "appointments" WHERE "appointments"."mechanic_id" = ? AND ("appointments"."date" BETWEEN ? AND ?)[0m  [["mechanic_id", 1], ["date", Sat, 01 Apr 2017], ["date", Sun, 02 Apr 2017]]
+  Rendering mechanics/view_jobs.js.erb
+Completed 500 Internal Server Error in 42ms (ActiveRecord: 0.6ms)
+
+
+  Rendered mechanics/view_jobs.js.erb (0.4ms)
+  
+Completed 200 OK in 39ms (Views: 29.6ms | ActiveRecord: 0.0ms)
+
+
+NoMethodError (undefined method `strftime' for #<Appointment:0x007f9593ed1b80>):
+  
+app/controllers/appointments_controller.rb:31:in `block (2 levels) in new'
+app/controllers/appointments_controller.rb:30:in `block in new'
+app/controllers/appointments_controller.rb:12:in `new'
+  Rendering /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.text.erb
+  Rendering /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.text.erb
+  Rendered /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.text.erb (1.0ms)
+  Rendering /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb
+  Rendered /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb (0.5ms)
+  Rendering /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.text.erb
+  Rendered /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.text.erb (0.7ms)
+  Rendered /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.text.erb (59.3ms)
+Started POST "/appointments" for ::1 at 2017-03-31 14:44:21 -0600
+Processing by AppointmentsController#create as */*
+  Parameters: {"appointment"=>{"date"=>"Sat Apr 01 2017 07:00:00 GMT-0600 (MDT)"}}
+  [1m[36mMechanic Load (0.2ms)[0m  [1m[34mSELECT  "mechanics".* FROM "mechanics" WHERE "mechanics"."id" = ? ORDER BY "mechanics"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mMechanic Load (0.1ms)[0m  [1m[34mSELECT  "mechanics".* FROM "mechanics" WHERE "mechanics"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "appointments" ("date", "created_at", "updated_at", "mechanic_id") VALUES (?, ?, ?, ?)[0m  [["date", 2017-04-01 07:00:00 -0600], ["created_at", 2017-03-31 14:44:21 -0600], ["updated_at", 2017-03-31 14:44:21 -0600], ["mechanic_id", 1]]
+  [1m[35m (1.3ms)[0m  [1m[36mcommit transaction[0m
+  Rendering appointments/create.js.erb
+  Rendered appointments/create.js.erb (1.0ms)
+Completed 200 OK in 18ms (Views: 7.8ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/appointments/new?appointment%5Bdate%5D=2017-04-07" for ::1 at 2017-03-31 14:44:24 -0600
+Processing by AppointmentsController#new as */*
+  Parameters: {"appointment"=>{"date"=>"2017-04-07"}}
+Started GET "/mechanics/view_jobs?date=2017-04-07" for ::1 at 2017-03-31 14:44:24 -0600
+  [1m[36mMechanic Load (0.3ms)[0m  [1m[34mSELECT  "mechanics".* FROM "mechanics" WHERE "mechanics"."id" = ? ORDER BY "mechanics"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+Processing by MechanicsController#view_jobs as */*
+  [1m[36mAppointment Load (0.3ms)[0m  [1m[34mSELECT "appointments".* FROM "appointments" WHERE "appointments"."mechanic_id" = ? AND ("appointments"."date" BETWEEN ? AND ?)[0m  [["mechanic_id", 1], ["date", Fri, 07 Apr 2017], ["date", Sat, 08 Apr 2017]]
+  Parameters: {"date"=>"2017-04-07"}
+  Rendering appointments/new.js.erb
+  Rendering mechanics/view_jobs.js.erb
+  Rendered mechanics/_times.html.erb (0.9ms)
+  Rendered mechanics/view_jobs.js.erb (0.3ms)
+  Rendered appointments/new.js.erb (8.5ms)
+Completed 200 OK in 41ms (Views: 17.7ms | ActiveRecord: 0.0ms)
+
+
+Completed 200 OK in 61ms (Views: 24.9ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/appointments/new?appointment%5Bdate%5D=2017-04-01" for ::1 at 2017-03-31 14:44:24 -0600
+Processing by AppointmentsController#new as */*
+  Parameters: {"appointment"=>{"date"=>"2017-04-01"}}
+Started GET "/mechanics/view_jobs?date=2017-04-01" for ::1 at 2017-03-31 14:44:24 -0600
+  [1m[36mMechanic Load (0.3ms)[0m  [1m[34mSELECT  "mechanics".* FROM "mechanics" WHERE "mechanics"."id" = ? ORDER BY "mechanics"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mAppointment Load (0.2ms)[0m  [1m[34mSELECT "appointments".* FROM "appointments" WHERE "appointments"."mechanic_id" = ? AND ("appointments"."date" BETWEEN ? AND ?)[0m  [["mechanic_id", 1], ["date", Sat, 01 Apr 2017], ["date", Sun, 02 Apr 2017]]
+Processing by MechanicsController#view_jobs as */*
+Completed 500 Internal Server Error in 21ms (ActiveRecord: 0.4ms)
+
+
+  Parameters: {"date"=>"2017-04-01"}
+  
+NoMethodError (undefined method `strftime' for #<Appointment:0x007f9592eb1ea8>):
+  Rendering mechanics/view_jobs.js.erb
+  
+  Rendered mechanics/view_jobs.js.erb (0.3ms)
+app/controllers/appointments_controller.rb:31:in `block (2 levels) in new'
+app/controllers/appointments_controller.rb:30:in `block in new'
+app/controllers/appointments_controller.rb:12:in `new'
+Completed 200 OK in 28ms (Views: 17.7ms | ActiveRecord: 0.0ms)
+
+
+  Rendering /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.text.erb
+  Rendering /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.text.erb
+  Rendered /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.text.erb (0.8ms)
+  Rendering /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb
+  Rendered /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb (0.6ms)
+  Rendering /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.text.erb
+  Rendered /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.text.erb (0.7ms)
+  Rendered /Users/w/.rvm/gems/ruby-2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.text.erb (55.1ms)
+Started GET "/mechanics/index" for ::1 at 2017-03-31 14:44:50 -0600
+Processing by MechanicsController#index as HTML
+  [1m[36mMechanic Load (0.3ms)[0m  [1m[34mSELECT  "mechanics".* FROM "mechanics" WHERE "mechanics"."id" = ? ORDER BY "mechanics"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering mechanics/index.html.erb within layouts/application
+  [1m[36mJob Load (0.2ms)[0m  [1m[34mSELECT "jobs".* FROM "jobs" WHERE "jobs"."mechanic_id" = ?[0m  [["mechanic_id", 1]]
+  [1m[36mAppointment Load (0.1ms)[0m  [1m[34mSELECT  "appointments".* FROM "appointments" WHERE "appointments"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "appointments".* FROM "appointments" WHERE "appointments"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered mechanics/index.html.erb within layouts/application (37.8ms)
+Completed 200 OK in 192ms (Views: 160.2ms | ActiveRecord: 2.7ms)
+
+
+Started GET "/appointments/new?appointment%5Bdate%5D=2017-04-01" for ::1 at 2017-03-31 14:44:51 -0600
+Processing by AppointmentsController#new as */*
+Started GET "/mechanics/view_jobs?date=2017-04-01" for ::1 at 2017-03-31 14:44:51 -0600
+  Parameters: {"appointment"=>{"date"=>"2017-04-01"}}
+Processing by MechanicsController#view_jobs as */*
+  [1m[36mMechanic Load (0.2ms)[0m  [1m[34mSELECT  "mechanics".* FROM "mechanics" WHERE "mechanics"."id" = ? ORDER BY "mechanics"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Parameters: {"date"=>"2017-04-01"}
+  [1m[36mAppointment Load (0.3ms)[0m  [1m[34mSELECT "appointments".* FROM "appointments" WHERE "appointments"."mechanic_id" = ? AND ("appointments"."date" BETWEEN ? AND ?)[0m  [["mechanic_id", 1], ["date", Sat, 01 Apr 2017], ["date", Sun, 02 Apr 2017]]
+  [1m[36mJob Load (0.3ms)[0m  [1m[34mSELECT  "jobs".* FROM "jobs" WHERE "jobs"."appointment_id" = ? LIMIT ?[0m  [["appointment_id", 44], ["LIMIT", 1]]
+  Rendering mechanics/view_jobs.js.erb
+  [1m[36mJob Load (0.2ms)[0m  [1m[34mSELECT  "jobs".* FROM "jobs" WHERE "jobs"."appointment_id" = ? LIMIT ?[0m  [["appointment_id", 45], ["LIMIT", 1]]
+  Rendered mechanics/view_jobs.js.erb (0.6ms)
+  [1m[36mJob Load (1.5ms)[0m  [1m[34mSELECT  "jobs".* FROM "jobs" WHERE "jobs"."appointment_id" = ? LIMIT ?[0m  [["appointment_id", 46], ["LIMIT", 1]]
+Completed 200 OK in 37ms (Views: 25.1ms | ActiveRecord: 0.0ms)
+
+
+  [1m[36mJob Load (0.1ms)[0m  [1m[34mSELECT  "jobs".* FROM "jobs" WHERE "jobs"."appointment_id" = ? LIMIT ?[0m  [["appointment_id", 47], ["LIMIT", 1]]
+  Rendering appointments/new.js.erb
+  Rendered mechanics/_times.html.erb (1.2ms)
+  Rendered appointments/new.js.erb (3.7ms)
+Completed 200 OK in 58ms (Views: 10.8ms | ActiveRecord: 2.5ms)
+
+
+Started POST "/appointments" for ::1 at 2017-03-31 14:44:52 -0600
+Processing by AppointmentsController#create as */*
+  Parameters: {"appointment"=>{"date"=>"Sat Apr 01 2017 08:00:00 GMT-0600 (MDT)"}}
+  [1m[36mMechanic Load (0.7ms)[0m  [1m[34mSELECT  "mechanics".* FROM "mechanics" WHERE "mechanics"."id" = ? ORDER BY "mechanics"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mMechanic Load (0.4ms)[0m  [1m[34mSELECT  "mechanics".* FROM "mechanics" WHERE "mechanics"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "appointments" ("date", "created_at", "updated_at", "mechanic_id") VALUES (?, ?, ?, ?)[0m  [["date", 2017-04-01 08:00:00 -0600], ["created_at", 2017-03-31 14:44:52 -0600], ["updated_at", 2017-03-31 14:44:52 -0600], ["mechanic_id", 1]]
+  [1m[35m (1.5ms)[0m  [1m[36mcommit transaction[0m
+  Rendering appointments/create.js.erb
+  Rendered appointments/create.js.erb (0.4ms)
+Completed 200 OK in 29ms (Views: 7.6ms | ActiveRecord: 3.2ms)
+
+
+Started GET "/appointments/new?appointment%5Bdate%5D=2017-04-07" for ::1 at 2017-03-31 14:44:53 -0600
+Processing by AppointmentsController#new as */*
+Started GET "/mechanics/view_jobs?date=2017-04-07" for ::1 at 2017-03-31 14:44:53 -0600
+  Parameters: {"appointment"=>{"date"=>"2017-04-07"}}
+Processing by MechanicsController#view_jobs as */*
+  [1m[36mMechanic Load (0.3ms)[0m  [1m[34mSELECT  "mechanics".* FROM "mechanics" WHERE "mechanics"."id" = ? ORDER BY "mechanics"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Parameters: {"date"=>"2017-04-07"}
+  [1m[36mAppointment Load (0.2ms)[0m  [1m[34mSELECT "appointments".* FROM "appointments" WHERE "appointments"."mechanic_id" = ? AND ("appointments"."date" BETWEEN ? AND ?)[0m  [["mechanic_id", 1], ["date", Fri, 07 Apr 2017], ["date", Sat, 08 Apr 2017]]
+  Rendering mechanics/view_jobs.js.erb
+  Rendered mechanics/view_jobs.js.erb (0.4ms)
+Completed 200 OK in 32ms (Views: 20.8ms | ActiveRecord: 0.0ms)
+
+
+  Rendering appointments/new.js.erb
+  Rendered mechanics/_times.html.erb (1.1ms)
+  Rendered appointments/new.js.erb (6.4ms)
+Completed 200 OK in 56ms (Views: 19.8ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/appointments/new?appointment%5Bdate%5D=2017-04-01" for ::1 at 2017-03-31 14:44:54 -0600
+Processing by AppointmentsController#new as */*
+  Parameters: {"appointment"=>{"date"=>"2017-04-01"}}
+  [1m[36mMechanic Load (0.4ms)[0m  [1m[34mSELECT  "mechanics".* FROM "mechanics" WHERE "mechanics"."id" = ? ORDER BY "mechanics"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mAppointment Load (0.4ms)[0m  [1m[34mSELECT "appointments".* FROM "appointments" WHERE "appointments"."mechanic_id" = ? AND ("appointments"."date" BETWEEN ? AND ?)[0m  [["mechanic_id", 1], ["date", Sat, 01 Apr 2017], ["date", Sun, 02 Apr 2017]]
+  [1m[36mJob Load (0.1ms)[0m  [1m[34mSELECT  "jobs".* FROM "jobs" WHERE "jobs"."appointment_id" = ? LIMIT ?[0m  [["appointment_id", 44], ["LIMIT", 1]]
+Started GET "/mechanics/view_jobs?date=2017-04-01" for ::1 at 2017-03-31 14:44:54 -0600
+  [1m[36mJob Load (0.1ms)[0m  [1m[34mSELECT  "jobs".* FROM "jobs" WHERE "jobs"."appointment_id" = ? LIMIT ?[0m  [["appointment_id", 45], ["LIMIT", 1]]
+Processing by MechanicsController#view_jobs as */*
+  [1m[36mJob Load (0.1ms)[0m  [1m[34mSELECT  "jobs".* FROM "jobs" WHERE "jobs"."appointment_id" = ? LIMIT ?[0m  [["appointment_id", 46], ["LIMIT", 1]]
+  Parameters: {"date"=>"2017-04-01"}
+  [1m[36mJob Load (0.1ms)[0m  [1m[34mSELECT  "jobs".* FROM "jobs" WHERE "jobs"."appointment_id" = ? LIMIT ?[0m  [["appointment_id", 47], ["LIMIT", 1]]
+  [1m[36mJob Load (0.1ms)[0m  [1m[34mSELECT  "jobs".* FROM "jobs" WHERE "jobs"."appointment_id" = ? LIMIT ?[0m  [["appointment_id", 48], ["LIMIT", 1]]
+  Rendering mechanics/view_jobs.js.erb
+  Rendering appointments/new.js.erb
+  Rendered mechanics/view_jobs.js.erb (0.4ms)
+  Rendered mechanics/_times.html.erb (0.6ms)
+Completed 200 OK in 43ms (Views: 28.7ms | ActiveRecord: 0.0ms)
+
+
+  Rendered appointments/new.js.erb (2.4ms)
+Completed 200 OK in 68ms (Views: 10.6ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/appointments/new?appointment%5Bdate%5D=2017-04-07" for ::1 at 2017-03-31 14:45:08 -0600
+Processing by AppointmentsController#new as */*
+  Parameters: {"appointment"=>{"date"=>"2017-04-07"}}
+  [1m[36mMechanic Load (0.2ms)[0m  [1m[34mSELECT  "mechanics".* FROM "mechanics" WHERE "mechanics"."id" = ? ORDER BY "mechanics"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+Started GET "/mechanics/view_jobs?date=2017-04-07" for ::1 at 2017-03-31 14:45:08 -0600
+  [1m[36mAppointment Load (0.3ms)[0m  [1m[34mSELECT "appointments".* FROM "appointments" WHERE "appointments"."mechanic_id" = ? AND ("appointments"."date" BETWEEN ? AND ?)[0m  [["mechanic_id", 1], ["date", Fri, 07 Apr 2017], ["date", Sat, 08 Apr 2017]]
+Processing by MechanicsController#view_jobs as */*
+  Parameters: {"date"=>"2017-04-07"}
+  Rendering mechanics/view_jobs.js.erb
+  Rendering appointments/new.js.erb
+  Rendered mechanics/view_jobs.js.erb (0.4ms)
+Completed 200 OK in 31ms (Views: 21.4ms | ActiveRecord: 0.0ms)
+
+
+  Rendered mechanics/_times.html.erb (1.2ms)
+  Rendered appointments/new.js.erb (4.0ms)
+Completed 200 OK in 54ms (Views: 35.9ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/appointments" for ::1 at 2017-03-31 14:45:09 -0600
+Processing by AppointmentsController#create as */*
+  Parameters: {"appointment"=>{"date"=>"Fri Apr 07 2017 09:00:00 GMT-0600 (MDT)"}}
+  [1m[36mMechanic Load (0.2ms)[0m  [1m[34mSELECT  "mechanics".* FROM "mechanics" WHERE "mechanics"."id" = ? ORDER BY "mechanics"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mMechanic Load (0.1ms)[0m  [1m[34mSELECT  "mechanics".* FROM "mechanics" WHERE "mechanics"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "appointments" ("date", "created_at", "updated_at", "mechanic_id") VALUES (?, ?, ?, ?)[0m  [["date", 2017-04-07 09:00:00 -0600], ["created_at", 2017-03-31 14:45:09 -0600], ["updated_at", 2017-03-31 14:45:09 -0600], ["mechanic_id", 1]]
+  [1m[35m (1.5ms)[0m  [1m[36mcommit transaction[0m
+  Rendering appointments/create.js.erb
+  Rendered appointments/create.js.erb (0.3ms)
+Completed 200 OK in 18ms (Views: 9.1ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/appointments/new?appointment%5Bdate%5D=2017-04-01" for ::1 at 2017-03-31 14:45:10 -0600
+Started GET "/mechanics/view_jobs?date=2017-04-01" for ::1 at 2017-03-31 14:45:10 -0600
+Processing by AppointmentsController#new as */*
+  Parameters: {"appointment"=>{"date"=>"2017-04-01"}}
+  [1m[36mMechanic Load (0.2ms)[0m  [1m[34mSELECT  "mechanics".* FROM "mechanics" WHERE "mechanics"."id" = ? ORDER BY "mechanics"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+Processing by MechanicsController#view_jobs as */*
+  [1m[36mAppointment Load (0.1ms)[0m  [1m[34mSELECT "appointments".* FROM "appointments" WHERE "appointments"."mechanic_id" = ? AND ("appointments"."date" BETWEEN ? AND ?)[0m  [["mechanic_id", 1], ["date", Sat, 01 Apr 2017], ["date", Sun, 02 Apr 2017]]
+  Parameters: {"date"=>"2017-04-01"}
+  [1m[36mJob Load (0.1ms)[0m  [1m[34mSELECT  "jobs".* FROM "jobs" WHERE "jobs"."appointment_id" = ? LIMIT ?[0m  [["appointment_id", 44], ["LIMIT", 1]]
+  [1m[36mJob Load (0.1ms)[0m  [1m[34mSELECT  "jobs".* FROM "jobs" WHERE "jobs"."appointment_id" = ? LIMIT ?[0m  [["appointment_id", 45], ["LIMIT", 1]]
+  Rendering mechanics/view_jobs.js.erb
+  Rendered mechanics/view_jobs.js.erb (0.3ms)
+  [1m[36mJob Load (0.1ms)[0m  [1m[34mSELECT  "jobs".* FROM "jobs" WHERE "jobs"."appointment_id" = ? LIMIT ?[0m  [["appointment_id", 46], ["LIMIT", 1]]
+Completed 200 OK in 28ms (Views: 18.1ms | ActiveRecord: 0.0ms)
+
+
+  [1m[36mJob Load (0.1ms)[0m  [1m[34mSELECT  "jobs".* FROM "jobs" WHERE "jobs"."appointment_id" = ? LIMIT ?[0m  [["appointment_id", 47], ["LIMIT", 1]]
+  [1m[36mJob Load (0.1ms)[0m  [1m[34mSELECT  "jobs".* FROM "jobs" WHERE "jobs"."appointment_id" = ? LIMIT ?[0m  [["appointment_id", 48], ["LIMIT", 1]]
+  Rendering appointments/new.js.erb
+  Rendered mechanics/_times.html.erb (0.7ms)
+  Rendered appointments/new.js.erb (2.2ms)
+Completed 200 OK in 50ms (Views: 11.3ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/appointments/new?appointment%5Bdate%5D=2017-04-07" for ::1 at 2017-03-31 14:45:11 -0600
+Processing by AppointmentsController#new as */*
+  Parameters: {"appointment"=>{"date"=>"2017-04-07"}}
+Started GET "/mechanics/view_jobs?date=2017-04-07" for ::1 at 2017-03-31 14:45:11 -0600
+  [1m[36mMechanic Load (0.2ms)[0m  [1m[34mSELECT  "mechanics".* FROM "mechanics" WHERE "mechanics"."id" = ? ORDER BY "mechanics"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mAppointment Load (0.2ms)[0m  [1m[34mSELECT "appointments".* FROM "appointments" WHERE "appointments"."mechanic_id" = ? AND ("appointments"."date" BETWEEN ? AND ?)[0m  [["mechanic_id", 1], ["date", Fri, 07 Apr 2017], ["date", Sat, 08 Apr 2017]]
+Processing by MechanicsController#view_jobs as */*
+  [1m[36mJob Load (0.1ms)[0m  [1m[34mSELECT  "jobs".* FROM "jobs" WHERE "jobs"."appointment_id" = ? LIMIT ?[0m  [["appointment_id", 49], ["LIMIT", 1]]
+  Parameters: {"date"=>"2017-04-07"}
+  Rendering mechanics/view_jobs.js.erb
+  Rendered mechanics/view_jobs.js.erb (0.3ms)
+  Rendering appointments/new.js.erb
+Completed 200 OK in 32ms (Views: 22.0ms | ActiveRecord: 0.0ms)
+
+
+  Rendered mechanics/_times.html.erb (0.7ms)
+  Rendered appointments/new.js.erb (3.1ms)
+Completed 200 OK in 53ms (Views: 11.7ms | ActiveRecord: 0.5ms)
+
+

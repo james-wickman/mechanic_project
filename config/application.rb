@@ -9,6 +9,7 @@ Bundler.require(*Rails.groups)
 
 module Mobile
   class Application < Rails::Application
+  	config.active_record.default_timezone = :local
 	config.autoload_paths << Rails.root.join('lib')
   	config.autoload_paths += %W(#{config.root}/lib)
     # Settings in config/environments/* take precedence over those specified here.

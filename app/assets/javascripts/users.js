@@ -120,7 +120,6 @@ $(document).on('turbolinks:load', function() {
 		    future[i].style.backgroundColor = "#ffffff";
 		    future[i].style.opacity = "0.9";
 		}
-		this.style.backgroundColor = "lightblue"
 	    date = this.getAttribute('data-date')
 	    $('.mechanic_appointments_head').html('<h2>' + date + '</h2>')
 	    $('.mechanic_appointments_head').text(date)
@@ -206,7 +205,6 @@ $(document).on('turbolinks:load', function() {
 		    future[i].style.backgroundColor = "#ffffff";
 		    future[i].style.opacity = "0.9";
 		}
-		this.style.backgroundColor = "lightblue"
 	    date = this.getAttribute('data-date')
 	    $('.schedule_head').html('<h2>' + date + '</h2>')
 
