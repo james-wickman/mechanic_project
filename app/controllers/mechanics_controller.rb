@@ -39,8 +39,6 @@ class MechanicsController < ApplicationController
     appointment = params[:appointment]
     vehicle = params[:user_vehicle]
     user_email = params[:user_email]
-    p "this is subject#{subject}"
-    p "this is message #{message}"
     Pony.mail(:to => "#{user_email}", :from => "#{current_mechanic.email}", :subject => "#{vehicle} Scheduled For #{appointment}: #{subject}", :body => "#{message}")
   end
   def cancel_appointment
